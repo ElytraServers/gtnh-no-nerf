@@ -1,0 +1,16 @@
+{
+	"required": true,
+	"minVersion": "0.8.5-GTNH",
+	"package": "cn.taskeren.gtnn.mixin",
+	"refmap": "mixins.gtnn.refmap.json",
+	"target": "@env(DEFAULT)",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+		"gt5u.GTLoaderMetaTileEntitiesMixin",
+		"gt5u.GTShapedRecipeMixin",
+		"gt5u.GTShapelessRecipeMixin",
+		"newhorizoncore.GTLoaderMachinesMixin"
+	],
+	"client": [],
+	"server": []
+}
