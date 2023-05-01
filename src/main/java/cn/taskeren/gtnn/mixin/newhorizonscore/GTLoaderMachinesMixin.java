@@ -1,4 +1,4 @@
-package cn.taskeren.gtnn.mixin.newhorizoncore;
+package cn.taskeren.gtnn.mixin.newhorizonscore;
 
 import cn.taskeren.gtnn.mod.gt5u.tile.TileEntityDisassembler;
 import cn.taskeren.gtnn.mod.gt5u.util.NNItemList;
