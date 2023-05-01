@@ -13,7 +13,7 @@ public class GTMetaTileEntityLightningRodMixin {
 
 	@Redirect(method = "onPostTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;setBlockToAir(III)Z"), remap = true)
 	private boolean nn$onWorldSetBlockToAir(World world, int x, int y, int z) {
-		GTNN.logger.debug("Prevented a Lightning Rod breaking at " + ToStringHelper.vecToString(x, y, z));
+		GTNN.logger.info("Prevented a Lightning Rod breaking at " + ToStringHelper.vecToString(x, y, z));
 		return true;
 	}
 

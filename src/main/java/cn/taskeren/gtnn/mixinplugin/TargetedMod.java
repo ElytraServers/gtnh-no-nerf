@@ -3,6 +3,7 @@ package cn.taskeren.gtnn.mixinplugin;
 import com.google.common.io.Files;
 
 import java.nio.file.Path;
+import java.util.Locale;
 
 @SuppressWarnings({"UnstableApiUsage"})
 public enum TargetedMod {
@@ -19,9 +20,9 @@ public enum TargetedMod {
 		this(modName, jarNamePrefixAnyCase, true);
 	}
 
-	TargetedMod(String modName, String jarNamePrefixLowercase, boolean shouldLoadInDev) {
+	TargetedMod(String modName, String jarNamePrefixAnyCase, boolean shouldLoadInDev) {
 		this.modName = modName;
-		this.jarNamePrefixLowercase = jarNamePrefixLowercase;
+		this.jarNamePrefixLowercase = jarNamePrefixAnyCase.toLowerCase(Locale.US);
 		this.shouldLoadInDev = shouldLoadInDev;
 	}
 
