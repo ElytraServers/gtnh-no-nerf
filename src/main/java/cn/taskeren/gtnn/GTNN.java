@@ -1,10 +1,6 @@
 package cn.taskeren.gtnn;
 
-import cn.taskeren.gtnn.client.rawinput.GLFWUtils;
-import cn.taskeren.gtnn.client.rawinput.RawInput;
 import cn.taskeren.gtnn.common.CommonProxy;
-import cn.taskeren.gtnn.mod.gt5u.recipe.ReverseShapedRecipe;
-import cn.taskeren.gtnn.mod.gt5u.recipe.ReverseShapelessRecipe;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -29,20 +25,17 @@ public class GTNN {
 	@Mod.EventHandler
 	public void onPreInit(FMLPreInitializationEvent event) {
 		logger = event.getModLog();
+		proxy.onPreInit(event);
 	}
 
 	@Mod.EventHandler
 	public void onInit(FMLInitializationEvent event) {
+		proxy.onInit(event);
 	}
 
 	@Mod.EventHandler
 	public void onPostInit(FMLPostInitializationEvent event) {
-		ReverseShapedRecipe.runReverseRecipes();
-		ReverseShapelessRecipe.runReverseRecipes();
-
-		if(GLFWUtils.isGFLWProvided()) {
-			RawInput.setRawInput(true);
-		}
+		proxy.onPostInit(event);
 	}
 
 }
