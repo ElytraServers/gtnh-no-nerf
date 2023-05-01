@@ -9,7 +9,7 @@ I hate the feeling that whatever I liked to play, it gets nerfed in the very nex
 ## Re-Buffed
 
 - [X] Disassembler should be there with nothing changed. (GTNewHorizons/GT5-Unofficial#1855)
-- [ ] Iron Fence in Lightning Rod structure will no longer be broken in Thunder weather. (GTNewHorizons/GT5-Unofficial#1875)
+- [X] Iron Fence in Lightning Rod structure will no longer be broken in Thunder weather. (GTNewHorizons/GT5-Unofficial#1875)
 
 ## Buffed
 
