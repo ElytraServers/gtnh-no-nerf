@@ -1,5 +1,7 @@
 package cn.taskeren.gtnn;
 
+import cn.taskeren.gtnn.client.rawinput.GLFWUtils;
+import cn.taskeren.gtnn.client.rawinput.RawInput;
 import cn.taskeren.gtnn.common.CommonProxy;
 import cn.taskeren.gtnn.mod.gt5u.recipe.ReverseShapedRecipe;
 import cn.taskeren.gtnn.mod.gt5u.recipe.ReverseShapelessRecipe;
@@ -37,6 +39,10 @@ public class GTNN {
 	public void onPostInit(FMLPostInitializationEvent event) {
 		ReverseShapedRecipe.runReverseRecipes();
 		ReverseShapelessRecipe.runReverseRecipes();
+
+		if(GLFWUtils.isGFLWProvided()) {
+			RawInput.setRawInput(true);
+		}
 	}
 
 }
