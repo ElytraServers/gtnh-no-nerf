@@ -9,7 +9,8 @@ import java.util.Locale;
 public enum TargetedMod {
 
 	GregTech("GregTech", "GregTech"),
-	NewHorizonsCoreMod("GT: New Horizons", "GTNewHorizonsCoreMod")
+	NewHorizonsCoreMod("GT: New Horizons", "GTNewHorizonsCoreMod"),
+	GoodGenerator("GoodGenerator", "GoodGenerator")
 	;
 
 	public final String modName;

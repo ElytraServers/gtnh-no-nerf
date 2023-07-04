@@ -11,6 +11,8 @@ public enum Mixin {
 	GTMetaTileEntityLightningRod("gt5u.GTMetaTileEntityLightningRodMixin", TargetedMod.GregTech),
 
 	GTLoaderMachinesMixin("newhorizonscore.GTLoaderMachinesMixin", TargetedMod.NewHorizonsCoreMod),
+
+	LargeEssentiaGeneratorMixin("goodgenerator.LargeEssentiaGeneratorMixin", TargetedMod.GoodGenerator),
 	;
 
 	public final String mixinClass;
