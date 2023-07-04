@@ -26,6 +26,7 @@ import ic2.api.item.IC2Items;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.*;
@@ -476,9 +477,11 @@ public class TileEntityDisassembler extends GT_MetaTileEntity_BasicMachine {
 	}
 
 	@Override
-	protected boolean allowPutStackValidated(IGregTechTileEntity aBaseMetaTileEntity, int aIndex, byte aSide, ItemStack aStack) {
+	protected boolean allowPutStackValidated(IGregTechTileEntity aBaseMetaTileEntity, int aIndex, ForgeDirection aSide, ItemStack aStack) {
 		return super.allowPutStackValidated(aBaseMetaTileEntity, aIndex, aSide, aStack) && aStack.getTagCompound() != null && aStack.getTagCompound().getCompoundTag("GT.CraftingComponents") != null;
 	}
+
+
 
 	@Override
 	public GT_Recipe.GT_Recipe_Map getRecipeList() {

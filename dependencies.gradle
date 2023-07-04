@@ -53,8 +53,7 @@ dependencies {
     implementation("com.github.GTNewHorizons:NewHorizonsCoreMod:2.0.38:dev")
 
     // goodgenerator
-    implementation("com.github.GTNewHorizons:GoodGenerator:0.5.16-pre:dev")
-
+    implementation("com.github.GTNewHorizons:GoodGenerator:0.6.12-pre:dev")
 
     implementation("com.github.GTNewHorizons:ForestryMC:4.6.5:api") { transitive = false }
     implementation("com.github.GTNewHorizons:Railcraft:9.14.0:dev") { transitive = false }
