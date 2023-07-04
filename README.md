@@ -1,34 +1,24 @@
-# GregTech: New Horizons NO NERF!
+# 格雷新视野：憋鸡巴削了！
 
-A GTNH Mod to prevent nerfs from its team.
+[English](README_EN.md)
 
-I hate the feeling that whatever I liked to play, it gets nerfed in the very next version. So since this mod came out, no more innocent nerfs should take place!
+回滚 GTNH 内容的模组，尤其是那些削弱某些机器的改动。
+
+*我玩啥他削啥，这怎么玩！*
 
 ![Return of the Disassembler!](docs/disassembler.png)
 
-## Re-Buffed
+## 改动列表
 
-- [X] Disassembler should be there with nothing changed. (GTNewHorizons/GT5-Unofficial#1855)
-- [X] Iron Fence in Lightning Rod structure will no longer be broken in Thunder weather. (GTNewHorizons/GT5-Unofficial#1875)
+### v1.0.0 (GTNH v2.3.3)
 
-## Buffed
+- [X] 回滚拆解机 (GTNewHorizons/GT5-Unofficial#1855)
+- [X] 避雷针的铁栅栏不再会在发电时被破坏 (GTNewHorizons/GT5-Unofficial#1875)
 
-_Things/features listed here are not being nerfed yet in GTNH, but I think is should be like this._
+## 我希望能够回滚XXX？
 
-- [ ] No consume when the Empty Cells pours out its liquid to other containers or the world.
+你可以开启一个新的 Issue，附上能够找到的相关信息，尤其是该改动的 Pull Request 最佳。
 
-## Related
+## 感谢
 
-_Things/features/mods listed here are mods that can make your GTNH life easier._
-
-### [ElytraMining](https://github.com/Taskeren/ElytraMining) [(Modrinth)](https://modrinth.com/mod/elytra-mining)
-
-This mod backports **Hammers** in Thermal Series in later versions of Minecraft, and a **Falling Torch** performs like sands.
-
-### [JustEnoughCalculation](https://github.com/Towdium/JustEnoughCalculation/tree/1.7.10)
-
-This mod adds a GUI that can help you calculating the consumes, catalysts, outputs for specified amount of what you are going to craft.
-
-### [NotEnoughElements](https://github.com/ElytraServers/NotEnoughElements)
-
-This mod adds an NEI searching pattern "el:{element}" to filter the items that contains certain element. Very useful when you finding some kind of ore to process.
+第一次模组下载量达到四位数，非常感谢大家的支持。
