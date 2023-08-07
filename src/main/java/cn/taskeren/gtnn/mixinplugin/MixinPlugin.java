@@ -48,7 +48,7 @@ public class MixinPlugin implements IMixinConfigPlugin {
 
 		List<TargetedMod> loadedMods = Arrays.stream(TargetedMod.values())
 			.filter(x -> (isInDev && x.shouldLoadInDev) || loadJarOf(x))
-			.toList();
+			.collect(Collectors.toList());
 
 		for (TargetedMod mod : TargetedMod.values()) {
 			if (loadedMods.contains(mod)) {

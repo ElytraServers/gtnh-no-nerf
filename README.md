@@ -17,7 +17,7 @@
 
 ### v1.1.0 (GTNH v2.3.6)
 
-- [X] 大源质发电机（GoodGenerator）重新支持激光能源仓。
+- [X] 大源质发电机（GoodGenerator）重新支持激光能源仓 (GTNewHorizons/GoodGenerator#168)
 
 ![Return of Laser Hatches on LEG](docs/leg-laser-hatch.png)
 
