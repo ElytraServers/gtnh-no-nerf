@@ -15,6 +15,12 @@
 - [X] 回滚拆解机 (GTNewHorizons/GT5-Unofficial#1855)
 - [X] 避雷针的铁栅栏不再会在发电时被破坏 (GTNewHorizons/GT5-Unofficial#1875)
 
+### v1.1.0 (GTNH v2.3.6)
+
+- [X] 大源质发电机（GoodGenerator）重新支持激光能源仓。
+
+![Return of Laser Hatches on LEG](docs/leg-laser-hatch.png)
+
 ## FAQ
 
 ### 我希望能够回滚XXX？
