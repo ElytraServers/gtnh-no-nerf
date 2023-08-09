@@ -4,6 +4,9 @@
 
 回滚 GTNH 内容的模组，尤其是那些削弱某些机器的改动。
 
+[Modrinth](https://modrinth.com/mod/gtnh-no-nerf)
+[MCMOD百科](https://www.mcmod.cn/class/10327.html)
+
 *我玩啥他削啥，这怎么玩！*
 
 ![Return of the Disassembler!](docs/disassembler.png)
