@@ -20,8 +20,8 @@ public class GTLoaderMetaTileEntitiesMixin {
 	private static final long bitsd = GT_ModHandler.RecipeBits.DISMANTLEABLE | bits;
 	private static final String aTextWireHull = "WMW";
 
-	@Inject(method = "run2", at = @At("RETURN"))
-	private static void nn$run2(CallbackInfo ci) {
+	@Inject(method = "run", at = @At("RETURN"))
+	private void nn$run2(CallbackInfo ci) {
 		NNItemList.Machine_LV_Disassembler.set(
 			new TileEntityDisassembler(
 				451,
