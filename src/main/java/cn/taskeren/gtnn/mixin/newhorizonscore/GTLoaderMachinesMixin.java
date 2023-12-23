@@ -1,13 +1,9 @@
 package cn.taskeren.gtnn.mixin.newhorizonscore;
 
+import cn.taskeren.gtnn.GTNN;
 import cn.taskeren.gtnn.mod.gt5u.tile.TileEntityDisassembler;
 import cn.taskeren.gtnn.mod.gt5u.util.NNItemList;
-import com.dreammaster.gthandler.CustomItemList;
 import com.dreammaster.gthandler.GT_Loader_Machines;
-import gregtech.api.enums.ItemList;
-import gregtech.api.enums.Materials;
-import gregtech.api.enums.OrePrefixes;
-import gregtech.api.util.GT_ModHandler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -16,12 +12,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = GT_Loader_Machines.class, remap = false)
 public class GTLoaderMachinesMixin {
 
-	private static final long bits = GT_ModHandler.RecipeBits.NOT_REMOVABLE | GT_ModHandler.RecipeBits.REVERSIBLE
-		| GT_ModHandler.RecipeBits.BUFFERED;
-	private static final long bitsd = GT_ModHandler.RecipeBits.DISMANTLEABLE | bits;
-
-	@Inject(method = "registerMachines2", at = @At("RETURN"))
-	private void nn$registerMachines2(CallbackInfo ci) {
+	@Inject(method = "run", at = @At(value = "INVOKE", target = "Lcom/dreammaster/gthandler/GT_Loader_Machines;recipes()V", shift = At.Shift.BEFORE))
+	private void nn$registerBeforeRecipe(CallbackInfo ci) {
+		GTNN.logger.info("Register advanced disassemblers after gtnhcore");
 		NNItemList.Machine_LuV_Disassembler.set(
 			new TileEntityDisassembler(11160, "basicmachine.disassembler.tier.06", "Elite Disassembler", 6)
 				.getStackForm(1L));
@@ -58,55 +51,6 @@ public class GTLoaderMachinesMixin {
 				"basicmachine.disassembler.tier.12",
 				"Epic Deconstructor IV",
 				12).getStackForm(1L));
-
-		GT_ModHandler.addCraftingRecipe(
-			NNItemList.Machine_LuV_Disassembler.get(1L),
-			bitsd,
-			new Object[]{"RCR", "WHW", "RCR", 'R', ItemList.Robot_Arm_LuV, 'H', ItemList.Hull_LuV, 'C',
-				OrePrefixes.circuit.get(Materials.Master), 'W',
-				OrePrefixes.cableGt01.get(Materials.VanadiumGallium)});
-
-		GT_ModHandler.addCraftingRecipe(
-			NNItemList.Machine_ZPM_Disassembler.get(1L),
-			bitsd,
-			new Object[]{"RCR", "WHW", "RCR", 'R', ItemList.Robot_Arm_ZPM, 'H', ItemList.Hull_ZPM, 'C',
-				OrePrefixes.circuit.get(Materials.Ultimate), 'W',
-				OrePrefixes.cableGt01.get(Materials.Naquadah)});
-
-		GT_ModHandler.addCraftingRecipe(
-			NNItemList.Machine_UV_Disassembler.get(1L),
-			bitsd,
-			new Object[]{"RCR", "WHW", "RCR", 'R', ItemList.Robot_Arm_UV, 'H', ItemList.Hull_UV, 'C',
-				OrePrefixes.circuit.get(Materials.Superconductor), 'W',
-				OrePrefixes.cableGt01.get(Materials.ElectrumFlux)});
-
-		GT_ModHandler.addCraftingRecipe(
-			NNItemList.Machine_UHV_Disassembler.get(1L),
-			bitsd,
-			new Object[]{"RCR", "WHW", "RCR", 'R', ItemList.Robot_Arm_UHV, 'H', ItemList.Hull_MAX, 'C',
-				OrePrefixes.circuit.get(Materials.Infinite), 'W',
-				OrePrefixes.cableGt01.get(Materials.ElectrumFlux)});
-
-		GT_ModHandler.addCraftingRecipe(
-			NNItemList.Machine_UEV_Disassembler.get(1L),
-			bitsd,
-			new Object[]{"RCR", "WHW", "RCR", 'R', ItemList.Robot_Arm_UEV, 'H', CustomItemList.Hull_UEV, 'C',
-				OrePrefixes.circuit.get(Materials.Bio), 'W',
-				OrePrefixes.cableGt01.get(Materials.ElectrumFlux)});
-
-		GT_ModHandler.addCraftingRecipe(
-			NNItemList.Machine_UIV_Disassembler.get(1L),
-			bitsd,
-			new Object[]{"RCR", "WHW", "RCR", 'R', ItemList.Robot_Arm_UIV, 'H', CustomItemList.Hull_UIV, 'C',
-				OrePrefixes.circuit.get(Materials.Optical), 'W',
-				OrePrefixes.cableGt01.get(Materials.ElectrumFlux)});
-
-		GT_ModHandler.addCraftingRecipe(
-			NNItemList.Machine_UMV_Disassembler.get(1L),
-			bitsd,
-			new Object[]{"RCR", "WHW", "RCR", 'R', ItemList.Robot_Arm_UMV, 'H', CustomItemList.Hull_UMV, 'C',
-				OrePrefixes.circuit.get(Materials.Piko), 'W',
-				OrePrefixes.cableGt01.get(Materials.ElectrumFlux)});
 	}
 
 }

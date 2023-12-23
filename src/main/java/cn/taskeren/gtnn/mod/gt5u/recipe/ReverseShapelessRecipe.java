@@ -1,6 +1,6 @@
 package cn.taskeren.gtnn.mod.gt5u.recipe;
 
-import cn.taskeren.gtnn.mod.gt5u.tile.TileEntityDisassembler;
+import cn.taskeren.gtnn.mod.gt5u.util.DisassemblerRecipeMapBackend;
 import cn.taskeren.gtnn.mod.gt5u.util.NNRecipe;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
@@ -30,17 +30,20 @@ public class ReverseShapelessRecipe {
 	public static void runReverseRecipes() {
 		for (ReverseShapelessRecipe x : reverseRecipes) {
 			Optional<GT_Recipe> recipeOptional = GT_Utility.reverseShapelessRecipe(x.aResult, x.aRecipe);
-			if (!recipeOptional.isPresent()) continue;
-			GT_Recipe recipe = recipeOptional.get();
-			ItemStack[] replacement = new ItemStack[recipe.mOutputs.length];
-			TileEntityDisassembler.handleRecipeTransformation(
-				recipe.mOutputs,
-				replacement,
-				Collections.singleton(recipe.mOutputs));
-
-			recipe.mOutputs = replacement;
-			NNRecipe.DisassemblerRecipes.add(recipe);
+			registerRecipe(recipeOptional.orElse(null));
 		}
+	}
+
+	public static void registerRecipe(GT_Recipe recipe) {
+		if (recipe == null) return;
+		ItemStack[] replacement = new ItemStack[recipe.mOutputs.length];
+		DisassemblerRecipeMapBackend.handleRecipeTransformation(
+			recipe.mOutputs,
+			replacement,
+			Collections.singleton(recipe.mOutputs));
+
+		recipe.mOutputs = replacement;
+		NNRecipe.Disassembler.getTheCraftingTableReversedRecipeMap().add(recipe);
 	}
 
 }

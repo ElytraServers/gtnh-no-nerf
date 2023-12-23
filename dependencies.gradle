@@ -35,30 +35,30 @@
  */
 dependencies {
     // codechickenlib
-    implementation("com.github.GTNewHorizons:CodeChickenLib:1.1.8:dev")
+    implementation("com.github.GTNewHorizons:CodeChickenLib:1.1.10:dev")
 
     // codechickencore
-    implementation("com.github.GTNewHorizons:CodeChickenCore:1.1.11:dev")
+    implementation("com.github.GTNewHorizons:CodeChickenCore:1.1.13:dev")
 
     // gt5u
-    implementation("com.github.GTNewHorizons:GT5-Unofficial:5.09.43.166:dev")
+    implementation("com.github.GTNewHorizons:GT5-Unofficial:5.09.44.110:dev")
 
     // gt++
-    implementation("com.github.GTNewHorizons:GTplusplus:1.9.74:dev")
+    implementation("com.github.GTNewHorizons:GTplusplus:1.10.54:dev")
 
     // gtnhlib
     implementation("com.github.GTNewHorizons:GTNHLib:0.0.13:dev")
 
     // newhorizons core
-    implementation("com.github.GTNewHorizons:NewHorizonsCoreMod:2.1.99:dev")
+    implementation("com.github.GTNewHorizons:NewHorizonsCoreMod:2.2.55:dev")
 
     // goodgenerator
-    implementation("com.github.GTNewHorizons:GoodGenerator:0.6.31:dev")
+    implementation("com.github.GTNewHorizons:GoodGenerator:0.7.17:dev")
 
-    implementation("com.github.GTNewHorizons:ForestryMC:4.6.13:api") { transitive = false }
-    implementation("com.github.GTNewHorizons:Railcraft:9.14.9:dev") { transitive = false }
-    implementation("com.github.GTNewHorizons:BuildCraft:7.1.36:dev") { transitive = false }
-    implementation("com.github.GTNewHorizons:EnderIO:2.4.24:dev") { transitive = false }
-    implementation("com.github.GTNewHorizons:ProjectRed:4.7.11-GTNH:dev") { transitive = false }
-    implementation("com.github.GTNewHorizons:TinkersConstruct:1.9.39-GTNH:dev") { transitive = false }
+    implementation("com.github.GTNewHorizons:ForestryMC:4.7.1:api") { transitive = false }
+    implementation("com.github.GTNewHorizons:Railcraft:9.15.3:dev") { transitive = false }
+    implementation("com.github.GTNewHorizons:BuildCraft:7.1.38:dev") { transitive = false }
+    implementation("com.github.GTNewHorizons:EnderIO:2.5.9:dev") { transitive = false }
+    implementation("com.github.GTNewHorizons:ProjectRed:4.8.1-GTNH:dev") { transitive = false }
+    implementation("com.github.GTNewHorizons:TinkersConstruct:1.10.13-GTNH:dev") { transitive = false }
 }
