@@ -8,12 +8,13 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = GTNNConst.MODID, name = GTNNConst.MODNAME, dependencies = GTNN.DEPENDENCIES)
 public class GTNN {
 
-	public static Logger logger;
+	public static Logger logger = LogManager.getLogger("GTNN");
 
 	static final String DEPENDENCIES = "required-after:gregtech"
 		+ "required-after:miscutils" // gt++
@@ -32,7 +33,6 @@ public class GTNN {
 
 	@Mod.EventHandler
 	public void onPreInit(FMLPreInitializationEvent event) {
-		logger = event.getModLog();
 		proxy.onPreInit(event);
 	}
 
