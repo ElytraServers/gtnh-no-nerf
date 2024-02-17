@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="recompiled_minecraft-1.7.10">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/build/rfg/recompiled_minecraft-1.7.10.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/build/rfg/mcp_patched_minecraft-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

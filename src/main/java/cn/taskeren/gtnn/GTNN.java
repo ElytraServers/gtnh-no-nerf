@@ -11,15 +11,19 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = GTNNConst.MODID, name = GTNNConst.MODNAME, dependencies = GTNN.DEPENDENCIES)
+@Mod(modid = GTNN.MOD_ID, name = GTNN.MOD_NAME, dependencies = GTNN.DEPENDENCIES)
 public class GTNN {
 
 	public static Logger logger = LogManager.getLogger("GTNN");
+
+	static final String MOD_ID = "gtnn";
+	static final String MOD_NAME = "GT-NO-NERF";
 
 	static final String DEPENDENCIES = "required-after:gregtech"
 		+ "required-after:miscutils" // gt++
 		+ "required-after:GoodGenerator"
 		+ "required-after:dreamcraft" // new-horizons-core
+		+ "required-after:tectech"
 		;
 
 	@SidedProxy(clientSide = "cn.taskeren.gtnn.client.ClientProxy", serverSide = "cn.taskeren.gtnn.common.CommonProxy")

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gtnh-no-nerf.ideVirtualMain.iml" filepath="$PROJECT_DIR$/.idea/modules/gtnh-no-nerf.ideVirtualMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gtnh-no-nerf.main.iml" filepath="$PROJECT_DIR$/.idea/modules/gtnh-no-nerf.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gtnh-no-nerf.test.iml" filepath="$PROJECT_DIR$/.idea/modules/gtnh-no-nerf.test.iml" />
+    </modules>
+  </component>
+</project>

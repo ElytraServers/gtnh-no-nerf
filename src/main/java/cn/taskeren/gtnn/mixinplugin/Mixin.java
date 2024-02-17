@@ -13,6 +13,8 @@ public enum Mixin {
 	GTLoaderMachinesMixin("newhorizonscore.GTLoaderMachinesMixin", TargetedMod.NewHorizonsCoreMod),
 
 	LargeEssentiaGeneratorMixin("goodgenerator.LargeEssentiaGeneratorMixin", TargetedMod.GoodGenerator),
+
+	EyeOfHarmonyMixin("tectech.GTMetaTileEntityEOMMixin", TargetedMod.TecTech),
 	;
 
 	public final String mixinClass;
