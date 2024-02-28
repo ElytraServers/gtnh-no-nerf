@@ -12,6 +12,7 @@ public enum TargetedMod {
 	NewHorizonsCoreMod("GT: New Horizons", "GTNewHorizonsCoreMod"),
 	GoodGenerator("GoodGenerator", "GoodGenerator"),
 	TecTech("TecTech", "TecTech"),
+	GTPlusPlus("GT++", "GTPlusPlus")
 	;
 
 	public final String modName;
