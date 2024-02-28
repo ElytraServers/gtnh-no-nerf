@@ -15,8 +15,8 @@ public enum Mixin {
 	LargeEssentiaGeneratorMixin("goodgenerator.LargeEssentiaGeneratorMixin", TargetedMod.GoodGenerator),
 
 	EyeOfHarmonyMixin("tectech.GTMetaTileEntityEOMMixin", TargetedMod.TecTech),
-	XLPlasmaTurbineMixin("gtpp.MixinGT_MTE_LargeTurbine_Plasma", TargetedMod.GTPlusPlus),
-	XLSCTurbineMixin("gtpp.MixinGT_MTE_LargeTurbine_SCSteam", TargetedMod.GTPlusPlus)
+	XLPlasmaTurbineMixin("gtpp.GT_MTE_LargeTurbine_PlasmaMixin", TargetedMod.GTPlusPlus),
+	XLSCTurbineMixin("gtpp.GT_MTE_LargeTurbine_SCSteamMixin", TargetedMod.GTPlusPlus),
 	;
 
 	public final String mixinClass;

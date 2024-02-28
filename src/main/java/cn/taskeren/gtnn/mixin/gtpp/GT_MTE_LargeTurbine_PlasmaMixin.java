@@ -5,9 +5,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(GT_MTE_LargeTurbine_Plasma.class)
-public class MixinGT_MTE_LargeTurbine_Plasma {
-	@Redirect(method = "checkProcessing", at = @At(target = "Ljava/lang/Math;min(FF)F", value = "INVOKE", remap = false), remap = false)
+@Mixin(value = GT_MTE_LargeTurbine_Plasma.class, remap = false)
+public class GT_MTE_LargeTurbine_PlasmaMixin {
+	@Redirect(method = "checkProcessing", at = @At(target = "Ljava/lang/Math;min(FF)F", value = "INVOKE"))
 	public float removeEffLoss(float v, float u) {
 		return 1.0f;
 	}

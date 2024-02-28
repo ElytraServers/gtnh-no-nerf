@@ -12,13 +12,18 @@ import org.spongepowered.asm.mixin.Overwrite;
 
 import java.util.ArrayList;
 
-@Mixin(GT_MTE_LargeTurbine_SCSteam.class)
-public abstract class MixinGT_MTE_LargeTurbine_SCSteam extends GregtechMetaTileEntity_LargerTurbineBase {
-	public MixinGT_MTE_LargeTurbine_SCSteam(int aID, String aName, String aNameRegional) {
+@Mixin(value = GT_MTE_LargeTurbine_SCSteam.class, remap = false)
+public abstract class GT_MTE_LargeTurbine_SCSteamMixin extends GregtechMetaTileEntity_LargerTurbineBase {
+
+	public GT_MTE_LargeTurbine_SCSteamMixin(int aID, String aName, String aNameRegional) {
 		super(aID, aName, aNameRegional);
 	}
 
-	@Overwrite(remap = false)
+	/**
+	 * @author koiNoCirculation
+	 * @reason revert supercritical duranium ichorium nerf
+	 */
+	@Overwrite
 	int fluidIntoPower(ArrayList<FluidStack> aFluids, long aOptFlow, int aBaseEff, float[] flowMultipliers) {
 		int tEU = 0;
 		int totalFlow = 0; // Byproducts are based on actual flow
