@@ -8,6 +8,7 @@ import com.github.technus.tectech.util.FluidStackLong;
 import com.github.technus.tectech.util.ItemStackLong;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.MaterialsUEVplus;
+import gregtech.api.interfaces.IGlobalWirelessEnergy;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.recipe.check.CheckRecipeResultRegistry;
 import gregtech.api.recipe.check.SimpleCheckRecipeResult;
@@ -29,11 +30,10 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
-import static gregtech.common.misc.WirelessNetworkManager.addEUToGlobalEnergyMap;
 import static java.lang.Math.pow;
 
 @Mixin(value = GT_MetaTileEntity_EM_EyeOfHarmony.class, remap = false)
-public abstract class GTMetaTileEntityEOMMixin extends GT_MetaTileEntity_MultiblockBase_EM {
+public abstract class GTMetaTileEntityEOMMixin extends GT_MetaTileEntity_MultiblockBase_EM implements IGlobalWirelessEnergy {
 
 	// region SHADOW VARIABLES
 	@Shadow
@@ -63,21 +63,8 @@ public abstract class GTMetaTileEntityEOMMixin extends GT_MetaTileEntity_Multibl
 	private long currentCircuitMultiplier;
 
 	@Shadow
-	private long astralArrayAmount;
-
-	@Shadow
-	private long parallelAmount;
-
-	@Shadow
 	@Final
 	public static boolean EOH_DEBUG_MODE;
-
-	@Shadow
-	protected abstract long getStellarPlasmaStored();
-
-	@Shadow
-	@Final
-	private static double LOG_CONSTANT;
 
 	@Shadow
 	protected abstract long getHydrogenStored();
@@ -95,10 +82,6 @@ public abstract class GTMetaTileEntityEOMMixin extends GT_MetaTileEntity_Multibl
 	private BigInteger outputEU_BigInt;
 
 	@Shadow
-	@Final
-	private static int TOTAL_CASING_TIERS_WITH_POWER_PENALTY;
-
-	@Shadow
 	private BigInteger usedEU;
 
 	@Shadow
@@ -109,9 +92,6 @@ public abstract class GTMetaTileEntityEOMMixin extends GT_MetaTileEntity_Multibl
 
 	@Shadow
 	private String userUUID;
-
-	@Shadow
-	private double stellarPlasmaOverflowProbabilityAdjustment;
 
 	@Shadow
 	private double successChance;
@@ -134,9 +114,6 @@ public abstract class GTMetaTileEntityEOMMixin extends GT_MetaTileEntity_Multibl
 
 	@Shadow
 	private List<ItemStackLong> outputItems;
-
-	@Shadow
-	private long successfulParallelAmount;
 
 	@Shadow
 	private boolean animationsEnabled;
