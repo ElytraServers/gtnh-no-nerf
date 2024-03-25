@@ -1,5 +1,9 @@
 package cn.taskeren.gtnn.tools;
 
+import cn.taskeren.gtnn.tools.annotations.DepNotation;
+import org.intellij.lang.annotations.Language;
+import org.intellij.lang.annotations.MagicConstant;
+
 import java.io.Serializable;
 import java.nio.file.FileVisitResult;
 import java.nio.file.FileVisitor;
@@ -17,6 +21,10 @@ public class Dependency implements Serializable {
 	public static boolean SkipIfFound = true;
 
 	public static final String VERSION_TEMPLATE = "%version%";
+
+	public static final String TYPE_IMPLEMENTATION = "implementation";
+	public static final String TYPE_COMPILE_ONLY = "compileOnly";
+	public static final String TYPE_RUNTIME_ONLY = "runtimeOnly";
 
 	private final String name;
 
@@ -47,17 +55,7 @@ public class Dependency implements Serializable {
 	 * @param dependencyType         the import type of the dependency used to generate gradle code
 	 * @param noTransitiveDependency if the dependency not transitive used to generate gradle code
 	 */
-	public Dependency(
-		String name,
-		Pattern pattern,
-		int versionGroupIndex,
-		String groupName,
-		String artifactName,
-		String versionTemplate,
-		String subversion,
-		String dependencyType,
-		boolean noTransitiveDependency
-	) {
+	public Dependency(String name, Pattern pattern, int versionGroupIndex, String groupName, String artifactName, String versionTemplate, String subversion, String dependencyType, boolean noTransitiveDependency) {
 		this.name = name;
 		this.pattern = pattern;
 		this.versionGroupIndex = versionGroupIndex;
@@ -75,17 +73,7 @@ public class Dependency implements Serializable {
 	 * @param source the source
 	 */
 	public Dependency(Dependency source) {
-		this(
-			source.name,
-			source.pattern,
-			source.versionGroupIndex,
-			source.groupName,
-			source.artifactName,
-			source.versionTemplate,
-			source.subversion,
-			source.dependencyType,
-			source.noTransitiveDependency
-		);
+		this(source.name, source.pattern, source.versionGroupIndex, source.groupName, source.artifactName, source.versionTemplate, source.subversion, source.dependencyType, source.noTransitiveDependency);
 	}
 
 	/**
@@ -99,11 +87,7 @@ public class Dependency implements Serializable {
 	 * @param dependencyNotation the version-unassigned dependency notation
 	 * @return the new instance
 	 */
-	public static Dependency impl(
-		String name,
-		String regex,
-		String dependencyNotation
-	) {
+	public static Dependency impl(String name, @Language("RegExp") String regex, @DepNotation String dependencyNotation) {
 		return impl(name, regex, dependencyNotation, false);
 	}
 
@@ -119,17 +103,8 @@ public class Dependency implements Serializable {
 	 * @param noTransitive       if the dependency not transitive
 	 * @return the new instance
 	 */
-	public static Dependency impl(
-		String name,
-		String regex,
-		String dependencyNotation,
-		boolean noTransitive
-	) {
-		var builder = builder()
-			.name(name)
-			.pattern(regex)
-			.dependencyNotation(dependencyNotation)
-			.dependencyType("implementation");
+	public static Dependency impl(String name, @Language(value = "RegExp") String regex, @DepNotation String dependencyNotation, boolean noTransitive) {
+		var builder = builder().name(name).pattern(regex).dependencyNotation(dependencyNotation).implementationType();
 		if(noTransitive) {
 			builder.noTransitive();
 		}
@@ -170,9 +145,7 @@ public class Dependency implements Serializable {
 	}
 
 	private StringBuilder getDependencyNotationBase() {
-		return new StringBuilder()
-			.append(groupName).append(":")
-			.append(artifactName);
+		return new StringBuilder().append(groupName).append(":").append(artifactName);
 	}
 
 	public String getDependencyNotation() {
@@ -189,11 +162,7 @@ public class Dependency implements Serializable {
 		// append comment
 		sb.append("// ").append(name).append("\n");
 		// append dependency code
-		sb.append(dependencyType).append("(")
-			.append("\"")
-			.append(getDependencyNotation())
-			.append("\"")
-			.append(")");
+		sb.append(dependencyType).append("(").append("\"").append(getDependencyNotation()).append("\"").append(")");
 		if(noTransitiveDependency) {
 			sb.append(" { ");
 			sb.append("transitive = false");
@@ -245,7 +214,7 @@ public class Dependency implements Serializable {
 			return this;
 		}
 
-		public Builder pattern(String regex) {
+		public Builder pattern(@Language("RegExp") String regex) {
 			this.pattern = Pattern.compile(regex);
 			return this;
 		}
@@ -275,31 +244,37 @@ public class Dependency implements Serializable {
 			return this;
 		}
 
-		public Builder dependencyNotation(String dependencyNotation) {
+		public Builder dependencyNotation(@DepNotation String dependencyNotation) {
 			var notation = dependencyNotation.split(":");
 			if(notation.length < 2 || notation.length > 4)
 				throw new IllegalStateException("invalid dependencyNotation: there should be only 2-4 parts in the notation");
 
 			groupName(notation[0]);
 			artifactName(notation[1]);
-			versionTemplate(
-				notation.length == 2 // if there is no version part
-					? VERSION_TEMPLATE
-					: notation[2].isEmpty() // if the version part is empty
-					? VERSION_TEMPLATE
-					: notation[2]
-			);
+			versionTemplate(notation.length == 2 // if there is no version part
+				? VERSION_TEMPLATE : notation[2].isEmpty() // if the version part is empty
+				? VERSION_TEMPLATE : notation[2]);
 			subversion(notation.length > 3 ? notation[3] : null);
 			return this;
 		}
 
-		public Builder dependencyType(String dependencyType) {
+		public Builder dependencyType(@MagicConstant(stringValues = {TYPE_IMPLEMENTATION, TYPE_COMPILE_ONLY, TYPE_RUNTIME_ONLY}) String dependencyType) {
 			this.dependencyType = dependencyType;
 			return this;
 		}
 
 		public Builder implementationType() {
-			dependencyType("implementation");
+			dependencyType(TYPE_IMPLEMENTATION);
+			return this;
+		}
+
+		public Builder compileOnlyType() {
+			dependencyType(TYPE_COMPILE_ONLY);
+			return this;
+		}
+
+		public Builder runtimeOnlyType() {
+			dependencyType(TYPE_RUNTIME_ONLY);
 			return this;
 		}
 
@@ -316,17 +291,7 @@ public class Dependency implements Serializable {
 			Objects.requireNonNull(name);
 			Objects.requireNonNull(pattern);
 
-			return new Dependency(
-				name,
-				pattern,
-				versionGroupIndex,
-				groupName,
-				artifactName,
-				versionTemplate,
-				subversion,
-				dependencyType,
-				noTransitiveDependency
-			);
+			return new Dependency(name, pattern, versionGroupIndex, groupName, artifactName, versionTemplate, subversion, dependencyType, noTransitiveDependency);
 		}
 
 	}

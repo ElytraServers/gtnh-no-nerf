@@ -1,31 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <annotationProcessing>
-      <profile name="Gradle Imported" enabled="true">
-        <outputRelativeToContentRoot value="true" />
-        <option name="outRefMapFile" value="E:\Dev2023New\gtnh-no-nerf\build\tmp\mixins\mixins.gtnn.refmap.json" />
-        <option name="outSrgFile" value="E:\Dev2023New\gtnh-no-nerf\build\tmp\mixins\mixins.srg" />
-        <option name="reobfSrgFile" value="C:\Users\r0yal\.gradle\caches\minecraft\net\minecraftforge\forge\1.7.10-10.13.4.1614-1.7.10\srgs\mcp-srg.srg" />
-        <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.bsideup.jabel/jabel-javac-plugin/1.0.1/bb8438165ad73915c66d63ee316895817e645455/jabel-javac-plugin-1.0.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna-platform/5.13.0/88e9a306715e9379f3122415ef4ae759a352640d/jna-platform-5.13.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-debug-all/5.0.3/f9e364ae2a66ce2a543012a4668856e84e5dab74/asm-debug-all-5.0.3.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/24.1.1-jre/2e3014320a8005e3f3c1800cb246ed42db8cab81/guava-24.1.1-jre.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.6/9180733b7df8542621dc12e21e87557e8c99b8cb/gson-2.8.6.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.legacymoddingmc/unimixins/0.1.15/241ebe97f8cf1d18e3f0d477413d8525bcb013c3/unimixins-0.1.15-dev.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.14.9/b69e7fff6c473d3ed2b489cdfd673a091fd94226/byte-buddy-1.14.9.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.9/dfb8707031008535048bad2b69735f46d0b6c5e5/byte-buddy-agent-1.14.9.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna/5.13.0/1200e7ebeedbe0d10062093f32925a912020e747/jna-5.13.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/1.3.9/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-compat-qual/2.0.0/fc89b03860d11d6213d0154a62bcd1c2f69b9efa/checker-compat-qual-2.0.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.1.3/39b109f2cd352b2d71b52a3b5a1a9850e1dc304b/error_prone_annotations-2.1.3.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/1.1/ed28ded51a8b1c6b112568def5f4b455e6809019/j2objc-annotations-1.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.mojo/animal-sniffer-annotations/1.14/775b7e22fb10026eed3f86e8dc556dfafe35f2d5/animal-sniffer-annotations-1.14.jar" />
-        </processorPath>
-        <module name="gtnh-no-nerf.main" />
-      </profile>
-    </annotationProcessing>
     <bytecodeTargetLevel target="17" />
   </component>
   <component name="JavacSettings">

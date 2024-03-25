@@ -26,7 +26,9 @@ public class MixinPlugin implements IMixinConfigPlugin {
 	private static final Path MODS_DIRECTORY_PATH = new File(Launch.minecraftHome, "mods/").toPath();
 
 	@Override
-	public void onLoad(String mixinPackage) {}
+	public void onLoad(String mixinPackage) {
+		MixinConfig.init();
+	}
 
 	@Override
 	public String getRefMapperConfig() {
@@ -39,7 +41,8 @@ public class MixinPlugin implements IMixinConfigPlugin {
 	}
 
 	@Override
-	public void acceptTargets(Set<String> myTargets, Set<String> otherTargets) {}
+	public void acceptTargets(Set<String> myTargets, Set<String> otherTargets) {
+	}
 
 	// This method return a List<String> of mixins. Every mixins in this list will be loaded.
 	@Override
@@ -50,8 +53,8 @@ public class MixinPlugin implements IMixinConfigPlugin {
 			.filter(x -> (isInDev && x.shouldLoadInDev) || loadJarOf(x))
 			.collect(Collectors.toList());
 
-		for (TargetedMod mod : TargetedMod.values()) {
-			if (loadedMods.contains(mod)) {
+		for(TargetedMod mod : TargetedMod.values()) {
+			if(loadedMods.contains(mod)) {
 				LOG.info("Found " + mod.modName + "! Integrating now...");
 			} else {
 				LOG.info("Could not find " + mod.modName + "! Skipping integration....");
@@ -59,11 +62,21 @@ public class MixinPlugin implements IMixinConfigPlugin {
 		}
 
 		List<String> mixins = new ArrayList<>();
-		for (Mixin mixin : Mixin.values()) {
-			if (mixin.shouldLoad(loadedMods)) {
-				mixins.add(mixin.mixinClass);
-				LOG.debug("Loading mixin: " + mixin.mixinClass);
+
+		for(Feature feature : Feature.values()) { // iterate all features
+			if(!feature.isEnabled()) {
+				LOG.info("Feature " + feature.name() + " is disabled!");
+				continue;
 			}
+			if(!feature.isTargetedModsLoad(loadedMods)) {
+				LOG.warn("Feature " + feature.name() + " doesn't find all of its dependency mods!");
+				continue;
+			}
+			for(Mixin mixin : feature.mixins) {
+				mixins.add(mixin.mixinClass);
+				LOG.debug("Loading mixin class: " + mixin.mixinClass);
+			}
+			LOG.info("Feature " + feature.name() + " is loaded.");
 		}
 		return mixins;
 	}
@@ -71,35 +84,37 @@ public class MixinPlugin implements IMixinConfigPlugin {
 	private boolean loadJarOf(final TargetedMod mod) {
 		try {
 			File jar = findJarOf(mod);
-			if (jar == null) {
+			if(jar == null) {
 				LOG.info("Jar not found for " + mod);
 				return false;
 			}
 
 			LOG.info("Attempting to add " + jar + " to the URL Class Path");
-			if (!jar.exists()) {
+			if(!jar.exists()) {
 				throw new FileNotFoundException(jar.toString());
 			}
 			MinecraftURLClassPath.addJar(jar);
 			return true;
-		} catch (Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
 
 	public static File findJarOf(final TargetedMod mod) {
-		try {
-			return walk(MODS_DIRECTORY_PATH).filter(mod::isMatchingJar).map(Path::toFile).findFirst().orElse(null);
-		} catch (IOException e) {
+		try(var stream = walk(MODS_DIRECTORY_PATH)) {
+			return stream.filter(mod::isMatchingJar).map(Path::toFile).findFirst().orElse(null);
+		} catch(IOException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 
 	@Override
-	public void preApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {}
+	public void preApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {
+	}
 
 	@Override
-	public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {}
+	public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {
+	}
 }

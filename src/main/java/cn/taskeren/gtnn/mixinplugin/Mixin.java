@@ -1,6 +1,7 @@
 package cn.taskeren.gtnn.mixinplugin;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public enum Mixin {
@@ -27,7 +28,7 @@ public enum Mixin {
 		this.targetedMods = Arrays.asList(targetedMods);
 	}
 
-	public boolean shouldLoad(List<TargetedMod> loadedMods) {
+	public boolean shouldLoad(Collection<TargetedMod> loadedMods) {
 		return loadedMods.containsAll(this.targetedMods);
 	}
 

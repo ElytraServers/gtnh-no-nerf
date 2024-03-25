@@ -25,7 +25,7 @@ public class DepTools {
 		Dependency.impl("Buildcraft", "buildcraft-([\\d.]+)", "com.github.GTNewHorizons:BuildCraft::dev", true),
 		Dependency.impl("EnderIO", "EnderIO-([\\d.]+)", "com.github.GTNewHorizons:EnderIO::dev", true),
 		Dependency.impl("ProjectRed", "ProjRed-([\\d.]+)-GTNH", "com.github.GTNewHorizons:ProjectRed:%version%-GTNH:dev", true),
-		Dependency.impl("TinkerConstruct", "TConstruct-([\\d.]+)-GTNH", "com.github.GTNewHorizons:TinkersConstruct:%version%-GTNH:dev", true)
+		Dependency.impl("TinkerConstruct", "TConstruct-([\\d.]+)-GTNH", "com.github.GTNewHorizons:TinkersConstruct:%version%-GTNH:dev", true),
 	};
 
 	public static String generateDependencyCode(Dependency[] dependencies, Path instModPath) throws IOException {
