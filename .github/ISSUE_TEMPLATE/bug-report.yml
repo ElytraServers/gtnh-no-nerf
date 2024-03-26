@@ -1,0 +1,43 @@
+name: Bug Report
+description: Report a bug
+title: "Bug: <the bug summary>"
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before you request a new feature, please make sure you are using the latest version of gtnn and your request does not exist in the open issue list.
+  - type: textarea
+    id: details
+    attributes:
+      label: Bug description
+      description: What is the bug? What do you expected it to be?
+      placeholder: Uh, the game freeze at loading screen after hearing a 'ding' sound.
+    validations:
+      required: true
+  - type: input
+    id: modpack_version
+    attributes:
+      label: Version of GT: New Horizons
+      placeholder: GTNH-2.5.1
+    validations:
+      required: true
+  - type: input
+    id: mod_version
+    attributes:
+      label: Version of GTNH-NO-NERF!
+      placeholder: v1.3.1
+    validations:
+      required: true
+  - type: textarea
+    id: additional_info
+    attributes:
+      description: Give us more information about the bug, like game logs, crash reports, or even simply latest.log when the bug happens.
+      placeholder: "crash-log: https://xxx.com/xxx"
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: Make sure you fill the form correctly. **If your information is not enough to address the problem, this issue can be directly closed.**
+    
+    
