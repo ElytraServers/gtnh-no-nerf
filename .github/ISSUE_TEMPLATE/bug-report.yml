@@ -18,7 +18,7 @@ body:
   - type: input
     id: modpack_version
     attributes:
-      label: Version of GT: New Horizons
+      label: "Version of GT: New Horizons"
       placeholder: GTNH-2.5.1
     validations:
       required: true
