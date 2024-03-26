@@ -32,6 +32,11 @@ public enum Feature {
 		Mixin.XLPlasmaTurbineMixin,
 		Mixin.XLSCTurbineMixin
 	),
+
+	RevertRocketFuelsRecipes(
+		"Revert Rocket Fuels Recipes",
+		Mixin.RocketFuelsMixin
+	)
 	;
 
 	public final String desc;
