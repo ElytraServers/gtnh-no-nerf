@@ -1,0 +1,24 @@
+name: Feature Request
+description: Request a new feature
+title: "Feature: <your requirement>"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before you request a new feature, please make sure you are using the latest version of gtnn and your request does not exist in the open issue list.
+  - type: textarea
+    id: requirement
+    attributes:
+      label: Your requirement
+      description: What do you exactly wanted us to make?
+      placeholder: I want Large Essentia Generator support Laser Hatches again!
+    validations:
+      required: true
+  - type: textarea
+    id: extra_info
+    attributes:
+      label: Extra information
+      description: Tell something about your requirement, like its pull-request link, the version it changed, etc.
+      placeholder: It is changed in GTNH-2.3.6, and its pr link is ...
+    validations:
+      required: false
