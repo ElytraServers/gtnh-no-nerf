@@ -32,6 +32,7 @@ body:
   - type: textarea
     id: additional_info
     attributes:
+      label: Additional information
       description: Give us more information about the bug, like game logs, crash reports, or even simply latest.log when the bug happens.
       placeholder: "crash-log: https://xxx.com/xxx"
     validations:
