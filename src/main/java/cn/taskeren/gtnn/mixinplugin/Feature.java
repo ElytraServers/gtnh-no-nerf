@@ -36,6 +36,11 @@ public enum Feature {
 	RevertRocketFuelsRecipes(
 		"Revert Rocket Fuels Recipes",
 		Mixin.RocketFuelsMixin
+	),
+
+	MainLoaderProgressBarFix(
+		"Fix the progress bar bug of TecTech",
+		Mixin.TecTechMainLoaderFixMixin
 	)
 	;
 

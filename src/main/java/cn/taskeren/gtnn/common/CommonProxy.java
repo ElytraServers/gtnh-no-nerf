@@ -2,7 +2,9 @@ package cn.taskeren.gtnn.common;
 
 import cn.taskeren.gtnn.mod.gt5u.recipe.ReverseShapedRecipe;
 import cn.taskeren.gtnn.mod.gt5u.recipe.ReverseShapelessRecipe;
+import cn.taskeren.gtnn.mod.gt5u.util.DisassemblerRecipes;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
@@ -19,4 +21,7 @@ public class CommonProxy {
 		ReverseShapelessRecipe.runReverseRecipes();
 	}
 
+	public void onLoadComplete(FMLLoadCompleteEvent event) {
+		DisassemblerRecipes.loadAssemblerRecipes();
+	}
 }

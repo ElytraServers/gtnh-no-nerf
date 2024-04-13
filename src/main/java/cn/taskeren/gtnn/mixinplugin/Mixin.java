@@ -20,6 +20,8 @@ public enum Mixin {
 	XLSCTurbineMixin("gtpp.GT_MTE_LargeTurbine_SCSteamMixin", TargetedMod.GTPlusPlus),
 
 	RocketFuelsMixin("gtpp.RocketFuelsMixin", TargetedMod.GTPlusPlus),
+
+	TecTechMainLoaderFixMixin("tectech.MainLoaderMixin", TargetedMod.TecTech),
 	;
 
 	public final String mixinClass;

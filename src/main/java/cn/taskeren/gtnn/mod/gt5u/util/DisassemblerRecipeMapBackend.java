@@ -42,12 +42,14 @@ public class DisassemblerRecipeMapBackend extends RecipeMapBackend {
 	}
 
 	/**
-	 * All the recipes of disassembler are processed here as fallback. Thus we cannot provide a NEI category that lists the recipes.
+	 * All the recipes of disassembler are processed here as fallback.
+	 * Thus, we cannot provide a NEI category that lists the recipes.
 	 * <p>
-	 * The most important part is in {@link DisassemblerRecipeMapBackend#getRecipe(ItemStack, int, IHasWorldObjectAndCoords)}.
+	 * The most important part is in {@link #getRecipe(ItemStack, int, IHasWorldObjectAndCoords)}.
 	 */
 	@Nullable
 	@Override
+	@SuppressWarnings("OptionalGetWithoutIsPresent")
 	protected GT_Recipe findFallback(ItemStack[] items, FluidStack @NotNull [] fluids, @Nullable ItemStack specialSlot) {
 		var item = items[0].copy();
 		var disassemblerRecipe = getRecipe(item, 9, null);
@@ -124,7 +126,7 @@ public class DisassemblerRecipeMapBackend extends RecipeMapBackend {
 		NOT_MEET_REQUIREMENTS_VOLTAGE,
 	}
 
-	public static class RecipeData {
+	protected static class RecipeData {
 		ItemStack[] outputs;
 		int stackSize;
 		long EUt;

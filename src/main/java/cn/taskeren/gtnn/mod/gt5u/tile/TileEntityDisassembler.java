@@ -1,6 +1,6 @@
 package cn.taskeren.gtnn.mod.gt5u.tile;
 
-import cn.taskeren.gtnn.mod.gt5u.util.NNRecipe;
+import cn.taskeren.gtnn.mod.gt5u.util.DisassemblerRecipes;
 import gregtech.api.enums.SoundResource;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_BasicMachine_GT_Recipe;
 import net.minecraft.item.ItemStack;
@@ -16,7 +16,8 @@ public class TileEntityDisassembler extends GT_MetaTileEntity_BasicMachine_GT_Re
 			aNameRegional,
 			aTier,
 			"Disassembles items into their components",
-			NNRecipe.Disassembler.getRecipeMap(),
+//			NNRecipe.Disassembler.getRecipeMap(),
+			DisassemblerRecipes.DISASSEMBLER_RECIPES,
 			1,
 			9,
 			false,
@@ -29,7 +30,7 @@ public class TileEntityDisassembler extends GT_MetaTileEntity_BasicMachine_GT_Re
 
 	@Override
 	public void addAdditionalTooltipInformation(ItemStack stack, List<String> tooltip) {
-		tooltip.add("Presented by GTNH-NO-NERF!");
+		tooltip.add("§cPresented by GTNH-NO-NERF!");
 	}
 
 }

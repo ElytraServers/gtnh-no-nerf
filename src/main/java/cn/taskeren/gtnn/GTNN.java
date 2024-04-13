@@ -4,26 +4,26 @@ import cn.taskeren.gtnn.common.CommonProxy;
 import cn.taskeren.gtnn.common.command.NoNerfCommand;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.event.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = GTNN.MOD_ID, name = GTNN.MOD_NAME, dependencies = GTNN.DEPENDENCIES)
 public class GTNN {
 
-	public static Logger logger = LogManager.getLogger("GTNN");
+	public static Logger logger = LogManager.getFormatterLogger("GTNN");
 
 	static final String MOD_ID = "gtnn";
 	static final String MOD_NAME = "GT-NO-NERF";
 
-	static final String DEPENDENCIES = "required-after:gregtech"
+	static final String DEPENDENCIES
+		= "required-after:gregtech"
 		+ "required-after:miscutils" // gt++
 		+ "required-after:GoodGenerator"
 		+ "required-after:dreamcraft" // new-horizons-core
 		+ "required-after:tectech"
+		+ "required-after:gtnhlib"
+		+ "required-after:bartworks"
 		;
 
 	@SidedProxy(clientSide = "cn.taskeren.gtnn.client.ClientProxy", serverSide = "cn.taskeren.gtnn.common.CommonProxy")
@@ -48,6 +48,11 @@ public class GTNN {
 	@Mod.EventHandler
 	public void onPostInit(FMLPostInitializationEvent event) {
 		proxy.onPostInit(event);
+	}
+
+	@Mod.EventHandler
+	public void onLoadComplete(FMLLoadCompleteEvent event) {
+		proxy.onLoadComplete(event);
 	}
 
 	@Mod.EventHandler
