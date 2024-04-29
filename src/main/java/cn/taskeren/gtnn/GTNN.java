@@ -17,13 +17,13 @@ public class GTNN {
 	static final String MOD_NAME = "GT-NO-NERF";
 
 	static final String DEPENDENCIES
-		= "required-after:gregtech"
-		+ "required-after:miscutils" // gt++
-		+ "required-after:GoodGenerator"
-		+ "required-after:dreamcraft" // new-horizons-core
-		+ "required-after:tectech"
-		+ "required-after:gtnhlib"
-		+ "required-after:bartworks"
+		= "required-after:gregtech;"
+		+ "required-after:miscutils;" // gt++
+		+ "required-after:GoodGenerator;"
+		+ "required-after:dreamcraft;" // new-horizons-core
+		+ "required-after:tectech;"
+		+ "required-after:gtnhlib;"
+		+ "required-after:bartworks;"
 		;
 
 	@SidedProxy(clientSide = "cn.taskeren.gtnn.client.ClientProxy", serverSide = "cn.taskeren.gtnn.common.CommonProxy")

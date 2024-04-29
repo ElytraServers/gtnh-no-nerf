@@ -7,6 +7,7 @@ public enum Feature {
 
 	ReturnDisassembler(
 		"Add disassemblers back to the game.",
+		Mixin.GTLoaderMetaTileEntities,
 		Mixin.GTLoaderMachinesMixin,
 		Mixin.GTShapedRecipe,
 		Mixin.GTShapelessRecipe

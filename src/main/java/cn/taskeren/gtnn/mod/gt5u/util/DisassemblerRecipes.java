@@ -17,7 +17,9 @@ import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static gregtech.api.enums.Mods.AppliedEnergistics2;
 import static gregtech.api.enums.Mods.IndustrialCraft2;
@@ -124,9 +126,13 @@ public class DisassemblerRecipes {
 				}
 			}
 
+			var outputItemStack = Arrays.stream(originalRecipe.mInputs)
+				.filter(i -> !GT_Utility.isAnyIntegratedCircuit(i))
+				.collect(Collectors.toList()).toArray(new ItemStack[0]);
+
 			GT_Values.RA.stdBuilder()
 				.itemInputs(originalRecipe.mOutputs)
-				.itemOutputs(originalRecipe.mInputs)
+				.itemOutputs(outputItemStack)
 				.duration(originalRecipe.mDuration)
 				.eut(originalRecipe.mEUt)
 				.addTo(DISASSEMBLER_RECIPES)

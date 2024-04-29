@@ -24,7 +24,7 @@ public abstract class GT_MTE_LargeTurbine_SCSteamMixin extends GregtechMetaTileE
 	 * @reason revert supercritical duranium ichorium nerf
 	 */
 	@Overwrite
-	int fluidIntoPower(ArrayList<FluidStack> aFluids, long aOptFlow, int aBaseEff, float[] flowMultipliers) {
+	long fluidIntoPower(ArrayList<FluidStack> aFluids, long aOptFlow, int aBaseEff, float[] flowMultipliers) {
 		int tEU = 0;
 		int totalFlow = 0; // Byproducts are based on actual flow
 		int flow = 0;
@@ -58,6 +58,6 @@ public abstract class GT_MTE_LargeTurbine_SCSteamMixin extends GregtechMetaTileE
 			tEU = MathUtils.safeInt((long) tEU * (long) aBaseEff / 10000L);
 		}
 
-		return (int) Math.min(tEU * 100L, Integer.MAX_VALUE);
+		return Math.min(tEU * 100L, Integer.MAX_VALUE);
 	}
 }
