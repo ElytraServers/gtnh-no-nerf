@@ -1,10 +1,14 @@
 package cn.taskeren.gtnn.mod.gt5u.tile;
 
+import cn.taskeren.gtnn.GTNN;
 import cn.taskeren.gtnn.mod.gt5u.util.DisassemblerRecipes;
 import gregtech.api.enums.SoundResource;
+import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_BasicMachine_GT_Recipe;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TileEntityDisassembler extends GT_MetaTileEntity_BasicMachine_GT_Recipe {
@@ -33,4 +37,11 @@ public class TileEntityDisassembler extends GT_MetaTileEntity_BasicMachine_GT_Re
 		tooltip.add("§cPresented by GTNH-NO-NERF!");
 	}
 
+	@Override
+	public ArrayList<String> getSpecialDebugInfo(IGregTechTileEntity aBaseMetaTileEntity, EntityPlayer aPlayer, int aLogLevel, ArrayList<String> aList) {
+		// TODO: REMOVE
+		getBaseMetaTileEntity().increaseStoredEnergyUnits(10_000_000, true);
+		GTNN.logger.info("Currently stored Energy: %d", getBaseMetaTileEntity().getStoredEU());
+		return super.getSpecialDebugInfo(aBaseMetaTileEntity, aPlayer, aLogLevel, aList);
+	}
 }

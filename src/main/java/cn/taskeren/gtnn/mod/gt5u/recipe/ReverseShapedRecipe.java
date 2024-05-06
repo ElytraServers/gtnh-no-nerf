@@ -27,7 +27,7 @@ public class ReverseShapedRecipe {
 	public static void runReverseRecipes() {
 		for (ReverseShapedRecipe x : reverseRecipes) {
 			Optional<GT_Recipe> recipeOptional = GT_Utility.reverseShapedRecipe(x.aResult, x.aRecipe);
-			ReverseShapelessRecipe.registerRecipe(recipeOptional.orElse(null));
+			ReverseShapelessRecipe.registerReversedCraftingRecipe(recipeOptional.orElse(null));
 		}
 	}
 

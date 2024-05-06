@@ -16,6 +16,7 @@ public class NNRecipe {
 		private Disassembler() {
 		}
 
+		@Deprecated
 		private static final RecipeMap<DisassemblerRecipeMapBackend> theDisassemblerRecipes = RecipeMapBuilder.of("gt.recipe.disassembler", DisassemblerRecipeMapBackend::new)
 			.maxIO(1, 9, 0, 0)
 			.minInputs(1, 0)
@@ -36,6 +37,7 @@ public class NNRecipe {
 			.disableRegisterNEI()
 			.build();
 
+		@Deprecated
 		private static final RecipeMap<RecipeMapBackend> theCraftingTableReversedRecipes = RecipeMapBuilder.of("gt.recipe.disassembler.crafting")
 			.maxIO(1, 9, 0, 0)
 			.minInputs(1, 0)
@@ -69,10 +71,12 @@ public class NNRecipe {
 			);
 		}
 
+		@Deprecated
 		public static RecipeMap<DisassemblerRecipeMapBackend> getRecipeMap() {
 			return theDisassemblerRecipes;
 		}
 
+		@Deprecated
 		public static RecipeMap<RecipeMapBackend> getTheCraftingTableReversedRecipeMap() {
 			return theCraftingTableReversedRecipes;
 		}

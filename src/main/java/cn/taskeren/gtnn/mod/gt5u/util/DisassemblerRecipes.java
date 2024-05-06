@@ -144,7 +144,7 @@ public class DisassemblerRecipes {
 			success++;
 		}
 
-		GTNN.logger.info(MARKER_DISASSEMBLER_RECIPES, "Successfully loaded assembler-source recipes, success = " + success + ", badInput = " + blockedBadInput + ", tool = " + blockedTool + ", blacklist = " + blockedBlacklist + ", circuit = " + blockedCircuit + ", unpacker = " + blockedUnpacker);
+		GTNN.logger.info(MARKER_DISASSEMBLER_RECIPES, "Successfully loaded assembler-source recipes, success = %d, badInput = %d, tool = %d, blacklist = %d, circuit = %d, unpacker = %d", success, blockedBadInput, blockedTool, blockedBlacklist, blockedCircuit, blockedUnpacker);
 	}
 
 	private static boolean isCircuit(ItemStack stack) {
