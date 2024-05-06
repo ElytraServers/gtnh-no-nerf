@@ -11,7 +11,6 @@ import gregtech.api.interfaces.tileentity.IHasWorldObjectAndCoords;
 import gregtech.api.items.GT_MetaGenerated_Tool;
 import gregtech.api.objects.GT_ItemStack;
 import gregtech.api.objects.ItemData;
-import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.RecipeMapBackend;
 import gregtech.api.recipe.RecipeMapBackendPropertiesBuilder;
 import gregtech.api.recipe.RecipeMaps;
@@ -35,6 +34,7 @@ import java.util.stream.IntStream;
 import static gregtech.api.enums.Mods.*;
 
 @SuppressWarnings("DuplicatedCode")
+@Deprecated
 public class DisassemblerRecipeMapBackend extends RecipeMapBackend {
 
 	public DisassemblerRecipeMapBackend(RecipeMapBackendPropertiesBuilder propertiesBuilder) {
@@ -201,8 +201,9 @@ public class DisassemblerRecipeMapBackend extends RecipeMapBackend {
 
 		// (checkRecipeMap)
 		// todo
-		RecipeMap<?> theRecipeMap = NNRecipe.Disassembler.getTheCraftingTableReversedRecipeMap();
-		var recipe = theRecipeMap.findRecipe(tile, true, GT_Values.V[voltageTier], null, stack);
+//		RecipeMap<?> theRecipeMap = NNRecipe.Disassembler.getTheCraftingTableReversedRecipeMap();
+//		var recipe = theRecipeMap.findRecipe(tile, true, GT_Values.V[voltageTier], null, stack);
+		GT_Recipe recipe = null;
 		if(recipe == null) return Optional.of(RecipeStatus.DID_NOT_FIND_RECIPE);
 		if(recipe.isRecipeInputEqual(false, null, stack)) {
 			if(recipe.mSpecialValue == -100) {

@@ -59,9 +59,7 @@ public class DisassemblerRecipes {
 		return list;
 	});
 
-	private static final ArrayListMultimap<GT_ItemStack, ItemStack> OUTPUT_HARD_OVERRIDE = KtCandy.apply(ArrayListMultimap.create(), m -> {
-		m.put(new GT_ItemStack(new ItemStack(Blocks.torch, 6)), new ItemStack(Items.stick));
-	});
+	private static final ArrayListMultimap<GT_ItemStack, ItemStack> OUTPUT_HARD_OVERRIDE = KtCandy.apply(ArrayListMultimap.create(), m -> m.put(new GT_ItemStack(new ItemStack(Blocks.torch, 6)), new ItemStack(Items.stick)));
 
 	private static final long EUT_HARD_OVERRIDE = 30;
 	private static final long DUR_HARD_OVERRIDE = 600;
@@ -77,6 +75,10 @@ public class DisassemblerRecipes {
 		.build();
 
 	public static void loadAssemblerRecipes() {
+
+		// todo: do something... uh, I don't know if it is needed.
+		// var recipesGroupingByOutputs = RecipeMaps.assemblerRecipes.getAllRecipes().stream().collect(Collectors.groupingBy(r -> r.mOutputs));
+
 		var size = RecipeMaps.assemblerRecipes.getAllRecipes().size();
 		GTNN.logger.info(MARKER_DISASSEMBLER_RECIPES, "Importing Disassembler Recipes from Assembler, size = {}", size);
 
