@@ -52,18 +52,20 @@ public class RawInput {
 	}
 
 	private static long getWindowHandle() {
+		checkSuccessInit();
 		try {
 			return (long) DISPLAY_WINDOW_HANDLE.invokeExact();
 		} catch(Throwable e) {
-			throw new RuntimeException(e);
+			throw new RawInputException("Failed to invoke getWindowHandle", e);
 		}
 	}
 
 	private static void glfwSetInputMode(long window, int type, int value) {
+		checkSuccessInit();
 		try {
 			GLFW_SET_INPUT_MODE.invokeExact(window, type, value);
-		} catch(Throwable ex) {
-			throw new RuntimeException(ex);
+		} catch(Throwable e) {
+			throw new RawInputException("Failed to invoke glfwSetInputMode", e);
 		}
 	}
 
@@ -71,14 +73,21 @@ public class RawInput {
 		return successInit;
 	}
 
+	public static void checkSuccessInit() {
+		if(!isSuccessInit()) {
+			throw new RawInputException("Not successfully initialized");
+		}
+	}
+
 	/**
 	 * Test if Raw Mouse Motion is supported.
 	 */
 	public static boolean isRawMouseMotionSupported() {
+		checkSuccessInit();
 		try {
 			return (boolean) GLFW_RAW_MOUSE_MOTION_SUPPORTED_HANDLE.invokeExact();
 		} catch(Throwable throwable) {
-			throw new RuntimeException(throwable);
+			throw new RawInputException("Failed to invoke isRawMouseMotionSupported", throwable);
 		}
 	}
 
