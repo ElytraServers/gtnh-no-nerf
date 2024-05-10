@@ -24,11 +24,13 @@ public class ClientProxy extends CommonProxy {
 	public void onPostInit(FMLPostInitializationEvent event) {
 		super.onPostInit(event);
 
-		if(RawInput.isSuccessInit() && Config.useRawMouseMotion) {
-			if(RawInput.isRawMouseMotionSupported()) {
-				RawInput.setRawMouseMotion(true);
-			} else {
+		if(Config.useRawMouseMotion) {
+			if(!RawInput.isSuccessInit()) {
+				RawInput.getLastInitException().ifPresent(ex -> GTNN.logger.warn("RawInput did not initialized properly.", ex));
+			} else if(!RawInput.isRawMouseMotionSupported()) {
 				GTNN.logger.warn("Your device doesn't support Raw Mouse Motion, reported by OpenGL.");
+			} else {
+				RawInput.setRawMouseMotion(true);
 			}
 		}
 	}

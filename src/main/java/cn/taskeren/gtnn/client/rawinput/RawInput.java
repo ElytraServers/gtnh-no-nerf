@@ -6,6 +6,7 @@ import cn.taskeren.gtnn.util.Lazy;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
+import java.util.Optional;
 
 @SuppressWarnings("ALL")
 public class RawInput {
@@ -14,6 +15,7 @@ public class RawInput {
 	private static Lazy<Class<?>> LWJGL_DISPLAY_CLASS = new Lazy<>(() -> Class.forName("org.lwjglx.opengl.Display"));
 
 	private static boolean successInit = false;
+	private static Throwable lastInitException = null;
 
 	private static MethodHandle DISPLAY_WINDOW_HANDLE;
 	private static MethodHandle GLFW_RAW_MOUSE_MOTION_SUPPORTED_HANDLE;
@@ -48,6 +50,7 @@ public class RawInput {
 		} catch(Throwable ex) {
 			// dont throw. this is not so important. :)
 			GTNN.logger.error("Failed to initialize GLFW reflections.", ex);
+			lastInitException = ex;
 		}
 	}
 
@@ -77,6 +80,10 @@ public class RawInput {
 		if(!isSuccessInit()) {
 			throw new RawInputException("Not successfully initialized");
 		}
+	}
+
+	public static Optional<Throwable> getLastInitException() {
+		return Optional.ofNullable(lastInitException);
 	}
 
 	/**
