@@ -46,7 +46,8 @@ public class RawInput {
 
 			successInit = true;
 		} catch(Throwable ex) {
-			throw new RuntimeException("Exception occurred when loading GLFW", ex);
+			// dont throw. this is not so important. :)
+			GTNN.logger.error("Failed to initialize GLFW reflections.", ex);
 		}
 	}
 
