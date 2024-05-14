@@ -46,6 +46,14 @@ public class Lazy<T> {
 	}
 
 	public boolean isSuccess() {
+		if(state == S_PENDING) {
+			synchronized(this) {
+				if(state == S_PENDING) {
+					internalUpdateValue();
+				}
+			}
+		}
+
 		return state == S_COMPLETE;
 	}
 

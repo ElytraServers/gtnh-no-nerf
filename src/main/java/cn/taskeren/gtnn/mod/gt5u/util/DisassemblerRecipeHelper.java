@@ -6,6 +6,7 @@ import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Utility;
+import gtPlusPlus.core.util.data.ArrayUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -184,7 +185,8 @@ public class DisassemblerRecipeHelper {
 		}
 		// endregion
 
-		return retOutputs;
+		// need to filter null element
+		return ArrayUtils.removeNulls(retOutputs);
 	}
 
 	/**
@@ -196,6 +198,7 @@ public class DisassemblerRecipeHelper {
 	 * @param second the second materials.
 	 * @return the cheaper materials. null if nothing is going to be replaced.
 	 */
+	@Nullable
 	private static Materials getCheaperMaterialsBetweenTwo(Materials first, Materials second) {
 		// return anyone if they are the same.
 		if(first.equals(second)) return null;
@@ -225,6 +228,7 @@ public class DisassemblerRecipeHelper {
 	 * @param first the materials.
 	 * @return the base materials. null if nothing to be replaced.
 	 */
+	@Nullable
 	private static Materials getNonAnyMaterials(Materials first) {
 		if(first.mOreReRegistrations.stream().anyMatch(y -> y.equals(Materials.AnyIron)))
 			return Materials.Iron;
@@ -245,6 +249,7 @@ public class DisassemblerRecipeHelper {
 	 * @param first the materials.
 	 * @return the base materials. null if nothing to be replaced.
 	 */
+	@Nullable
 	private static Materials getUnprocessedMaterials(Materials first) {
 		if(first.equals(Materials.SteelMagnetic)) return Materials.Steel;
 		if(first.equals(Materials.IronMagnetic)) return Materials.Iron;
@@ -263,6 +268,7 @@ public class DisassemblerRecipeHelper {
 	 * @return 1x the cheapest circuit item. null if nothing to be replaced.
 	 */
 	@SuppressWarnings("deprecation")
+	@Nullable
 	private static ItemStack getCheapestCircuit(Materials first) {
 		if(first.equals(Materials.Primitive)) return ItemList.NandChip.get(1);
 		else if(first.equals(Materials.Basic)) return ItemList.Circuit_Microprocessor.get(1);
@@ -312,6 +318,7 @@ public class DisassemblerRecipeHelper {
 	}
 
 	// need document
+	@Nullable
 	private static ItemStack handleContainerItem(ItemStack stack) {
 		assert stack == null || stack.getItem() != null;
 

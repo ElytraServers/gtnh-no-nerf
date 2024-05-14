@@ -1,5 +1,6 @@
 package cn.taskeren.gtnn.mod.gt5u.recipe;
 
+import cn.taskeren.gtnn.GTNN;
 import cn.taskeren.gtnn.mod.gt5u.util.DisassemblerRecipeHelper;
 import cn.taskeren.gtnn.mod.gt5u.util.DisassemblerRecipes;
 import gregtech.api.enums.GT_Values;
@@ -47,18 +48,22 @@ public class ReverseShapelessRecipe {
 	 */
 	public static void registerReversedCraftingRecipe(@Nullable GT_Recipe revRecipe) {
 		if(revRecipe == null) return;
-
-		GT_Values.RA.stdBuilder()
-			.itemInputs(revRecipe.mInputs)
-			.itemOutputs(
-				DisassemblerRecipeHelper.handleRecipeTransformation(
-					revRecipe.mOutputs,
-					Collections.singleton(revRecipe.mOutputs)
+		try {
+			GT_Values.RA.stdBuilder()
+				.itemInputs(revRecipe.mInputs)
+				.itemOutputs(
+					DisassemblerRecipeHelper.handleRecipeTransformation(
+						revRecipe.mOutputs,
+						Collections.singleton(revRecipe.mOutputs)
+					)
 				)
-			)
-			.duration(300)
-			.eut(30)
-			.addTo(DisassemblerRecipes.DISASSEMBLER_RECIPES);
+				.duration(300)
+				.eut(30)
+				.addTo(DisassemblerRecipes.DISASSEMBLER_RECIPES);
+		} catch(Exception ex) {
+			GTNN.logger.error("Unable to register reversed crafting recipe: " + (revRecipe.mInputs.length > 0 ? revRecipe.mInputs[0] : "mInputs is null"));
+			GTNN.logger.error("", ex);
+		}
 	}
 
 }
