@@ -5,6 +5,7 @@ import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_OreDictUnificator;
+import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.util.data.ArrayUtils;
 import net.minecraft.init.Blocks;
@@ -16,6 +17,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Set;
 
+/**
+ * The modified version of the Disassembler recipe processing/transforming methods.
+ * <p>
+ * You may find the class of the latest version before removal <a href="https://github.com/GTNewHorizons/GT5-Unofficial/blob/c68c9019d1285f48436661a031b4aff3823b2a37/src/main/java/gregtech/common/tileentities/machines/basic/GT_MetaTileEntity_Disassembler.java">here</a>.
+ */
 public class DisassemblerRecipeHelper {
 
 	/**
@@ -24,7 +30,7 @@ public class DisassemblerRecipeHelper {
 	 * Array<(toBeReplaced: ItemStack, replacement: ItemStack)>
 	 */
 	private static final ItemStack[][] ALWAYS_REPLACE = {
-		{new ItemStack(Blocks.trapped_chest, 1, OreDictionary.WILDCARD_VALUE), new ItemStack(Blocks.chest, 1, OreDictionary.WILDCARD_VALUE)}
+			{new ItemStack(Blocks.trapped_chest, 1, OreDictionary.WILDCARD_VALUE), new ItemStack(Blocks.chest, 1, OreDictionary.WILDCARD_VALUE)}
 	};
 
 	/**
@@ -33,12 +39,12 @@ public class DisassemblerRecipeHelper {
 	 * Array<(oreDictName: String, replacement: ItemStack)>
 	 */
 	private static final Object[][] ORE_DICT_REPLACE = {
-		{"plankWood", new ItemStack(Blocks.planks)},
-		{"stoneCobble", new ItemStack(Blocks.cobblestone)},
-		{"gemDiamond", new ItemStack(Items.diamond)},
-		{"logWood", new ItemStack(Blocks.log)},
-		{"stickWood", new ItemStack(Items.stick)},
-		{"treeSapling", new ItemStack(Blocks.sapling)}
+			{"plankWood", new ItemStack(Blocks.planks)},
+			{"stoneCobble", new ItemStack(Blocks.cobblestone)},
+			{"gemDiamond", new ItemStack(Items.diamond)},
+			{"logWood", new ItemStack(Blocks.log)},
+			{"stickWood", new ItemStack(Items.stick)},
+			{"treeSapling", new ItemStack(Blocks.sapling)}
 	};
 
 	/**
@@ -78,10 +84,10 @@ public class DisassemblerRecipeHelper {
 	 * @return the processed output itemstacks.
 	 */
 	public static ItemStack[] handleRecipeTransformation(
-		@NotNull
-		ItemStack[] rawOutputs,
-		@Nullable
-		Set<ItemStack[]> inputItemsOfRecipes
+			@NotNull
+			ItemStack[] rawOutputs,
+			@Nullable
+			Set<ItemStack[]> inputItemsOfRecipes // "inputStacks" in the legacy codes
 	) {
 		// the final result!
 		ItemStack[] retOutputs = new ItemStack[rawOutputs.length];
@@ -90,6 +96,7 @@ public class DisassemblerRecipeHelper {
 		iterateRecipe:
 		// <--- used to jump out the inner loop
 		for(int idx = 0; idx < rawOutputs.length; idx++) {
+			// region handleRecipeTransformationInternal
 			// get the stack and data for the item iterated.
 			var itemInSlotIdx = rawOutputs[idx];
 			var itemDataInSlotIdx = GT_OreDictUnificator.getItemData(itemInSlotIdx);
@@ -100,52 +107,64 @@ public class DisassemblerRecipeHelper {
 				continue;
 			}
 
+			// region handleReplacement
+
 			// true if the item has been downgraded in the 1st step.
 			// then don't continue to downgrade again.
 			var materialMaterialOfFirst = itemDataInSlotIdx.mMaterial.mMaterial;
 
-			// region (1st step)
+			// region handleInputStacks
 			// if there are some other assembler recipes,
 			// we should compare the items in the SAME slot, and get the cheaper one.
 			if(inputItemsOfRecipes != null) {
 				for(ItemStack[] inputsInOtherRecipes : inputItemsOfRecipes) {
 					var dataAgainst = GT_OreDictUnificator.getItemData(inputsInOtherRecipes[idx]);
 					if(!(dataAgainst == null || dataAgainst.mMaterial == null || dataAgainst.mMaterial.mMaterial == null || dataAgainst.mPrefix != itemDataInSlotIdx.mPrefix)) {
-						// find the cheaper item in the same slot. (e.g.: Aluminum -> Iron)
+						// region handleDifferentMaterialsOnRecipes
+						// replaces the cheaper item in the same slot.
+						// (e.g.: Aluminum -> Iron)
 						var cheaper = getCheaperMaterialsBetweenTwo(materialMaterialOfFirst, dataAgainst.mMaterial.mMaterial);
 						if(cheaper != null) {
 							retOutputs[idx] = GT_OreDictUnificator.get(
-								OrePrefixes.valueOf(itemDataInSlotIdx.mPrefix.name()),
-								cheaper,
-								itemInSlotIdx.stackSize
+									OrePrefixes.valueOf(itemDataInSlotIdx.mPrefix.name()),
+									cheaper,
+									itemInSlotIdx.stackSize
 							);
 							continue iterateRecipe; // <--- done with this slot, no more downgrading.
 						}
+						// endregion
+
+						// region handleAnyMaterials
 						// get the more basic item in the slot.
 						var nonAny = getNonAnyMaterials(materialMaterialOfFirst);
 						if(nonAny != null) {
 							retOutputs[idx] = GT_OreDictUnificator.get(
-								OrePrefixes.valueOf(itemDataInSlotIdx.mPrefix.name()),
-								nonAny,
-								itemInSlotIdx.stackSize
+									OrePrefixes.valueOf(itemDataInSlotIdx.mPrefix.name()),
+									nonAny,
+									itemInSlotIdx.stackSize
 							);
 							continue iterateRecipe; // <--- done with this slot, no more downgrading.
 						}
+						// endregion
 					}
 				}
 			}
 			// endregion
-			// region (2nd step)
+
+			// region handleBetterMaterialsVersions
 			// get the unprocessed item. (e.g.: AnnealedCopper -> Copper, IronMagnetic -> Iron)
 			var unprocessed = getUnprocessedMaterials(materialMaterialOfFirst);
 			if(unprocessed != null) {
 				retOutputs[idx] = GT_OreDictUnificator.get(
-					OrePrefixes.valueOf(itemDataInSlotIdx.mPrefix.name()),
-					unprocessed,
-					itemInSlotIdx.stackSize
+						OrePrefixes.valueOf(itemDataInSlotIdx.mPrefix.name()),
+						unprocessed,
+						itemInSlotIdx.stackSize
 				);
 				continue;
 			}
+			// endregion
+
+			// region handleCircuits
 			// if the item is CIRCUIT, replace with the cheapest (most downgrade) circuit.
 			if(itemDataInSlotIdx.mPrefix == OrePrefixes.circuit) {
 				var circuit = getCheapestCircuit(materialMaterialOfFirst);
@@ -156,6 +175,10 @@ public class DisassemblerRecipeHelper {
 				// continue; <--- useless, but add it for structural beauty.
 			}
 			// endregion
+
+			// endregion handleReplacement
+
+			// endregion handleRecipeTransformationInternal
 		}
 
 		// region addOthersAndHandleAlwaysReplace
@@ -326,6 +349,22 @@ public class DisassemblerRecipeHelper {
 			return null;
 		}
 		return stack;
+	}
+
+	/**
+	 * Create a reversed Assembler recipe.
+	 * The fluid is not exchanged, but it should never be used.
+	 *
+	 * @param recipe the forwarding recipe from Assemblers
+	 * @return the input-output-exchanged recipe from the original one
+	 */
+	public static GT_Recipe getReversedRecipe(GT_Recipe recipe) {
+		var ret = recipe.copy();
+
+		ret.mInputs = recipe.mOutputs;
+		ret.mOutputs = recipe.mInputs;
+
+		return ret;
 	}
 
 }

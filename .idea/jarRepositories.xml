@@ -12,9 +12,19 @@
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="Overmind forge repo mirror" />
-      <option name="name" value="Overmind forge repo mirror" />
+      <option name="id" value="GTNH Maven" />
+      <option name="name" value="GTNH Maven" />
+      <option name="url" value="https://nexus.gtnewhorizons.com/repository/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="OvermindDL1 Forge repo mirror" />
+      <option name="name" value="OvermindDL1 Forge repo mirror" />
       <option name="url" value="https://gregtech.overminddl1.com/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="Modrinth" />
+      <option name="name" value="Modrinth" />
+      <option name="url" value="https://api.modrinth.com/maven" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="MavenRepo" />
@@ -22,24 +32,14 @@
       <option name="url" value="https://repo.maven.apache.org/maven2/" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="ic2-mirror" />
-      <option name="name" value="ic2-mirror" />
-      <option name="url" value="https://maven2.ic2.player.to/" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="sonatype" />
-      <option name="name" value="sonatype" />
+      <option name="id" value="LWJGL Snapshots" />
+      <option name="name" value="LWJGL Snapshots" />
       <option name="url" value="https://oss.sonatype.org/content/repositories/snapshots/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="CurseMaven" />
       <option name="name" value="CurseMaven" />
       <option name="url" value="https://cursemaven.com" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="ic2" />
-      <option name="name" value="ic2" />
-      <option name="url" value="https://maven.ic2.player.to/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="mojang" />
@@ -52,9 +52,9 @@
       <option name="url" value="https://maven.mcmoddev.com/" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="GTNH Maven" />
-      <option name="name" value="GTNH Maven" />
-      <option name="url" value="http://jenkins.usrv.eu:8081/nexus/content/groups/public/" />
+      <option name="id" value="log4j2beta9fixed" />
+      <option name="name" value="log4j2beta9fixed" />
+      <option name="url" value="https://files.prismlauncher.org/maven/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="forge" />
@@ -65,21 +65,6 @@
       <option name="id" value="sponge" />
       <option name="name" value="sponge" />
       <option name="url" value="https://repo.spongepowered.org/maven/" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="Modrinth" />
-      <option name="name" value="Modrinth" />
-      <option name="url" value="https://api.modrinth.com/maven" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="log4j2beta9fixed" />
-      <option name="name" value="log4j2beta9fixed" />
-      <option name="url" value="https://files.prismlauncher.org/maven/" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="GTNH Maven" />
-      <option name="name" value="GTNH Maven" />
-      <option name="url" value="https://nexus.gtnewhorizons.com/repository/public/" />
     </remote-repository>
   </component>
 </project>

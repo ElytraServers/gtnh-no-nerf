@@ -38,11 +38,11 @@ public class ToStringHelper {
 		return sb.toString();
 	}
 
-	public static <T> String objectArrayToString(T[] array, Function<T, String> toStringMapper) {
+	public static <T> String objectsToString(T[] array, Function<T, String> toStringMapper) {
 		return stringIteratorListToString(Arrays.stream(array).map(toStringMapper).iterator());
 	}
 
-	public static <T> String objectListToString(Collection<T> list, Function<T, String> toStringMapper) {
+	public static <T> String objectsToString(Collection<T> list, Function<T, String> toStringMapper) {
 		return stringIteratorListToString(list.stream().map(toStringMapper).iterator());
 	}
 
@@ -59,6 +59,8 @@ public class ToStringHelper {
 		return stack + "x " + unl10nName + "(" + id + ") @ " + damage + nbtStr;
 	}
 
-
+	public static String getItemStacksString(ItemStack[] itemstacks) {
+		return objectsToString(itemstacks, ToStringHelper::advItemStackToString);
+	}
 
 }

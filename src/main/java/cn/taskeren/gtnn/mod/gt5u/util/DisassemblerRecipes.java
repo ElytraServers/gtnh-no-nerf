@@ -2,10 +2,12 @@ package cn.taskeren.gtnn.mod.gt5u.util;
 
 import cn.taskeren.gtnn.GTNN;
 import cn.taskeren.gtnn.util.KtCandy;
+import cn.taskeren.gtnn.util.ProgressIterable;
+import cn.taskeren.gtnn.util.ToStringHelper;
 import com.google.common.collect.ArrayListMultimap;
 import gregtech.api.enums.*;
 import gregtech.api.gui.modularui.GT_UITextures;
-import gregtech.api.items.GT_MetaGenerated_Item;
+import gregtech.api.items.GT_MetaGenerated_Tool;
 import gregtech.api.objects.GT_ItemStack;
 import gregtech.api.recipe.*;
 import gregtech.api.util.*;
@@ -13,13 +15,11 @@ import ic2.api.item.IC2Items;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import org.apache.logging.log4j.Marker;
-import org.apache.logging.log4j.MarkerManager;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static gregtech.api.enums.Mods.AppliedEnergistics2;
@@ -27,11 +27,7 @@ import static gregtech.api.enums.Mods.IndustrialCraft2;
 
 public class DisassemblerRecipes {
 
-	private static final Marker MARKER_DISASSEMBLER_RECIPES = MarkerManager.getMarker("DisassemblerRecipes");
-
-	private static final List<GT_ItemStack> INPUT_BLACKLIST = KtCandy.run(() -> {
-		var list = new ArrayList<GT_ItemStack>();
-
+	private static final List<GT_ItemStack> INPUT_BLACKLIST = KtCandy.buildList((list) -> {
 		list.add(new GT_ItemStack(ItemList.Casing_Coil_Superconductor.get(1)));
 		list.add(new GT_ItemStack(Materials.Graphene.getDust(1)));
 		list.add(new GT_ItemStack(ItemList.Circuit_Parts_Vacuum_Tube.get(1)));
@@ -55,8 +51,6 @@ public class DisassemblerRecipes {
 		// endregion transformer
 		list.add(new GT_ItemStack(GT_ModHandler.getModItem(AppliedEnergistics2.ID, "item.ItemMultiPart", 1L, 36)));
 		list.add(new GT_ItemStack(GT_ModHandler.getModItem(AppliedEnergistics2.ID, "item.ItemMultiPart", 1L, 536)));
-
-		return list;
 	});
 
 	private static final ArrayListMultimap<GT_ItemStack, ItemStack> OUTPUT_HARD_OVERRIDE = KtCandy.apply(ArrayListMultimap.create(), m -> m.put(new GT_ItemStack(new ItemStack(Blocks.torch, 6)), new ItemStack(Items.stick)));
@@ -64,89 +58,107 @@ public class DisassemblerRecipes {
 	private static final long EUT_HARD_OVERRIDE = 30;
 	private static final long DUR_HARD_OVERRIDE = 600;
 
-	public static final RecipeMap<DisassemblerBackend> DISASSEMBLER_RECIPES = RecipeMapBuilder
-		.of("gtnn.recipe.disassembler", DisassemblerBackend::new)
-		.maxIO(1, 9, 0, 0)
-		.minInputs(1, 0)
-		.slotOverlays((index, isFluid, isOutput, isSpecial) -> !isFluid && !isOutput ? GT_UITextures.OVERLAY_SLOT_CIRCUIT : null)
-		.progressBar(GT_UITextures.PROGRESSBAR_ASSEMBLE)
-		.disableOptimize()
-		.recipeConfigFile("disassembling", GT_RecipeMapUtil.FIRST_ITEM_OUTPUT)
-		.build();
+	public static final RecipeMap<DisassemblerBackend> DISASSEMBLER_RECIPES =
+		RecipeMapBuilder.of("gtnn.recipe.disassembler", DisassemblerBackend::new)
+			.maxIO(1, 9, 0, 0)
+			.minInputs(1, 0)
+			.slotOverlays((index, isFluid, isOutput, isSpecial) -> !isFluid && !isOutput ? GT_UITextures.OVERLAY_SLOT_CIRCUIT : null)
+			.progressBar(GT_UITextures.PROGRESSBAR_ASSEMBLE)
+			.disableOptimize()
+			.recipeConfigFile("disassembling", GT_RecipeMapUtil.FIRST_ITEM_OUTPUT)
+			.build();
+
+	public static boolean canDisassemble(ItemStack[] itemsToDisassemble) {
+		if(itemsToDisassemble.length != 1) return false;
+		var item = itemsToDisassemble[0];
+
+		if(item.getItem() instanceof GT_MetaGenerated_Tool) return false;
+		if(isCircuit(item)) return false;
+		if(INPUT_BLACKLIST.stream().anyMatch(b -> GT_Utility.areStacksEqual(b.toStack(), item, true))) return false;
+		if(isUnpackerRecipe(item)) return false;
+
+		return true;
+	}
 
 	public static void loadAssemblerRecipes() {
+		var recipesGroupingByOutputs = RecipeMaps.assemblerRecipes.getAllRecipes().stream()
+			.filter(r -> canDisassemble(r.mOutputs))
+			.collect(Collectors.groupingBy(r -> r.mOutputs));
 
-		// todo: do something... uh, I don't know if it is needed.
-		// var recipesGroupingByOutputs = RecipeMaps.assemblerRecipes.getAllRecipes().stream().collect(Collectors.groupingBy(r -> r.mOutputs));
+		var totalRecipesCount = recipesGroupingByOutputs.entrySet().size();
+		GTNN.logger.info("Loading reversed assembler recipes...");
+		var recipesIterator = ProgressIterable.ofCollection(recipesGroupingByOutputs.entrySet(), 600, (i) -> GTNN.logger.info(String.format("%.2f%%", ((double) i * 100 / totalRecipesCount)) + " | " + i + " of " + totalRecipesCount));
 
-		var size = RecipeMaps.assemblerRecipes.getAllRecipes().size();
-		GTNN.logger.info(MARKER_DISASSEMBLER_RECIPES, "Importing Disassembler Recipes from Assembler, size = {}", size);
+		disassembleInputItemIteration:
+		for(var itemAndItsRecipes : recipesIterator) {
+			var items = itemAndItsRecipes.getKey();
+			var recipes = itemAndItsRecipes.getValue();
 
-		int success = 0, blockedBadInput = 0, blockedTool = 0, blockedBlacklist = 0, blockedCircuit = 0, blockedUnpacker = 0;
+			try {
+				// length of items is not one is filtered in #canDisassemble
+				assert items.length == 1;
 
-		for(GT_Recipe recipe : RecipeMaps.assemblerRecipes.getAllRecipes()) {
+				var revRecipes = recipes.stream().map(DisassemblerRecipeHelper::getReversedRecipe).collect(Collectors.toList());
+				var revRecipeFirst = revRecipes.get(0); // the first recipe
 
-			if(recipe.mOutputs.length > 1 || recipe.mOutputs[0] == null /*wtf? how could this happen?*/) {
-				GTNN.logger.debug(MARKER_DISASSEMBLER_RECIPES, "Bad: {}", (Object) recipe.mOutputs);
-				blockedBadInput++;
-				continue;
-			}
+				if(revRecipeFirst.mInputs.length > 1) {
+					throw new IllegalArgumentException("Invalid assembler recipe, output types are more than 1: " + ToStringHelper.getItemStacksString(revRecipeFirst.mInputs));
+				}
 
-			var originalRecipe = recipe.copy();
-			var inputItemStack = originalRecipe.mOutputs[0];
+				// the item to disassemble
+				var revInput = revRecipeFirst.mInputs[0];
 
-			// check input (the thing to disassemble)
-			if(inputItemStack.getItem() instanceof GT_MetaGenerated_Item) {
-				GTNN.logger.debug(MARKER_DISASSEMBLER_RECIPES, "Tool: {}", inputItemStack);
-				blockedTool++;
-				continue;
-			}
-			if(isCircuit(inputItemStack)) {
-				GTNN.logger.debug(MARKER_DISASSEMBLER_RECIPES, "Circuit: {}", inputItemStack);
-				blockedCircuit++;
-				continue;
-			}
-			if(INPUT_BLACKLIST.stream().anyMatch(b -> GT_Utility.areStacksEqual(b.toStack(), inputItemStack, true))) {
-				GTNN.logger.debug(MARKER_DISASSEMBLER_RECIPES, "Blacklisted: {}", inputItemStack);
-				blockedBlacklist++;
-				continue;
-			}
-			if(isUnpackerRecipe(inputItemStack)) {
-				GTNN.logger.debug(MARKER_DISASSEMBLER_RECIPES, "Unpacker: {}");
-				blockedUnpacker++;
-				continue;
-			}
+				// handle hard overrides
+				for(var hardOverridePair : OUTPUT_HARD_OVERRIDE.entries()) {
+					var hardOverrideItem = hardOverridePair.getKey();
+					if(hardOverrideItem.isStackEqual(revInput)) {
+						GT_Values.RA.stdBuilder()
+							.itemInputs(revInput)
+							.itemOutputs(hardOverridePair.getValue())
+							.duration(DUR_HARD_OVERRIDE)
+							.eut(EUT_HARD_OVERRIDE)
+							.addTo(DisassemblerRecipes.DISASSEMBLER_RECIPES);
 
-			// modify the disassembled outputs
-			for(GT_ItemStack override : OUTPUT_HARD_OVERRIDE.keySet()) {
-				var in = inputItemStack.copy();
-				in.stackSize = 1;
-				if(override.isStackEqual(in) && override.mStackSize <= inputItemStack.stackSize) {
-					originalRecipe.mOutputs = OUTPUT_HARD_OVERRIDE.get(override).toArray(new ItemStack[0]);
-					originalRecipe.mInputs[0].stackSize = override.mStackSize;
-					originalRecipe.mEUt = (int) EUT_HARD_OVERRIDE;
-					originalRecipe.mDuration = (int) DUR_HARD_OVERRIDE;
+						// if the hard override is done,
+						// directly continue to process the next item.
+						continue disassembleInputItemIteration;
+					}
+				}
+
+				// the items output from the disassembled item
+				var revOutputs = DisassemblerRecipeHelper.handleRecipeTransformation(
+					// the first recipe
+					revRecipeFirst.mOutputs,
+					// the remaining (skipped the first) recipes
+					revRecipes.stream().skip(1).map(r -> r.mOutputs).collect(Collectors.toSet()));
+				var revDuration = revRecipeFirst.mDuration;
+				var revEUT = revRecipeFirst.mEUt;
+
+				// region removeInvalidStacks
+				revOutputs = Arrays.stream(revOutputs).filter(stack -> GT_Utility.isStackValid(stack) && stack.stackSize > 0).toArray(ItemStack[]::new);
+				// endregion
+
+				GT_Values.RA.stdBuilder()
+					.itemInputs(revInput)
+					.itemOutputs(revOutputs)
+					.duration(revDuration)
+					.eut(revEUT)
+					.addTo(DisassemblerRecipes.DISASSEMBLER_RECIPES);
+			} catch(Exception ex) {
+				GTNN.logger.error("Failed to register the reversed assembler recipe", ex);
+				GTNN.logger.error("Input:  " + ToStringHelper.getItemStacksString(items));
+				for(int i = 0; i < recipes.size(); i++) {
+					GTNN.logger.error("Output: " + i + " " + recipes.get(i).toString());
+				}
+
+				// directly throw OOB exception, because it is usually throws a lot if something is broken,
+				// and the logs are going to be crazy.
+				// I don't like it.
+				if(ex instanceof ArrayIndexOutOfBoundsException) {
+					throw ex;
 				}
 			}
-
-			var outputItemStack = Arrays.stream(originalRecipe.mInputs)
-				.filter(Objects::nonNull)
-				.filter(i -> !GT_Utility.isAnyIntegratedCircuit(i))
-				.collect(Collectors.toList()).toArray(new ItemStack[0]);
-
-			GT_Values.RA.stdBuilder()
-				.itemInputs(originalRecipe.mOutputs)
-				.itemOutputs(outputItemStack)
-				.duration(originalRecipe.mDuration)
-				.eut(originalRecipe.mEUt)
-				.addTo(DISASSEMBLER_RECIPES)
-			;
-
-			GTNN.logger.debug(MARKER_DISASSEMBLER_RECIPES, "Loaded an assembler recipe for {}", (Object) recipe.mOutputs);
-			success++;
 		}
-
-		GTNN.logger.info(MARKER_DISASSEMBLER_RECIPES, "Successfully loaded assembler-source recipes, success = %d, badInput = %d, tool = %d, blacklist = %d, circuit = %d, unpacker = %d", success, blockedBadInput, blockedTool, blockedBlacklist, blockedCircuit, blockedUnpacker);
 	}
 
 	private static boolean isCircuit(ItemStack stack) {
@@ -158,8 +170,41 @@ public class DisassemblerRecipes {
 	}
 
 	private static boolean isUnpackerRecipe(ItemStack stack) {
-		return RecipeMaps.unpackagerRecipes
-			.findRecipe(null, true, true, Long.MAX_VALUE, null, stack) != null;
+		return RecipeMaps.unpackagerRecipes.findRecipe(null, true, true, Long.MAX_VALUE, null, stack) != null;
+	}
+
+	/**
+	 * Register a reversed recipe.
+	 * <p>
+	 * This function handles both Shaped and Shapeless Recipes.
+	 * <p>
+	 * Note: the param itself should have been reversed once, DON'T reverse it again!
+	 *
+	 * @param revRecipe the REVERSED recipe.
+	 */
+	public static void registerReversedCraftingRecipe(@Nullable GT_Recipe revRecipe) {
+		if(revRecipe == null) return;
+
+		if(!canDisassemble(revRecipe.mInputs)) {
+			return;
+		}
+
+		try {
+			GT_Values.RA.stdBuilder()
+				.itemInputs(revRecipe.mInputs)
+				.itemOutputs(
+					DisassemblerRecipeHelper.handleRecipeTransformation(
+						revRecipe.mOutputs,
+						Collections.singleton(revRecipe.mOutputs)
+					)
+				)
+				.duration(300)
+				.eut(30)
+				.addTo(DISASSEMBLER_RECIPES);
+		} catch(Exception ex) {
+			GTNN.logger.error("Unable to register reversed crafting recipe: " + (revRecipe.mInputs.length > 0 ? revRecipe.mInputs[0] : "mInputs is null"));
+			GTNN.logger.error("", ex);
+		}
 	}
 
 	public static class DisassemblerBackend extends RecipeMapBackend {

@@ -1,5 +1,7 @@
 package cn.taskeren.gtnn.util;
 
+import com.google.common.collect.ImmutableList;
+
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -25,6 +27,14 @@ public class KtCandy {
 	public static <T> T apply(T t, Consumer<T> consumer) {
 		consumer.accept(t);
 		return t;
+	}
+
+	// collections
+
+	public static <T> ImmutableList<T> buildList(Consumer<ImmutableList.Builder<T>> builder) {
+		var b = ImmutableList.<T>builder();
+		builder.accept(b);
+		return b.build();
 	}
 
 }

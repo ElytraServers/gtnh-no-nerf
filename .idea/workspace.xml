@@ -1,0 +1,994 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fea74fa2-d0f0-4ed1-b50c-71dfbe89224a" name="Changes" comment="fixed invalid reverse recipe caused crashing">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/util/ProgressIterable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/cn/taskeren/gtnn/test/TestProgressIterable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/GTNN_Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/recompiled_minecraft_1_7_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mod/gt5u/recipe/ReverseShapedRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mod/gt5u/recipe/ReverseShapedRecipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mod/gt5u/recipe/ReverseShapelessRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mod/gt5u/recipe/ReverseShapelessRecipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mod/gt5u/util/DisassemblerRecipeHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mod/gt5u/util/DisassemblerRecipeHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mod/gt5u/util/DisassemblerRecipeMapBackend.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mod/gt5u/util/DisassemblerRecipes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mod/gt5u/util/DisassemblerRecipes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/util/KtCandy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/util/KtCandy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/util/ToStringHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/util/ToStringHelper.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/depTools">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation>
+            <after_sync>
+              <task name="processIdeaSettings" />
+            </after_sync>
+          </activation>
+        </task>
+        <task path="$PROJECT_DIR$/depTools">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="depTools" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="depTools" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="depTools" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="gtnh-no-nerf" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="gtnh-no-nerf" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="gtnh-no-nerf" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="gtnh-no-nerf" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="AnnotationType" />
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Kotlin File" />
+        <option value="Kotlin Object" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;state&quot;: &quot;MERGED&quot;
+    }
+  ],
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="eea803cc-bc40-406d-935b-462924a3d820" />
+        <option name="url" value="git@github.com:Taskeren/gtnh-no-nerf.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.GTNewHorizons/GT5-Unofficial/5.09.45.163/9e3aa87fd2be16174364648cfe18533b73462b9a/GT5-Unofficial-5.09.45.163-sources.jar!/gregtech/api/interfaces/tileentity/IBasicEnergyContainer.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.GTNewHorizons/GT5-Unofficial/5.09.45.163/9e3aa87fd2be16174364648cfe18533b73462b9a/GT5-Unofficial-5.09.45.163-sources.jar!/gregtech/api/metatileentity/implementations/GT_MetaTileEntity_BasicMachine.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.5-bin/5t9huq95ubn472n8rpzujfbqh/gradle-8.5/lib/gradle-core-api-8.5.jar!/org/gradle/api/Project.class" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="pprcjh83" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2TfAlCfmEXaJIOOblGcGLihKa7w" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.0. Build and Test.executor": "Run",
+    "Gradle.1a. Run Client (Java 17).executor": "Debug",
+    "Gradle.1b. Run Client (Java 17, Hotswap).executor": "Debug",
+    "Gradle.1d. Run Client (Java 21, Hotswap).executor": "Debug",
+    "Gradle.Build depTools.executor": "Run",
+    "Gradle.Build gtnh-no-nerf.executor": "Run",
+    "Gradle.E:/Dev2023New/gtnh-no-nerf/depTools [build].executor": "Run",
+    "Gradle.E:/Dev2023New/gtnh-no-nerf/depTools [clean].executor": "Run",
+    "Gradle.depTools [:DepTools.main()].executor": "Run",
+    "Gradle.gtnh-no-nerf [:TestProgressIterable.main()].executor": "Run",
+    "Gradle.gtnh-no-nerf [clean].executor": "Run",
+    "Gradle.gtnh-no-nerf [processIdeaSettings].executor": "Run",
+    "Gradle.gtnh-no-nerf [runClient21].executor": "Run",
+    "Gradle.gtnh-no-nerf [setupHotswapAgent21].executor": "Run",
+    "Gradle.gtnh-no-nerf [updateBuildScript].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/Dev2023New/lifehack",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "org.rust.first.attach.projects": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.39195403",
+    "run.code.analysis.last.selected.profile": "pGTNN Project",
+    "settings.editor.selected.configurable": "editor.preferences.completion",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "kotlin-gradle-user-dirs": [
+      "C:\\Users\\r0yal\\.gradle"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Dev2023New\gtnh-no-nerf\depTools\src\main\groovy\org\example" />
+      <recent name="E:\Dev2023New\gtnh-no-nerf\depVersionTool" />
+    </key>
+    <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="cn.taskeren.gtnn.mod.gt5u.util.DisassemblerRecipes" />
+    </key>
+    <key name="MoveInnerDialog.RECENTS_KEY">
+      <recent name="cn.taskeren.gtnn.util" />
+      <recent name="cn.taskeren.gtnn.mixinplugin" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cn.taskeren.gtnn.common" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.0. Build and Test">
+    <configuration name="Run Client (IJ Native)" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="GradleStart" />
+      <module name="gtnh-no-nerf.ideVirtualMain" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;--username&quot; &quot;Developer&quot; &quot;--version&quot; &quot;1.7.10&quot; &quot;--gameDir&quot; &quot;E:\Dev2023New\gtnh-no-nerf\run&quot; &quot;--assetsDir&quot; &quot;C:\Users\r0yal\.gradle\caches\retro_futura_gradle\assets&quot; &quot;--assetIndex&quot; &quot;1.7.10&quot; &quot;--uuid&quot; &quot;31c4910d-9b69-4725-8969-9ed53ac8a7dc&quot; &quot;--userProperties&quot; &quot;{}&quot; &quot;--accessToken&quot; &quot;0&quot;" />
+      <option name="VM_PARAMETERS" value="&quot;-ea:cn.taskeren.gtnn&quot; &quot;-Dfml.ignoreInvalidMinecraftCertificates=true&quot; &quot;-Djava.library.path=E:\Dev2023New\gtnh-no-nerf\run\natives\lwjgl2;C:\Program Files\Eclipse Adoptium\jdk-17.0.7.7-hotspot\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Program Files\Microsoft MPI\Bin\;C:\Python311\Scripts\;C:\Python311\;C:\Program Files\Eclipse Adoptium\jdk-8.0.372.7-hotspot\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\libnvvp;C:\Program Files\Eclipse Adoptium\jdk-11.0.19.7-hotspot\bin;C:\Program Files\Eclipse Adoptium\jdk-17.0.7.7-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\nodejs\;C:\Program Files\Bandizip\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Program Files\NVIDIA Corporation\Nsight Compute 2023.2.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\tools\groovy-3.0.14\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.3\bin;C:\tools\gsudo\Current;C:\ProgramData\chocolatey\lib\deno;C:\Program Files\PuTTY\;C:\Program Files\Go\bin;D:\ChatWithRTX\env_nvd_rag\Lib\site-packages\torch\lib;C:\Program Files\PowerShell\7\;C:\Users\r0yal\.cargo\bin;C:\Users\r0yal\AppData\Local\pnpm;C:\Users\r0yal\AppData\Local\Microsoft\WindowsApps;C:\Users\r0yal\AppData\Roaming\npm;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.1.2\bin;C:\Users\r0yal\AppData\Local\Programs\Microsoft VS Code\bin;C:\tools\Anaconda3\condabin;C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin;C:\Users\r0yal\.dotnet\tools;C:\ProgramData\chocolatey\lib\deno;C:\Users\r0yal\AppData\Local\Programs\oh-my-posh\bin;C:\Users\r0yal\AppData\Local\spicetify;C:\Users\r0yal\AppData\Local\GitHubDesktop\bin;C:\Users\r0yal\go\bin;C:\Users\r0yal\.bun\bin;C:\texlive\2024\bin\windows;.&quot;" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Run Server (IJ Native)" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="GradleStartServer" />
+      <module name="gtnh-no-nerf.ideVirtualMain" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;nogui&quot;" />
+      <option name="VM_PARAMETERS" value="&quot;-ea:cn.taskeren.gtnn&quot; &quot;-Dfml.ignoreInvalidMinecraftCertificates=true&quot;" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestProgressIterable" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cn.taskeren.gtnn.test.TestProgressIterable" />
+      <module name="gtnh-no-nerf.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.taskeren.gtnn.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="0. Build and Test" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="1. Run Client" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runClient" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="1a. Run Client (Java 17)" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runClient17" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="1b. Run Client (Java 17, Hotswap)" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="env">
+          <map>
+            <entry key="HOTSWAP" value="true" />
+          </map>
+        </option>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runClient17" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="1c. Run Client (Java 21)" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runClient21" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="1d. Run Client (Java 21, Hotswap)" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="env">
+          <map>
+            <entry key="HOTSWAP" value="true" />
+          </map>
+        </option>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runClient21" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="2. Run Server" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runServer" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="2a. Run Server (Java 17)" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runServer17" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="2b. Run Server (Java 17, Hotswap)" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="env">
+          <map>
+            <entry key="HOTSWAP" value="true" />
+          </map>
+        </option>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runServer17" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="2c. Run Server (Java 21)" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runServer21" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="2d. Run Server (Java 21, Hotswap)" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="env">
+          <map>
+            <entry key="HOTSWAP" value="true" />
+          </map>
+        </option>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runServer21" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="3. Run Obfuscated Client" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runObfClient" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="4. Run Obfuscated Server" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runObfServer" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="E:/Dev2023New/gtnh-no-nerf/depTools [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/depTools" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="gtnh-no-nerf [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="gtnh-no-nerf [updateBuildScript]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="updateBuildScript" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="depVersionTool" type="GroovyScriptRunConfiguration" factoryName="Groovy" temporary="true">
+      <module name="gtnh-no-nerf" />
+      <setting name="path" value="file://$PROJECT_DIR$/depVersionTool/depVersionTool.groovy" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="file://$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Run Client (IJ Native)" />
+      <item itemvalue="Application.Run Server (IJ Native)" />
+      <item itemvalue="Application.TestProgressIterable" />
+      <item itemvalue="Gradle.0. Build and Test" />
+      <item itemvalue="Gradle.1. Run Client" />
+      <item itemvalue="Gradle.1a. Run Client (Java 17)" />
+      <item itemvalue="Gradle.1b. Run Client (Java 17, Hotswap)" />
+      <item itemvalue="Gradle.1c. Run Client (Java 21)" />
+      <item itemvalue="Gradle.1d. Run Client (Java 21, Hotswap)" />
+      <item itemvalue="Gradle.2. Run Server" />
+      <item itemvalue="Gradle.2a. Run Server (Java 17)" />
+      <item itemvalue="Gradle.2b. Run Server (Java 17, Hotswap)" />
+      <item itemvalue="Gradle.2c. Run Server (Java 21)" />
+      <item itemvalue="Gradle.2d. Run Server (Java 21, Hotswap)" />
+      <item itemvalue="Gradle.3. Run Obfuscated Client" />
+      <item itemvalue="Gradle.4. Run Obfuscated Server" />
+      <item itemvalue="Gradle.E:/Dev2023New/gtnh-no-nerf/depTools [clean]" />
+      <item itemvalue="Gradle.gtnh-no-nerf [clean]" />
+      <item itemvalue="Gradle.gtnh-no-nerf [updateBuildScript]" />
+      <item itemvalue="Groovy.depVersionTool" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.TestProgressIterable" />
+        <item itemvalue="Groovy.depVersionTool" />
+        <item itemvalue="Gradle.gtnh-no-nerf [updateBuildScript]" />
+        <item itemvalue="Gradle.gtnh-no-nerf [clean]" />
+        <item itemvalue="Gradle.E:/Dev2023New/gtnh-no-nerf/depTools [clean]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="StandaloneScriptsStorage">
+    <option name="files">
+      <set>
+        <option value="$PROJECT_DIR$/depTools/build.gradle.kts" />
+      </set>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fea74fa2-d0f0-4ed1-b50c-71dfbe89224a" name="Changes" comment="" />
+      <created>1691423911414</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1691423911414</updated>
+      <workItem from="1691423915294" duration="1359000" />
+      <workItem from="1691427007445" duration="7080000" />
+      <workItem from="1691573251606" duration="1804000" />
+      <workItem from="1691575457169" duration="2932000" />
+      <workItem from="1703134135137" duration="14280000" />
+      <workItem from="1703293743234" duration="34368000" />
+      <workItem from="1703818970330" duration="1158000" />
+      <workItem from="1708135595844" duration="7258000" />
+      <workItem from="1709122714547" duration="4526000" />
+      <workItem from="1710747286303" duration="11561000" />
+      <workItem from="1710837167268" duration="2079000" />
+      <workItem from="1710846319120" duration="3278000" />
+      <workItem from="1711018815633" duration="2664000" />
+      <workItem from="1711329611203" duration="4916000" />
+      <workItem from="1711411302985" duration="4305000" />
+      <workItem from="1712594557082" duration="2918000" />
+      <workItem from="1712656487902" duration="15596000" />
+      <workItem from="1712805680453" duration="7000" />
+      <workItem from="1713010996491" duration="13203000" />
+      <workItem from="1713149772971" duration="688000" />
+      <workItem from="1714351742339" duration="6064000" />
+      <workItem from="1714995635697" duration="16050000" />
+      <workItem from="1715315441214" duration="750000" />
+      <workItem from="1715319799976" duration="1761000" />
+      <workItem from="1715662115372" duration="5556000" />
+      <workItem from="1715672307304" duration="13000" />
+      <workItem from="1715672331327" duration="209000" />
+      <workItem from="1715672544111" duration="11422000" />
+      <workItem from="1715757369364" duration="3560000" />
+      <workItem from="1715848980207" duration="242000" />
+      <workItem from="1715849345950" duration="188000" />
+      <workItem from="1715849539741" duration="9003000" />
+      <workItem from="1715866922829" duration="6900000" />
+    </task>
+    <task id="LOCAL-00001" summary="Added back Laser Hatch support for Large Essentia Generator&#10;&#10;- and also updated the dependencies">
+      <option name="closed" value="true" />
+      <created>1691434808855</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1691434808855</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Fixed compiling error where targeting j8 but used j17 method.">
+      <option name="closed" value="true" />
+      <created>1691435957604</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1691435957604</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Fixed disassembler tier LV to IV missing.">
+      <option name="closed" value="true" />
+      <created>1691574219620</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1691574219620</updated>
+    </task>
+    <task id="LOCAL-00004" summary="[ci-skip] Updated README">
+      <option name="closed" value="true" />
+      <created>1691590648855</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1691590648855</updated>
+    </task>
+    <task id="LOCAL-00005" summary="first runnable 2.5.0+ commit">
+      <option name="closed" value="true" />
+      <created>1703331179125</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1703331179125</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fixed a crash problem">
+      <option name="closed" value="true" />
+      <created>1703333363459</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1703333363459</updated>
+    </task>
+    <task id="LOCAL-00007" summary="remove code checkstyle">
+      <option name="closed" value="true" />
+      <created>1703819383728</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1703819383728</updated>
+    </task>
+    <task id="LOCAL-00008" summary="(wip) try to replace EOH recipe processing logic">
+      <option name="closed" value="true" />
+      <created>1708145305492</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1708145305492</updated>
+    </task>
+    <task id="LOCAL-00009" summary="chores">
+      <option name="closed" value="true" />
+      <created>1709122950914</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1709122950914</updated>
+    </task>
+    <task id="LOCAL-00010" summary="close #5&#10;&#10;- fixed mixin error on EOH&#10;- added modpack dependency version tool">
+      <option name="closed" value="true" />
+      <created>1710850311347</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1710850311347</updated>
+    </task>
+    <task id="LOCAL-00011" summary="close #6&#10;&#10;- added features (a cluster of mixins)&#10;- added configuration for disabling features/mixins&#10;- added restricting annotations to depTools">
+      <option name="closed" value="true" />
+      <created>1711334408465</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1711334408465</updated>
+    </task>
+    <task id="LOCAL-00012" summary="#7&#10;&#10;- applied revert changes mentioned in #7&#10;&#10;But I don't see the problem mentioned in #7, so this commit can be reverted or adjusted later.">
+      <option name="closed" value="true" />
+      <created>1711414683638</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1711414683638</updated>
+    </task>
+    <task id="LOCAL-00013" summary="remove legacy issue template">
+      <option name="closed" value="true" />
+      <created>1711416478433</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1711416478433</updated>
+    </task>
+    <task id="LOCAL-00014" summary="brand-new Disassembler recipes&#10;&#10;1. added support detection on raw mouse motion&#10;2. added config for raw mouse motion&#10;3. code cleanup for Disassembler recipes&#10;4. brand-new Disassembler recipes&#10;5. TecTech progress bar fix?&#10;6. upgraded build scripts&#10;7. added some new utils&#10;8. added go to repository feature in no-nerf command">
+      <option name="closed" value="true" />
+      <created>1713013050293</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1713013050293</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fixes for 2.6.0&#10;&#10;- Fixed a bug where lower EU-tier Disassemblers are not registered.&#10;- Fixed a bug that causes 2.6.0 to crash.&#10;- Updated dependencies">
+      <option name="closed" value="true" />
+      <created>1714355028394</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1714355028394</updated>
+    </task>
+    <task id="LOCAL-00016" summary="fixed null output item crashing bug">
+      <option name="closed" value="true" />
+      <created>1714356426283</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1714356426283</updated>
+    </task>
+    <task id="LOCAL-00017" summary="bring back disassembling crafting recipes">
+      <option name="closed" value="true" />
+      <created>1715007489578</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1715007489578</updated>
+    </task>
+    <task id="LOCAL-00018" summary="chores">
+      <option name="closed" value="true" />
+      <created>1715012084420</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1715012084420</updated>
+    </task>
+    <task id="LOCAL-00019" summary="don't throw when GLFW are not available">
+      <option name="closed" value="true" />
+      <created>1715316122915</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1715316122915</updated>
+    </task>
+    <task id="LOCAL-00020" summary="better RawInput exception handling">
+      <option name="closed" value="true" />
+      <created>1715320532320</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1715320532320</updated>
+    </task>
+    <task id="LOCAL-00021" summary="optimized check steps for RawInput">
+      <option name="closed" value="true" />
+      <created>1715321040931</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1715321040931</updated>
+    </task>
+    <task id="LOCAL-00022" summary="fixed invalid reverse recipe caused crashing">
+      <option name="closed" value="true" />
+      <created>1715671243160</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1715671243160</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added back Laser Hatch support for Large Essentia Generator&#10;&#10;- and also updated the dependencies" />
+    <MESSAGE value="Fixed compiling error where targeting j8 but used j17 method." />
+    <MESSAGE value="Fixed disassembler tier LV to IV missing." />
+    <MESSAGE value="[ci-skip] Updated README" />
+    <MESSAGE value="first runnable 2.5.0+ commit" />
+    <MESSAGE value="fixed a crash problem" />
+    <MESSAGE value="remove code checkstyle" />
+    <MESSAGE value="(wip) try to replace EOH recipe processing logic" />
+    <MESSAGE value="close #5&#10;&#10;- fixed mixin error on EOH&#10;- added modpack dependency version tool" />
+    <MESSAGE value="close #6&#10;&#10;- added features (a cluster of mixins)&#10;- added configuration for disabling features/mixins&#10;- added restricting annotations to depTools" />
+    <MESSAGE value="#7&#10;&#10;- applied revert changes mentioned in #7&#10;&#10;But I don't see the problem mentioned in #7, so this commit can be reverted or adjusted later." />
+    <MESSAGE value="remove legacy issue template" />
+    <MESSAGE value="brand-new Disassembler recipes&#10;&#10;1. added support detection on raw mouse motion&#10;2. added config for raw mouse motion&#10;3. code cleanup for Disassembler recipes&#10;4. brand-new Disassembler recipes&#10;5. TecTech progress bar fix?&#10;6. upgraded build scripts&#10;7. added some new utils&#10;8. added go to repository feature in no-nerf command" />
+    <MESSAGE value="fixes for 2.6.0&#10;&#10;- Fixed a bug where lower EU-tier Disassemblers are not registered.&#10;- Fixed a bug that causes 2.6.0 to crash.&#10;- Updated dependencies" />
+    <MESSAGE value="fixed null output item crashing bug" />
+    <MESSAGE value="bring back disassembling crafting recipes" />
+    <MESSAGE value="chores" />
+    <MESSAGE value="don't throw when GLFW are not available" />
+    <MESSAGE value="better RawInput exception handling" />
+    <MESSAGE value="optimized check steps for RawInput" />
+    <MESSAGE value="fixed invalid reverse recipe caused crashing" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed invalid reverse recipe caused crashing" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-method">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.GTNewHorizons/GT5-Unofficial/5.09.44.110/658b5ba446415bb9560073fa98482586b8f9f99f/GT5-Unofficial-5.09.44.110-sources.jar!/gregtech/api/recipe/RecipeMapBackend.java</url>
+          <line>357</line>
+          <properties class="gregtech.api.recipe.RecipeMapBackend" method="matchRecipeStream">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_ENTRY" value="false" />
+          </properties>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.GTNewHorizons/GT5-Unofficial/5.09.44.110/658b5ba446415bb9560073fa98482586b8f9f99f/GT5-Unofficial-5.09.44.110-sources.jar!/gregtech/api/metatileentity/MetaTileEntity.java</url>
+          <line>137</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
