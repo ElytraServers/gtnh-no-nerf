@@ -2,6 +2,7 @@ package cn.taskeren.gtnn;
 
 import cn.taskeren.gtnn.common.CommonProxy;
 import cn.taskeren.gtnn.common.command.NoNerfCommand;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
@@ -33,6 +34,10 @@ public class GTNN {
 	public static GTNN instance;
 
 	public GTNN() {
+	}
+
+	public static boolean isLwjgl3ifyLoaded() {
+		return Loader.isModLoaded("Lwjgl3ify");
 	}
 
 	@Mod.EventHandler

@@ -4,33 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fea74fa2-d0f0-4ed1-b50c-71dfbe89224a" name="Changes" comment="fixed invalid reverse recipe caused crashing">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/util/ProgressIterable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/cn/taskeren/gtnn/test/TestProgressIterable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/GTNN_Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/recompiled_minecraft_1_7_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mod/gt5u/recipe/ReverseShapedRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mod/gt5u/recipe/ReverseShapedRecipe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mod/gt5u/recipe/ReverseShapelessRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mod/gt5u/recipe/ReverseShapelessRecipe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mod/gt5u/util/DisassemblerRecipeHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mod/gt5u/util/DisassemblerRecipeHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mod/gt5u/util/DisassemblerRecipeMapBackend.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mod/gt5u/util/DisassemblerRecipes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mod/gt5u/util/DisassemblerRecipes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/util/KtCandy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/util/KtCandy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/util/ToStringHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/util/ToStringHelper.java" afterDir="false" />
+    <list default="true" id="fea74fa2-d0f0-4ed1-b50c-71dfbe89224a" name="Changes" comment="perhaps the best Disassembler Recipe logic for now">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/GTNN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/GTNN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/client/ClientProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/client/ClientProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/client/rawinput/RawInput.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/client/rawinput/RawInputException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/common/config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/common/config/Config.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,9 +89,9 @@
       <list>
         <option value="AnnotationType" />
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Kotlin File" />
         <option value="Kotlin Object" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -221,6 +202,7 @@
       <recent name="E:\Dev2023New\gtnh-no-nerf\depVersionTool" />
     </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="cn.taskeren.gtnn.GTNN" />
       <recent name="cn.taskeren.gtnn.mod.gt5u.util.DisassemblerRecipes" />
     </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
@@ -735,7 +717,7 @@
       <workItem from="1715848980207" duration="242000" />
       <workItem from="1715849345950" duration="188000" />
       <workItem from="1715849539741" duration="9003000" />
-      <workItem from="1715866922829" duration="6900000" />
+      <workItem from="1715866922829" duration="10821000" />
     </task>
     <task id="LOCAL-00001" summary="Added back Laser Hatch support for Large Essentia Generator&#10;&#10;- and also updated the dependencies">
       <option name="closed" value="true" />
@@ -913,7 +895,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715671243160</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="perhaps the best Disassembler Recipe logic for now">
+      <option name="closed" value="true" />
+      <created>1715873909321</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1715873909321</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -964,7 +954,8 @@
     <MESSAGE value="better RawInput exception handling" />
     <MESSAGE value="optimized check steps for RawInput" />
     <MESSAGE value="fixed invalid reverse recipe caused crashing" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed invalid reverse recipe caused crashing" />
+    <MESSAGE value="perhaps the best Disassembler Recipe logic for now" />
+    <option name="LAST_COMMIT_MESSAGE" value="perhaps the best Disassembler Recipe logic for now" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

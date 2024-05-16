@@ -24,6 +24,33 @@
 
 ![Return of Laser Hatches on LEG](docs/leg-laser-hatch.png)
 
+### v1.2.0
+
+- 修复崩溃
+
+### v1.3.1 (GTNH 2.5.1)
+
+- [X] 回退超临界灵宝和铿铀削弱（#4）
+- [X] 添加 Mixin 注入配置文件（#6）
+
+### v1.3.2 (GTNH 2.5.1)
+
+- [X] 回滚火箭燃料修改（GTNewHorizons/GTplusplus#223）（#7）
+
+### v1.4.0 (GTNH v2.6.0)
+
+- 修复崩溃
+- 修改部分拆解机配方
+
+### v1.4.1 (GTNH v2.6.0)
+
+- 修复崩溃
+
+### v1.4.2 (GTNH v2.6.0)
+
+- [X] 重写拆解机配方
+- [X] 移除 RawInput（J8玩家请使用 [RawInputMod 1.7.10](https://github.com/seanld03/RawInputMod-1.12.2-1.7.10)，J17及以上玩家请使用 LWJGL3ify 提供的 RawInput）
+
 ## FAQ
 
 ### 我希望能够回滚XXX？

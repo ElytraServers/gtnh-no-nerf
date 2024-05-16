@@ -18,7 +18,7 @@ public class Config {
 	static {
 		CONF = new Configuration(new File("config/gtnn.cfg"));
 
-		useRawMouseMotion = CONF.getBoolean("use-raw-mouse-motion", "client", true, "Whether enable Raw Mouse Motion or not.");
+		useRawMouseMotion = CONF.getBoolean("use-raw-mouse-motion", "client", true, "Whether enable Raw Mouse Motion or not. Removed, use lwjgl3ify instead.");
 
 		CONF.save();
 	}
