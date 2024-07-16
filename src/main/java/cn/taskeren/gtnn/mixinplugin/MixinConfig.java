@@ -2,6 +2,7 @@ package cn.taskeren.gtnn.mixinplugin;
 
 import com.google.common.collect.Maps;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 
 import java.io.File;
 import java.util.Map;
@@ -18,15 +19,29 @@ public class MixinConfig {
 		VALUES.clear();
 
 		for(var feature : Feature.values()) {
-			var value = CONF.getBoolean("Enable" + feature.name(), CATEGORY_MIXIN, true, feature.desc);
+			var value = getProperty(feature).getBoolean();
 			VALUES.put(feature, value);
 		}
 
 		CONF.save();
 	}
 
+	private static Property getProperty(Feature feature) {
+		return CONF.get(CATEGORY_MIXIN, "Enable" + feature.name(), feature.isDefaultEnabled(), feature.desc);
+	}
+
 	public static boolean isFeatureEnabled(Feature feature) {
 		return VALUES.getOrDefault(feature, true);
+	}
+
+	/**
+	 * Set the enable/disable value of the feature.
+	 * <p>
+	 * It requires a restart to take effect.
+	 */
+	public static void updateValue(Feature feature, boolean value) {
+		getProperty(feature).set(value);
+		CONF.save();
 	}
 
 }

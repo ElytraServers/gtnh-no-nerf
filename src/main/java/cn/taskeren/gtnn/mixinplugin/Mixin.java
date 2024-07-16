@@ -22,6 +22,9 @@ public enum Mixin {
 	RocketFuelsMixin("gtpp.RocketFuelsMixin", TargetedMod.GTPlusPlus),
 
 	TecTechMainLoaderFixMixin("tectech.MainLoaderMixin", TargetedMod.TecTech),
+
+	InfinityOutputBusMixin("gt5u.GTMetaTileEntityHatchOutputBusME", TargetedMod.GregTech),
+	InfinityOutputHatchMixin("gt5u.GTMetaTileEntityHatchOutputME", TargetedMod.GregTech),
 	;
 
 	public final String mixinClass;

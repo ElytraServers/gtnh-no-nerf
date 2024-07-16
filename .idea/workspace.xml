@@ -4,14 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fea74fa2-d0f0-4ed1-b50c-71dfbe89224a" name="Changes" comment="perhaps the best Disassembler Recipe logic for now">
+    <list default="true" id="fea74fa2-d0f0-4ed1-b50c-71dfbe89224a" name="Changes" comment="removed RawInput, use LWJGL3ify instead.&#10;&#10;also updated README.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mixin/gt5u/GTMetaTileEntityHatchOutputBusME.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mixin/gt5u/GTMetaTileEntityHatchOutputME.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/GTNN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/GTNN.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/client/ClientProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/client/ClientProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/client/rawinput/RawInput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/client/rawinput/RawInputException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/common/config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/common/config/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/common/command/NoNerfCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/common/command/NoNerfCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mixinplugin/Feature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mixinplugin/Feature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mixinplugin/Mixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mixinplugin/Mixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mixinplugin/MixinConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/taskeren/gtnn/mixinplugin/MixinConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,6 +173,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
     "extract.method.default.visibility": "private",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
@@ -188,6 +191,7 @@
     "project.structure.side.proportion": "0.39195403",
     "run.code.analysis.last.selected.profile": "pGTNN Project",
     "settings.editor.selected.configurable": "editor.preferences.completion",
+    "show.migrate.to.gradle.popup": "false",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -218,7 +222,7 @@
       <option name="MAIN_CLASS_NAME" value="GradleStart" />
       <module name="gtnh-no-nerf.ideVirtualMain" />
       <option name="PROGRAM_PARAMETERS" value="&quot;--username&quot; &quot;Developer&quot; &quot;--version&quot; &quot;1.7.10&quot; &quot;--gameDir&quot; &quot;E:\Dev2023New\gtnh-no-nerf\run&quot; &quot;--assetsDir&quot; &quot;C:\Users\r0yal\.gradle\caches\retro_futura_gradle\assets&quot; &quot;--assetIndex&quot; &quot;1.7.10&quot; &quot;--uuid&quot; &quot;31c4910d-9b69-4725-8969-9ed53ac8a7dc&quot; &quot;--userProperties&quot; &quot;{}&quot; &quot;--accessToken&quot; &quot;0&quot;" />
-      <option name="VM_PARAMETERS" value="&quot;-ea:cn.taskeren.gtnn&quot; &quot;-Dfml.ignoreInvalidMinecraftCertificates=true&quot; &quot;-Djava.library.path=E:\Dev2023New\gtnh-no-nerf\run\natives\lwjgl2;C:\Program Files\Eclipse Adoptium\jdk-17.0.7.7-hotspot\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Program Files\Microsoft MPI\Bin\;C:\Python311\Scripts\;C:\Python311\;C:\Program Files\Eclipse Adoptium\jdk-8.0.372.7-hotspot\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\libnvvp;C:\Program Files\Eclipse Adoptium\jdk-11.0.19.7-hotspot\bin;C:\Program Files\Eclipse Adoptium\jdk-17.0.7.7-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\nodejs\;C:\Program Files\Bandizip\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Program Files\NVIDIA Corporation\Nsight Compute 2023.2.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\tools\groovy-3.0.14\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.3\bin;C:\tools\gsudo\Current;C:\ProgramData\chocolatey\lib\deno;C:\Program Files\PuTTY\;C:\Program Files\Go\bin;D:\ChatWithRTX\env_nvd_rag\Lib\site-packages\torch\lib;C:\Program Files\PowerShell\7\;C:\Users\r0yal\.cargo\bin;C:\Users\r0yal\AppData\Local\pnpm;C:\Users\r0yal\AppData\Local\Microsoft\WindowsApps;C:\Users\r0yal\AppData\Roaming\npm;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.1.2\bin;C:\Users\r0yal\AppData\Local\Programs\Microsoft VS Code\bin;C:\tools\Anaconda3\condabin;C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin;C:\Users\r0yal\.dotnet\tools;C:\ProgramData\chocolatey\lib\deno;C:\Users\r0yal\AppData\Local\Programs\oh-my-posh\bin;C:\Users\r0yal\AppData\Local\spicetify;C:\Users\r0yal\AppData\Local\GitHubDesktop\bin;C:\Users\r0yal\go\bin;C:\Users\r0yal\.bun\bin;C:\texlive\2024\bin\windows;.&quot;" />
+      <option name="VM_PARAMETERS" value="&quot;-ea:cn.taskeren.gtnn&quot; &quot;-Dfml.ignoreInvalidMinecraftCertificates=true&quot; &quot;-Djava.library.path=E:\Dev2023New\gtnh-no-nerf\run\natives\lwjgl2;C:\Program Files\Eclipse Adoptium\jdk-17.0.7.7-hotspot\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Eclipse Adoptium\jdk-21.0.3.9-hotspot\bin;C:\Python312\Scripts\;C:\Python312\;C:\Program Files\Microsoft MPI\Bin\;C:\Python311\Scripts\;C:\Python311\;C:\Program Files\Eclipse Adoptium\jdk-8.0.372.7-hotspot\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\libnvvp;C:\Program Files\Eclipse Adoptium\jdk-11.0.19.7-hotspot\bin;C:\Program Files\Eclipse Adoptium\jdk-17.0.7.7-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Bandizip\;C:\Program Files\dotnet\;C:\Program Files\NVIDIA Corporation\Nsight Compute 2023.2.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\tools\groovy-3.0.14\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.3\bin;C:\tools\gsudo\Current;C:\ProgramData\chocolatey\lib\deno;C:\Program Files\PuTTY\;C:\Program Files\Go\bin;D:\ChatWithRTX\env_nvd_rag\Lib\site-packages\torch\lib;C:\Program Files\Git\cmd;C:\Program Files\Microsoft Network Monitor 3\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\nodejs\;C:\Program Files\PowerShell\7\;C:\Users\r0yal\.cargo\bin;C:\Users\r0yal\AppData\Local\pnpm;C:\Users\r0yal\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.1.2\bin;C:\Users\r0yal\AppData\Local\Programs\Microsoft VS Code\bin;C:\tools\Anaconda3\condabin;C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin;C:\Users\r0yal\.dotnet\tools;C:\ProgramData\chocolatey\lib\deno;C:\Users\r0yal\AppData\Local\Programs\oh-my-posh\bin;C:\Users\r0yal\AppData\Local\spicetify;C:\Users\r0yal\AppData\Local\GitHubDesktop\bin;C:\Users\r0yal\go\bin;C:\Users\r0yal\.bun\bin;C:\texlive\2024\bin\windows;C:\Users\r0yal\.dotnet\tools;C:\Users\r0yal\AppData\Roaming\npm;C:\tools\flutter\bin;;c:\users\r0yal\appdata\roaming\python\scripts;.&quot;" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/run" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -665,8 +669,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
       </set>
     </attachedChunks>
   </component>
@@ -717,7 +721,10 @@
       <workItem from="1715848980207" duration="242000" />
       <workItem from="1715849345950" duration="188000" />
       <workItem from="1715849539741" duration="9003000" />
-      <workItem from="1715866922829" duration="10821000" />
+      <workItem from="1715866922829" duration="11470000" />
+      <workItem from="1716021720492" duration="3937000" />
+      <workItem from="1716036778641" duration="88000" />
+      <workItem from="1721135302626" duration="7290000" />
     </task>
     <task id="LOCAL-00001" summary="Added back Laser Hatch support for Large Essentia Generator&#10;&#10;- and also updated the dependencies">
       <option name="closed" value="true" />
@@ -903,7 +910,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715873909321</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="removed RawInput, use LWJGL3ify instead.&#10;&#10;also updated README.">
+      <option name="closed" value="true" />
+      <created>1715877955947</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1715877955947</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -955,7 +970,8 @@
     <MESSAGE value="optimized check steps for RawInput" />
     <MESSAGE value="fixed invalid reverse recipe caused crashing" />
     <MESSAGE value="perhaps the best Disassembler Recipe logic for now" />
-    <option name="LAST_COMMIT_MESSAGE" value="perhaps the best Disassembler Recipe logic for now" />
+    <MESSAGE value="removed RawInput, use LWJGL3ify instead.&#10;&#10;also updated README." />
+    <option name="LAST_COMMIT_MESSAGE" value="removed RawInput, use LWJGL3ify instead.&#10;&#10;also updated README." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

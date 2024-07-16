@@ -42,19 +42,36 @@ public enum Feature {
 	MainLoaderProgressBarFix(
 		"Fix the progress bar bug of TecTech",
 		Mixin.TecTechMainLoaderFixMixin
+	),
+
+	InfinityCapacityMEOutputBusAndHatch(
+		"Overwrite the capacity of the Output Bus ME and Output Hatch ME to infinity",
+		Mixin.InfinityOutputBusMixin,
+		Mixin.InfinityOutputHatchMixin
 	)
 	;
 
 	public final String desc;
 	public final Mixin[] mixins;
 
+	public final boolean defaultEnabled;
+
 	Feature(String desc, Mixin... mixins) {
+		this(desc, true, mixins);
+	}
+
+	Feature(String desc, boolean defaultEnabled, Mixin... mixins) {
 		this.desc = desc;
+		this.defaultEnabled = defaultEnabled;
 		this.mixins = mixins;
 	}
 
 	public boolean isEnabled() {
 		return MixinConfig.isFeatureEnabled(this);
+	}
+
+	public boolean isDefaultEnabled() {
+		return defaultEnabled;
 	}
 
 	public boolean isTargetedModsLoad(Collection<TargetedMod> loadedMods) {
