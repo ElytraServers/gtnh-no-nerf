@@ -13,12 +13,12 @@ public class Config {
 
 	private static final Configuration CONF;
 
-	public static boolean useRawMouseMotion;
+	public static boolean removeDefaultServerList;
 
 	static {
 		CONF = new Configuration(new File("config/gtnn.cfg"));
 
-		useRawMouseMotion = CONF.getBoolean("use-raw-mouse-motion", "client", true, "Whether enable Raw Mouse Motion or not. Removed, use lwjgl3ify instead.");
+		removeDefaultServerList = CONF.getBoolean("remove-default-server-list", "client", true, "Whether remove the Default Server List.");
 
 		CONF.save();
 	}

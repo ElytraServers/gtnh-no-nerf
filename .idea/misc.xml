@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><project version="4">
-  <component enabled="true" name="ExternalStorageConfigurationManager"/>
-  <component name="FrameworkDetectionExcludesConfiguration">
-    <file type="web" url="file://$PROJECT_DIR$"/>
-  </component>
-  <component default="true" languageLevel="JDK_17" name="ProjectRootManager" project-jdk-name="17" project-jdk-type="JavaSDK" version="2"><output url="file://$PROJECT_DIR$/build/ideaBuild"/></component>
-</project>
