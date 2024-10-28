@@ -3,13 +3,13 @@ package cn.taskeren.gtnn.mixin.gt5u;
 import cn.taskeren.gtnn.GTNN;
 import cn.taskeren.gtnn.mod.gt5u.tile.TileEntityDisassembler;
 import cn.taskeren.gtnn.mod.gt5u.util.NNItemList;
-import gregtech.loaders.preload.GT_Loader_MetaTileEntities;
+import gregtech.loaders.preload.LoaderMetaTileEntities;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = GT_Loader_MetaTileEntities.class, remap = false)
+@Mixin(value = LoaderMetaTileEntities.class, remap = false)
 public class GTLoaderMetaTileEntitiesMixin {
 
 	@Inject(method = "run", at = @At("RETURN"))

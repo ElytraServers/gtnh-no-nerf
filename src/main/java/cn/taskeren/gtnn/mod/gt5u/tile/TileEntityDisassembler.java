@@ -4,14 +4,14 @@ import cn.taskeren.gtnn.GTNN;
 import cn.taskeren.gtnn.mod.gt5u.util.DisassemblerRecipes;
 import gregtech.api.enums.SoundResource;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
-import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_BasicMachine_GT_Recipe;
+import gregtech.api.metatileentity.implementations.MTEBasicMachineWithRecipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TileEntityDisassembler extends GT_MetaTileEntity_BasicMachine_GT_Recipe {
+public class TileEntityDisassembler extends MTEBasicMachineWithRecipe {
 
 	public TileEntityDisassembler(int aID, String aName, String aNameRegional, int aTier) {
 		super(

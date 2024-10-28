@@ -8,8 +8,8 @@ import net.minecraft.item.ItemStack;
 
 import java.util.Locale;
 
-import static gregtech.api.enums.GT_Values.NI;
-import static gregtech.api.enums.GT_Values.W;
+import static gregtech.api.enums.GTValues.NI;
+import static gregtech.api.enums.GTValues.W;
 
 public enum NNItemList implements IItemContainer {
 
@@ -41,28 +41,28 @@ public enum NNItemList implements IItemContainer {
 		mHasNotBeenSet = false;
 		if(aItem == null) return this;
 		ItemStack aStack = new ItemStack(aItem, 1, 0);
-		mStack = GT_Utility.copyAmount(1, aStack);
+		mStack = GTUtility.copyAmount(1, aStack);
 		return this;
 	}
 
 	@Override
 	public IItemContainer set(ItemStack aStack) {
 		mHasNotBeenSet = false;
-		mStack = GT_Utility.copyAmount(1, aStack);
+		mStack = GTUtility.copyAmount(1, aStack);
 		return this;
 	}
 
 	@Override
 	public Item getItem() {
 		sanityCheck();
-		if(GT_Utility.isStackInvalid(mStack)) return null;
+		if(GTUtility.isStackInvalid(mStack)) return null;
 		return mStack.getItem();
 	}
 
 	@Override
 	public Block getBlock() {
 		sanityCheck();
-		return GT_Utility.getBlockFromItem(getItem());
+		return GTUtility.getBlockFromItem(getItem());
 	}
 
 	@Override
@@ -78,46 +78,46 @@ public enum NNItemList implements IItemContainer {
 	@Override
 	public boolean isStackEqual(Object aStack, boolean aWildcard, boolean aIgnoreNBT) {
 		if(mDeprecated && !mWarned) {
-			new Exception(this + " is now deprecated").printStackTrace(GT_Log.err);
+			new Exception(this + " is now deprecated").printStackTrace(GTLog.err);
 			// warn only once
 			mWarned = true;
 		}
-		if(!(aStack instanceof ItemStack stack) || GT_Utility.isStackInvalid(stack)) return false;
-		return GT_Utility.areUnificationsEqual((ItemStack) aStack, aWildcard ? getWildcard(1) : get(1), aIgnoreNBT);
+		if(!(aStack instanceof ItemStack stack) || GTUtility.isStackInvalid(stack)) return false;
+		return GTUtility.areUnificationsEqual((ItemStack) aStack, aWildcard ? getWildcard(1) : get(1), aIgnoreNBT);
 	}
 
 	@Override
 	public ItemStack get(long aAmount, Object... aReplacements) {
 		sanityCheck();
-		if(GT_Utility.isStackInvalid(mStack)) return GT_Utility.copyAmount((int) aAmount, aReplacements);
-		return GT_Utility.copyAmount((int) aAmount, GT_OreDictUnificator.get(mStack));
+		if(GTUtility.isStackInvalid(mStack)) return GTUtility.copyAmount((int) aAmount, aReplacements);
+		return GTUtility.copyAmount((int) aAmount, GTOreDictUnificator.get(mStack));
 	}
 
 	@Override
 	public ItemStack getWildcard(long aAmount, Object... aReplacements) {
 		sanityCheck();
-		if(GT_Utility.isStackInvalid(mStack)) return GT_Utility.copyAmount((int) aAmount, aReplacements);
-		return GT_Utility.copyAmountAndMetaData((int) aAmount, W, GT_OreDictUnificator.get(mStack));
+		if(GTUtility.isStackInvalid(mStack)) return GTUtility.copyAmount((int) aAmount, aReplacements);
+		return GTUtility.copyAmountAndMetaData((int) aAmount, W, GTOreDictUnificator.get(mStack));
 	}
 
 	@Override
 	public ItemStack getUndamaged(long aAmount, Object... aReplacements) {
 		sanityCheck();
-		if(GT_Utility.isStackInvalid(mStack)) return GT_Utility.copyAmount((int) aAmount, aReplacements);
-		return GT_Utility.copyAmountAndMetaData((int) aAmount, 0, GT_OreDictUnificator.get(mStack));
+		if(GTUtility.isStackInvalid(mStack)) return GTUtility.copyAmount((int) aAmount, aReplacements);
+		return GTUtility.copyAmountAndMetaData((int) aAmount, 0, GTOreDictUnificator.get(mStack));
 	}
 
 	@Override
 	public ItemStack getAlmostBroken(long aAmount, Object... aReplacements) {
 		sanityCheck();
-		if(GT_Utility.isStackInvalid(mStack)) return GT_Utility.copyAmount((int) aAmount, aReplacements);
-		return GT_Utility.copyAmountAndMetaData((int) aAmount, mStack.getMaxDamage() - 1, GT_OreDictUnificator.get(mStack));
+		if(GTUtility.isStackInvalid(mStack)) return GTUtility.copyAmount((int) aAmount, aReplacements);
+		return GTUtility.copyAmountAndMetaData((int) aAmount, mStack.getMaxDamage() - 1, GTOreDictUnificator.get(mStack));
 	}
 
 	@Override
 	public ItemStack getWithName(long aAmount, String aDisplayName, Object... aReplacements) {
 		ItemStack rStack = get(1, aReplacements);
-		if(GT_Utility.isStackInvalid(rStack)) return NI;
+		if(GTUtility.isStackInvalid(rStack)) return NI;
 
 		// CamelCase alphanumeric words from aDisplayName
 		StringBuilder tCamelCasedDisplayNameBuilder = new StringBuilder();
@@ -134,36 +134,36 @@ public enum NNItemList implements IItemContainer {
 		// Construct a translation key from UnlocalizedName and CamelCased DisplayName
 		final String tKey = rStack.getUnlocalizedName() + ".with." + tCamelCasedDisplayNameBuilder + ".name";
 
-		rStack.setStackDisplayName(GT_LanguageManager.addStringLocalization(tKey, aDisplayName));
-		return GT_Utility.copyAmount((int) aAmount, rStack);
+		rStack.setStackDisplayName(GTLanguageManager.addStringLocalization(tKey, aDisplayName));
+		return GTUtility.copyAmount((int) aAmount, rStack);
 	}
 
 	@Override
 	public ItemStack getWithCharge(long aAmount, int aEnergy, Object... aReplacements) {
 		ItemStack rStack = get(1, aReplacements);
-		if(GT_Utility.isStackInvalid(rStack)) return null;
-		GT_ModHandler.chargeElectricItem(rStack, aEnergy, Integer.MAX_VALUE, true, false);
-		return GT_Utility.copyAmount((int) aAmount, rStack);
+		if(GTUtility.isStackInvalid(rStack)) return null;
+		GTModHandler.chargeElectricItem(rStack, aEnergy, Integer.MAX_VALUE, true, false);
+		return GTUtility.copyAmount((int) aAmount, rStack);
 	}
 
 	@Override
 	public ItemStack getWithDamage(long aAmount, long aMetaValue, Object... aReplacements) {
 		sanityCheck();
-		if(GT_Utility.isStackInvalid(mStack)) return GT_Utility.copyAmount((int) aAmount, aReplacements);
-		return GT_Utility.copyAmountAndMetaData((int) aAmount, aMetaValue, GT_OreDictUnificator.get(mStack));
+		if(GTUtility.isStackInvalid(mStack)) return GTUtility.copyAmount((int) aAmount, aReplacements);
+		return GTUtility.copyAmountAndMetaData((int) aAmount, aMetaValue, GTOreDictUnificator.get(mStack));
 	}
 
 	@Override
 	public IItemContainer registerOre(Object... aOreNames) {
 		sanityCheck();
-		for(Object tOreName : aOreNames) GT_OreDictUnificator.registerOre(tOreName, get(1));
+		for(Object tOreName : aOreNames) GTOreDictUnificator.registerOre(tOreName, get(1));
 		return this;
 	}
 
 	@Override
 	public IItemContainer registerWildcardAsOre(Object... aOreNames) {
 		sanityCheck();
-		for(Object tOreName : aOreNames) GT_OreDictUnificator.registerOre(tOreName, getWildcard(1));
+		for(Object tOreName : aOreNames) GTOreDictUnificator.registerOre(tOreName, getWildcard(1));
 		return this;
 	}
 
@@ -179,7 +179,7 @@ public enum NNItemList implements IItemContainer {
 		if(mHasNotBeenSet)
 			throw new IllegalAccessError("The Enum '" + name() + "' has not been set to an Item at this time!");
 		if(mDeprecated && !mWarned) {
-			new Exception(this + " is now deprecated").printStackTrace(GT_Log.err);
+			new Exception(this + " is now deprecated").printStackTrace(GTLog.err);
 			// warn only once
 			mWarned = true;
 		}

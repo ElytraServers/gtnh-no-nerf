@@ -1,8 +1,8 @@
 package cn.taskeren.gtnn.mod.gt5u.recipe;
 
 import cn.taskeren.gtnn.mod.gt5u.util.DisassemblerRecipes;
-import gregtech.api.util.GT_Recipe;
-import gregtech.api.util.GT_Utility;
+import gregtech.api.util.GTRecipe;
+import gregtech.api.util.GTUtility;
 import net.minecraft.item.ItemStack;
 
 import java.util.LinkedList;
@@ -27,7 +27,7 @@ public class ReverseShapedRecipe {
 
 	public static void runReverseRecipes() {
 		for (ReverseShapedRecipe x : reverseRecipes) {
-			Optional<GT_Recipe> recipeOptional = GT_Utility.reverseShapedRecipe(x.aResult, x.aRecipe);
+			Optional<GTRecipe> recipeOptional = GTUtility.reverseShapedRecipe(x.aResult, x.aRecipe);
 			DisassemblerRecipes.registerReversedCraftingRecipe(recipeOptional.orElse(null));
 		}
 	}

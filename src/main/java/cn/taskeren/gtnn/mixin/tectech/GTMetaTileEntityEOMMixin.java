@@ -1,18 +1,12 @@
 package cn.taskeren.gtnn.mixin.tectech;
 
 import cn.taskeren.gtnn.mod.tectech.EOHHelper;
-import com.github.technus.tectech.recipe.EyeOfHarmonyRecipe;
-import com.github.technus.tectech.thing.metaTileEntity.multi.GT_MetaTileEntity_EM_EyeOfHarmony;
-import com.github.technus.tectech.thing.metaTileEntity.multi.base.GT_MetaTileEntity_MultiblockBase_EM;
-import com.github.technus.tectech.util.FluidStackLong;
-import com.github.technus.tectech.util.ItemStackLong;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.MaterialsUEVplus;
-import gregtech.api.interfaces.IGlobalWirelessEnergy;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.recipe.check.CheckRecipeResultRegistry;
 import gregtech.api.recipe.check.SimpleCheckRecipeResult;
-import gregtech.api.util.GT_Utility;
+import gregtech.api.util.GTUtility;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.fluids.Fluid;
@@ -24,16 +18,23 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import tectech.recipe.EyeOfHarmonyRecipe;
+import tectech.thing.metaTileEntity.multi.MTEEyeOfHarmony;
+import tectech.thing.metaTileEntity.multi.base.TTMultiblockBase;
+import tectech.util.FluidStackLong;
+import tectech.util.ItemStackLong;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import static gregtech.common.misc.WirelessNetworkManager.addEUToGlobalEnergyMap;
 import static java.lang.Math.pow;
 
-@Mixin(value = GT_MetaTileEntity_EM_EyeOfHarmony.class, remap = false)
-public abstract class GTMetaTileEntityEOMMixin extends GT_MetaTileEntity_MultiblockBase_EM implements IGlobalWirelessEnergy {
+@Mixin(value = MTEEyeOfHarmony.class, remap = false)
+public abstract class GTMetaTileEntityEOMMixin extends TTMultiblockBase {
 
 	// region SHADOW VARIABLES
 	@Shadow
@@ -91,7 +92,7 @@ public abstract class GTMetaTileEntityEOMMixin extends GT_MetaTileEntity_Multibl
 	protected abstract void calculateInputFluidExcessValues(long hydrogenRecipeRequirement, long heliumRecipeRequirement);
 
 	@Shadow
-	private String userUUID;
+	private UUID userUUID;
 
 	@Shadow
 	private double successChance;
@@ -172,10 +173,9 @@ public abstract class GTMetaTileEntityEOMMixin extends GT_MetaTileEntity_Multibl
 	 */
 	@Overwrite
 	public CheckRecipeResult processRecipe(EyeOfHarmonyRecipe recipeObject) {
-
 		// Get circuit damage, clamp it and then use it later for overclocking.
 		for (ItemStack itemStack : mInputBusses.get(0).getRealInventory()) {
-			if (GT_Utility.isAnyIntegratedCircuit(itemStack)) {
+			if (GTUtility.isAnyIntegratedCircuit(itemStack)) {
 				currentCircuitMultiplier = MathHelper.clamp_int(itemStack.getItemDamage(), 0, 24);
 				break;
 			}
