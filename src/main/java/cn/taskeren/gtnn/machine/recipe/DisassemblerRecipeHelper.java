@@ -1,4 +1,4 @@
-package cn.taskeren.gtnn.mod.gt5u.util;
+package cn.taskeren.gtnn.machine.recipe;
 
 import cn.taskeren.gtnn.util.KtCandy;
 import gregtech.api.enums.ItemList;

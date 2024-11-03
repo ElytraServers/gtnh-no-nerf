@@ -23,4 +23,12 @@ public class Config {
 		CONF.save();
 	}
 
+	public static int getMachineId(String machineId, int defaultId, boolean saveAfterAccess) {
+		int value = CONF.getInt("machine-id-"+machineId, "machine", defaultId, -1, Short.MAX_VALUE, "The MetaTileEntity Id for " + machineId + ". Don't change unless there is a id conflict!");
+		if(saveAfterAccess) {
+			CONF.save();
+		}
+		return value;
+	}
+
 }

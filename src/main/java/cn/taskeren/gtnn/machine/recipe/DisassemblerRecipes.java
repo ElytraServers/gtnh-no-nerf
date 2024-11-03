@@ -1,4 +1,4 @@
-package cn.taskeren.gtnn.mod.gt5u.util;
+package cn.taskeren.gtnn.machine.recipe;
 
 import cn.taskeren.gtnn.GTNN;
 import cn.taskeren.gtnn.util.KtCandy;
@@ -9,7 +9,10 @@ import gregtech.api.enums.*;
 import gregtech.api.gui.modularui.GTUITextures;
 import gregtech.api.items.MetaGeneratedTool;
 import gregtech.api.objects.GTItemStack;
-import gregtech.api.recipe.*;
+import gregtech.api.recipe.RecipeMap;
+import gregtech.api.recipe.RecipeMapBackend;
+import gregtech.api.recipe.RecipeMapBuilder;
+import gregtech.api.recipe.RecipeMaps;
 import gregtech.api.util.GTModHandler;
 import gregtech.api.util.GTOreDictUnificator;
 import gregtech.api.util.GTRecipe;
@@ -61,8 +64,8 @@ public class DisassemblerRecipes {
 	private static final long EUT_HARD_OVERRIDE = 30;
 	private static final long DUR_HARD_OVERRIDE = 600;
 
-	public static final RecipeMap<DisassemblerBackend> DISASSEMBLER_RECIPES =
-		RecipeMapBuilder.of("gtnn.recipe.disassembler", DisassemblerBackend::new)
+	public static final RecipeMap<RecipeMapBackend> DISASSEMBLER_RECIPES =
+		RecipeMapBuilder.of("gtnn.recipe.disassembler")
 			.maxIO(1, 9, 0, 0)
 			.minInputs(1, 0)
 			.slotOverlays((index, isFluid, isOutput, isSpecial) -> !isFluid && !isOutput ? GTUITextures.OVERLAY_SLOT_CIRCUIT : null)
@@ -210,12 +213,6 @@ public class DisassemblerRecipes {
 		} catch(Exception ex) {
 			GTNN.logger.error("Unable to register reversed crafting recipe: " + (revRecipe.mInputs.length > 0 ? revRecipe.mInputs[0] : "mInputs is null"));
 			GTNN.logger.error("", ex);
-		}
-	}
-
-	public static class DisassemblerBackend extends RecipeMapBackend {
-		public DisassemblerBackend(RecipeMapBackendPropertiesBuilder propertiesBuilder) {
-			super(propertiesBuilder);
 		}
 	}
 

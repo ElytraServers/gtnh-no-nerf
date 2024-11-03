@@ -1,6 +1,5 @@
-package cn.taskeren.gtnn.mod.gt5u.recipe;
+package cn.taskeren.gtnn.machine.recipe;
 
-import cn.taskeren.gtnn.mod.gt5u.util.DisassemblerRecipes;
 import gregtech.api.util.GTRecipe;
 import gregtech.api.util.GTUtility;
 import net.minecraft.item.ItemStack;

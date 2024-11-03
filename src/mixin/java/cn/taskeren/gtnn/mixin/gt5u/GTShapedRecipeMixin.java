@@ -1,6 +1,6 @@
 package cn.taskeren.gtnn.mixin.gt5u;
 
-import cn.taskeren.gtnn.mod.gt5u.recipe.ReverseShapedRecipe;
+import cn.taskeren.gtnn.machine.recipe.ReverseShapedRecipe;
 import gregtech.api.util.GTShapedRecipe;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.ItemStack;

@@ -1,10 +1,11 @@
-package cn.taskeren.gtnn.mod.gt5u.util;
+package cn.taskeren.gtnn;
 
 import gregtech.api.interfaces.IItemContainer;
 import gregtech.api.util.*;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
 
@@ -25,6 +26,8 @@ public enum NNItemList implements IItemContainer {
 	Machine_UEV_Disassembler,
 	Machine_UIV_Disassembler,
 	Machine_UMV_Disassembler,
+
+	Machine_LargeProcessingFactory,
 	;
 
 	private ItemStack mStack;
@@ -83,34 +86,34 @@ public enum NNItemList implements IItemContainer {
 			mWarned = true;
 		}
 		if(!(aStack instanceof ItemStack stack) || GTUtility.isStackInvalid(stack)) return false;
-		return GTUtility.areUnificationsEqual((ItemStack) aStack, aWildcard ? getWildcard(1) : get(1), aIgnoreNBT);
+		return GTUtility.areUnificationsEqual(stack, aWildcard ? getWildcard(1) : get(1), aIgnoreNBT);
 	}
 
 	@Override
 	public ItemStack get(long aAmount, Object... aReplacements) {
 		sanityCheck();
-		if(GTUtility.isStackInvalid(mStack)) return GTUtility.copyAmount((int) aAmount, aReplacements);
+		if(GTUtility.isStackInvalid(mStack)) return GTUtility.copyAmount(aAmount, aReplacements);
 		return GTUtility.copyAmount((int) aAmount, GTOreDictUnificator.get(mStack));
 	}
 
 	@Override
 	public ItemStack getWildcard(long aAmount, Object... aReplacements) {
 		sanityCheck();
-		if(GTUtility.isStackInvalid(mStack)) return GTUtility.copyAmount((int) aAmount, aReplacements);
+		if(GTUtility.isStackInvalid(mStack)) return GTUtility.copyAmount(aAmount, aReplacements);
 		return GTUtility.copyAmountAndMetaData((int) aAmount, W, GTOreDictUnificator.get(mStack));
 	}
 
 	@Override
 	public ItemStack getUndamaged(long aAmount, Object... aReplacements) {
 		sanityCheck();
-		if(GTUtility.isStackInvalid(mStack)) return GTUtility.copyAmount((int) aAmount, aReplacements);
+		if(GTUtility.isStackInvalid(mStack)) return GTUtility.copyAmount(aAmount, aReplacements);
 		return GTUtility.copyAmountAndMetaData((int) aAmount, 0, GTOreDictUnificator.get(mStack));
 	}
 
 	@Override
 	public ItemStack getAlmostBroken(long aAmount, Object... aReplacements) {
 		sanityCheck();
-		if(GTUtility.isStackInvalid(mStack)) return GTUtility.copyAmount((int) aAmount, aReplacements);
+		if(GTUtility.isStackInvalid(mStack)) return GTUtility.copyAmount(aAmount, aReplacements);
 		return GTUtility.copyAmountAndMetaData((int) aAmount, mStack.getMaxDamage() - 1, GTOreDictUnificator.get(mStack));
 	}
 
@@ -120,22 +123,27 @@ public enum NNItemList implements IItemContainer {
 		if(GTUtility.isStackInvalid(rStack)) return NI;
 
 		// CamelCase alphanumeric words from aDisplayName
-		StringBuilder tCamelCasedDisplayNameBuilder = new StringBuilder();
-		final String[] tDisplayNameWords = aDisplayName.split("\\W");
-		for(String tWord : tDisplayNameWords) {
-			if(tWord.length() > 0) tCamelCasedDisplayNameBuilder.append(tWord.substring(0, 1).toUpperCase(Locale.US));
-			if(tWord.length() > 1) tCamelCasedDisplayNameBuilder.append(tWord.substring(1).toLowerCase(Locale.US));
-		}
-		if(tCamelCasedDisplayNameBuilder.length() == 0) {
-			// CamelCased DisplayName is empty, so use hash of aDisplayName
-			tCamelCasedDisplayNameBuilder.append(((Long) (long) aDisplayName.hashCode()));
-		}
+		String tCamelCasedDisplayNameBuilder = getCamelCaseDisplayName(aDisplayName);
 
 		// Construct a translation key from UnlocalizedName and CamelCased DisplayName
 		final String tKey = rStack.getUnlocalizedName() + ".with." + tCamelCasedDisplayNameBuilder + ".name";
 
 		rStack.setStackDisplayName(GTLanguageManager.addStringLocalization(tKey, aDisplayName));
 		return GTUtility.copyAmount((int) aAmount, rStack);
+	}
+
+	private static @NotNull String getCamelCaseDisplayName(String aDisplayName) {
+		StringBuilder tCamelCasedDisplayNameBuilder = new StringBuilder();
+		final String[] tDisplayNameWords = aDisplayName.split("\\W");
+		for(String tWord : tDisplayNameWords) {
+			if(tWord.length() > 0) tCamelCasedDisplayNameBuilder.append(tWord.substring(0, 1).toUpperCase(Locale.US));
+			if(tWord.length() > 1) tCamelCasedDisplayNameBuilder.append(tWord.substring(1).toLowerCase(Locale.US));
+		}
+		if(tCamelCasedDisplayNameBuilder.isEmpty()) {
+			// CamelCased DisplayName is empty, so use hash of aDisplayName
+			tCamelCasedDisplayNameBuilder.append(((Long) (long) aDisplayName.hashCode()));
+		}
+		return tCamelCasedDisplayNameBuilder.toString();
 	}
 
 	@Override
@@ -149,8 +157,8 @@ public enum NNItemList implements IItemContainer {
 	@Override
 	public ItemStack getWithDamage(long aAmount, long aMetaValue, Object... aReplacements) {
 		sanityCheck();
-		if(GTUtility.isStackInvalid(mStack)) return GTUtility.copyAmount((int) aAmount, aReplacements);
-		return GTUtility.copyAmountAndMetaData((int) aAmount, aMetaValue, GTOreDictUnificator.get(mStack));
+		if(GTUtility.isStackInvalid(mStack)) return GTUtility.copyAmount(aAmount, aReplacements);
+		return GTUtility.copyAmountAndMetaData(aAmount, aMetaValue, GTOreDictUnificator.get(mStack));
 	}
 
 	@Override
