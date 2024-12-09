@@ -28,21 +28,11 @@ public enum Feature {
 		Mixin.EyeOfHarmonyMixin
 	),
 
-	LegacySupercriticalTurbine(
-		"Replace new Supercritical Steam Turbine with legacy one.",
-		Mixin.XLPlasmaTurbineMixin,
-		Mixin.XLSCTurbineMixin
-	),
-
-	RevertRocketFuelsRecipes(
-		"Revert Rocket Fuels Recipes",
-		Mixin.RocketFuelsMixin
-	),
-
 	MainLoaderProgressBarFix(
 		"Fix the progress bar bug of TecTech",
 		Mixin.TecTechMainLoaderFixMixin
-	)
+	),
+
 	;
 
 	public final String desc;

@@ -1,19 +1,19 @@
-package cn.taskeren.gtnn.mod.gt5u.tile;
+package cn.taskeren.gtnn.machine;
 
 import cn.taskeren.gtnn.GTNN;
-import cn.taskeren.gtnn.mod.gt5u.util.DisassemblerRecipes;
+import cn.taskeren.gtnn.machine.recipe.DisassemblerRecipes;
 import gregtech.api.enums.SoundResource;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
-import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_BasicMachine_GT_Recipe;
+import gregtech.api.metatileentity.implementations.MTEBasicMachineWithRecipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TileEntityDisassembler extends GT_MetaTileEntity_BasicMachine_GT_Recipe {
+public class MTEDisassembler extends MTEBasicMachineWithRecipe {
 
-	public TileEntityDisassembler(int aID, String aName, String aNameRegional, int aTier) {
+	public MTEDisassembler(int aID, String aName, String aNameRegional, int aTier) {
 		super(
 			aID,
 			aName,
@@ -34,7 +34,7 @@ public class TileEntityDisassembler extends GT_MetaTileEntity_BasicMachine_GT_Re
 
 	@Override
 	public void addAdditionalTooltipInformation(ItemStack stack, List<String> tooltip) {
-		tooltip.add("§cPresented by GTNH-NO-NERF!");
+		tooltip.add(GTNN.NOT_DEPRECATED_TOOLTIP);
 	}
 
 	@Override

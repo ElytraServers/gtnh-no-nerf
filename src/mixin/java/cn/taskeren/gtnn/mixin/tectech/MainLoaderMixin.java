@@ -1,6 +1,5 @@
 package cn.taskeren.gtnn.mixin.tectech;
 
-import com.github.technus.tectech.loader.MainLoader;
 import cpw.mods.fml.common.ProgressManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -8,6 +7,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+import tectech.loader.MainLoader;
 
 @Mixin(value = MainLoader.class, remap = false)
 public class MainLoaderMixin {

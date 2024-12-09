@@ -1,12 +1,12 @@
 package cn.taskeren.gtnn.mixin.goodgenerator;
 
-import goodgenerator.blocks.tileEntity.LargeEssentiaGenerator;
+import goodgenerator.blocks.tileEntity.MTELargeEssentiaGenerator;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = LargeEssentiaGenerator.class, remap = false)
+@Mixin(value = MTELargeEssentiaGenerator.class, remap = false)
 public class LargeEssentiaGeneratorMixin {
 
 	@Inject(method = "checkNoLaser", at = @At("HEAD"), cancellable = true)
