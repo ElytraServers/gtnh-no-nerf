@@ -139,7 +139,7 @@ public enum NNItemList implements IItemContainer {
 			if(tWord.length() > 0) tCamelCasedDisplayNameBuilder.append(tWord.substring(0, 1).toUpperCase(Locale.US));
 			if(tWord.length() > 1) tCamelCasedDisplayNameBuilder.append(tWord.substring(1).toLowerCase(Locale.US));
 		}
-		if(tCamelCasedDisplayNameBuilder.isEmpty()) {
+		if(tCamelCasedDisplayNameBuilder.length() == 0) {
 			// CamelCased DisplayName is empty, so use hash of aDisplayName
 			tCamelCasedDisplayNameBuilder.append(((Long) (long) aDisplayName.hashCode()));
 		}

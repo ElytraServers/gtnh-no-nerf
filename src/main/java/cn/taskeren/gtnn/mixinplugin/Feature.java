@@ -31,7 +31,8 @@ public enum Feature {
 	MainLoaderProgressBarFix(
 		"Fix the progress bar bug of TecTech",
 		Mixin.TecTechMainLoaderFixMixin
-	)
+	),
+
 	;
 
 	public final String desc;

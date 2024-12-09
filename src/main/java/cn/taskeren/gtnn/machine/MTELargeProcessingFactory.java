@@ -1,5 +1,6 @@
 package cn.taskeren.gtnn.machine;
 
+import cn.taskeren.gtnn.GTNN;
 import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructable;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.ISurvivalBuildEnvironment;
@@ -57,6 +58,9 @@ import static gregtech.api.enums.HatchElement.*;
 import static gregtech.api.util.GTStructureUtility.buildHatchAdder;
 import static gregtech.api.util.GTUtility.filterValidMTEs;
 
+/**
+ * <a href="https://github.com/GTNewHorizons/GT5-Unofficial/blob/02362d6b3b62e3530579101adf341659c0991aea/src/main/java/gtPlusPlus/xmod/gregtech/common/tileentities/machines/multi/processing/MTEIndustrialMultiMachine.java">original source</a>
+ */
 public class MTELargeProcessingFactory extends GTPPMultiBlockBase<MTELargeProcessingFactory> implements ISurvivalConstructable {
 
 	private static final int MACHINE_MODE_METAL = 0;
@@ -118,8 +122,7 @@ public class MTELargeProcessingFactory extends GTPPMultiBlockBase<MTELargeProces
 		MultiblockTooltipBuilder tt = new MultiblockTooltipBuilder();
 		tt.addMachineType(getMachineType())
 			.addInfo("Controller Block for the Industrial Multi-Machine")
-			.addInfo(EnumChatFormatting.RED + "DEPRECATED! This machine will be removed in the next major update.")
-			.addInfo(EnumChatFormatting.RED + "A variety of multiblocks have been added to replace these machines!")
+			.addInfo(GTNN.NOT_DEPRECATED_TOOLTIP)
 			.addInfo("250% faster than using single block machines of the same voltage")
 			.addInfo("Only uses 80% of the EU/t normally required")
 			.addInfo("Processes two items per voltage tier")

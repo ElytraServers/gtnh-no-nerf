@@ -34,7 +34,7 @@ public class MTEDisassembler extends MTEBasicMachineWithRecipe {
 
 	@Override
 	public void addAdditionalTooltipInformation(ItemStack stack, List<String> tooltip) {
-		tooltip.add("§cPresented by GTNH-NO-NERF!");
+		tooltip.add(GTNN.NOT_DEPRECATED_TOOLTIP);
 	}
 
 	@Override
