@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = GTShapelessRecipe.class, remap = false)
-public class GTShapelessRecipeMixin {
+public class DisassemblerReversedRecipe_GTShapelessRecipe_Mixin {
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	private void nn$init(ItemStack aResult, boolean aDismantleAble, boolean aRemovableByGT, boolean aKeepingNBT, Enchantment[] aEnchantmentsAdded, int[] aEnchantmentLevelsAdded, Object[] aRecipe, CallbackInfo ci) {

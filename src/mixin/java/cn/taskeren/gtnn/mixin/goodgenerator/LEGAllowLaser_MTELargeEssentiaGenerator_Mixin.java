@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = MTELargeEssentiaGenerator.class, remap = false)
-public class LargeEssentiaGeneratorMixin {
+public class LEGAllowLaser_MTELargeEssentiaGenerator_Mixin {
 
 	@Inject(method = "checkNoLaser", at = @At("HEAD"), cancellable = true)
 	private void nn$checkNoLaser(CallbackInfoReturnable<Boolean> cir) {
