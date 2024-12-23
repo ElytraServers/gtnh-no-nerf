@@ -1,6 +1,6 @@
 package cn.taskeren.gtnn.mixin.gt5u;
 
-import cn.taskeren.gtnn.common.ReversedRecipeRegistry;
+import cn.elytra.mod.gtnn.rewind.module.disassembler.ReversedRecipeRegistry;
 import gregtech.api.util.GTShapedRecipe;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.ItemStack;
@@ -14,8 +14,8 @@ public class GTShapedRecipeMixin {
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	private void nn$init(ItemStack aResult, boolean aDismantleAble, boolean aRemovableByGT, boolean aKeepingNBT, Enchantment[] aEnchantmentsAdded, int[] aEnchantmentLevelsAdded, Object[] aRecipe, CallbackInfo ci) {
-		if(aDismantleAble) {
-			ReversedRecipeRegistry.registerShapedRecipe(aResult, aRecipe);
+		if (aDismantleAble) {
+			ReversedRecipeRegistry.registerShaped(aResult, aRecipe);
 		}
 	}
 

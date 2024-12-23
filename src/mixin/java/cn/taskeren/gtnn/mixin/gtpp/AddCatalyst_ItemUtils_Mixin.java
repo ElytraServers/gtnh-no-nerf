@@ -1,6 +1,6 @@
 package cn.taskeren.gtnn.mixin.gtpp;
 
-import cn.taskeren.gtnn.mod.gtPlusPlus.GenericChemExt;
+import cn.elytra.mod.gtnn.rewind.module.waterline_skip.CatalystInject;
 import gtPlusPlus.core.util.minecraft.ItemUtils;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,7 +13,7 @@ public class AddCatalyst_ItemUtils_Mixin {
 
 	@Inject(method = "isCatalyst", at = @At("HEAD"), cancellable = true)
 	private static void gtnn$isCatalyst(ItemStack aStack, CallbackInfoReturnable<Boolean> cir) {
-		if (GenericChemExt.isAdditionalCatalyst(aStack)) {
+		if (CatalystInject.isAddedCatalyst(aStack)) {
 			cir.setReturnValue(true);
 		}
 	}

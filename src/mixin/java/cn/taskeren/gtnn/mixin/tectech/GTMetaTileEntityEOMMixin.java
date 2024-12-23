@@ -1,6 +1,5 @@
 package cn.taskeren.gtnn.mixin.tectech;
 
-import cn.taskeren.gtnn.mod.tectech.EOHHelper;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.MaterialsUEVplus;
 import gregtech.api.recipe.check.CheckRecipeResult;
@@ -11,10 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -137,6 +133,9 @@ public abstract class GTMetaTileEntityEOMMixin extends TTMultiblockBase {
 	@Shadow
 	protected abstract void outputFluidToAENetwork(FluidStack fluid, long amount);
 
+	@Unique
+	private static final double LOG_BASE_CONSTANT = Math.log(4.4);
+
 	// region FAKE CTOR
 	protected GTMetaTileEntityEOMMixin(int aID, String aName, String aNameRegional) {
 		super(aID, aName, aNameRegional);
@@ -204,7 +203,7 @@ public abstract class GTMetaTileEntityEOMMixin extends TTMultiblockBase {
 		startEU = recipeObject.getEUStartCost();
 
 		// Remove EU from the users network.
-		long usedEU = (long) (-startEU * (Math.log(currentCircuitMultiplier + 1) / EOHHelper.LOG_BASE_CONSTANT + 1)
+		long usedEU = (long) (-startEU * (Math.log(currentCircuitMultiplier + 1) / LOG_BASE_CONSTANT + 1)
 			* pow(0.77, currentCircuitMultiplier));
 		if (!addEUToGlobalEnergyMap(userUUID, usedEU)) {
 			return CheckRecipeResultRegistry.insufficientPower(usedEU);

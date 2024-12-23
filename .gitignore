@@ -31,3 +31,4 @@ src/main/resources/mixins.*([!.]).json
 !gradlew.bat
 
 .idea
+/.kotlin/

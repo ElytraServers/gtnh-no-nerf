@@ -1,11 +1,9 @@
 package cn.taskeren.gtnn;
 
 import cn.taskeren.gtnn.common.CommonProxy;
-import cn.taskeren.gtnn.common.command.NoNerfCommand;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
-import net.minecraft.util.EnumChatFormatting;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -37,10 +35,6 @@ public class GTNN {
 	public GTNN() {
 	}
 
-	public static final String MOD_NAME_TOOLTIP = EnumChatFormatting.GOLD + "GTNH-NO-NERF";
-
-	public static final String NOT_DEPRECATED_TOOLTIP = EnumChatFormatting.GREEN + "Not Deprecated! Brought back by " + MOD_NAME_TOOLTIP + EnumChatFormatting.GREEN + "!";
-
 	@Mod.EventHandler
 	public void onPreInit(FMLPreInitializationEvent event) {
 		proxy.onPreInit(event);
@@ -63,7 +57,7 @@ public class GTNN {
 
 	@Mod.EventHandler
 	public void onServerStarting(FMLServerStartingEvent event) {
-		event.registerServerCommand(new NoNerfCommand());
+		proxy.onServerStarting(event);
 	}
 
 }
