@@ -1,6 +1,7 @@
 package cn.elytra.mod.gtnn.rewind
 
 import cn.elytra.mod.gtnn.rewind.module.disassembler.ModDisassembler
+import cn.elytra.mod.gtnn.rewind.module.indium_comb_proc.ModIndiumCombProc
 import cn.elytra.mod.gtnn.rewind.module.large_processing_factory.ModLargeProcessingFactory
 import cn.elytra.mod.gtnn.rewind.module.waterline_skip.ModWaterlineSkip
 import cpw.mods.fml.common.event.FMLInitializationEvent
@@ -22,6 +23,7 @@ object ModularLoader {
 		Modules += ModDisassembler
 		Modules += ModLargeProcessingFactory
 		Modules += ModWaterlineSkip
+		Modules += ModIndiumCombProc
 	}
 
 	fun fmlPreInit(e: FMLPreInitializationEvent) {

@@ -52,7 +52,7 @@ dependencies {
 // TecTech
 	// implementation("com.github.GTNewHorizons:TecTech:5.4.3:dev")
 // Forestry
-	implementation("com.github.GTNewHorizons:ForestryMC:4.9.19:api") { transitive = false }
+	implementation("com.github.GTNewHorizons:ForestryMC:4.9.19:dev") { transitive = false }
 // Railcraft
 	implementation("com.github.GTNewHorizons:Railcraft:9.15.15:dev") { transitive = false }
 // Buildcraft
