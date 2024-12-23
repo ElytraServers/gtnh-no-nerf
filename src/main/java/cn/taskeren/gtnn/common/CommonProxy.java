@@ -2,6 +2,8 @@ package cn.taskeren.gtnn.common;
 
 import cn.taskeren.gtnn.GTNN;
 import cn.taskeren.gtnn.machine.recipe.DisassemblerRecipes;
+import cn.taskeren.gtnn.mod.gtPlusPlus.GenericChemExt;
+import cn.taskeren.gtnn.recipe.RecipeLoader;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -20,6 +22,11 @@ public class CommonProxy {
 		MachineRegistry.registerMachines();
 
 		ReversedRecipeRegistry.registerRecipesToDisassemblers();
+
+		GenericChemExt.registerItemStacks();
+		GenericChemExt.registerOreDict();
+
+		RecipeLoader.loadAll();
 	}
 
 	public void onLoadComplete(FMLLoadCompleteEvent event) {

@@ -33,18 +33,30 @@ public enum Feature {
 		Mixin.TecTechMainLoaderFixMixin
 	),
 
+	AddCatalyst(
+		"Add additional catalyst to GT++",
+		true,
+		Mixin.AddCatalyst_ItemUtils
+	)
 	;
 
 	public final String desc;
 	public final Mixin[] mixins;
 
+	public final boolean alwaysEnabled;
+
 	Feature(String desc, Mixin... mixins) {
+		this(desc, false, mixins);
+	}
+
+	Feature(String desc, boolean alwaysEnabled, Mixin... mixins) {
 		this.desc = desc;
 		this.mixins = mixins;
+		this.alwaysEnabled = alwaysEnabled;
 	}
 
 	public boolean isEnabled() {
-		return MixinConfig.isFeatureEnabled(this);
+		return alwaysEnabled || MixinConfig.isFeatureEnabled(this);
 	}
 
 	public boolean isTargetedModsLoad(Collection<TargetedMod> loadedMods) {

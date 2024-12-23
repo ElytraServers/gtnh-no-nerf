@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+@SuppressWarnings("SpellCheckingInspection")
 public enum Mixin {
 
 	GTLoaderMetaTileEntities("gt5u.GTLoaderMetaTileEntitiesMixin", TargetedMod.GregTech),
@@ -18,6 +19,8 @@ public enum Mixin {
 	EyeOfHarmonyMixin("tectech.GTMetaTileEntityEOMMixin", TargetedMod.TecTech),
 
 	TecTechMainLoaderFixMixin("tectech.MainLoaderMixin", TargetedMod.TecTech),
+
+	AddCatalyst_ItemUtils("gtpp.AddCatalyst_ItemUtils_Mixin", TargetedMod.GTPlusPlus),
 	;
 
 	public final String mixinClass;

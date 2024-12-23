@@ -17,6 +17,7 @@ public class GTNN {
 	static final String MOD_ID = "gtnn";
 	static final String MOD_NAME = "GT-NO-NERF";
 
+	@SuppressWarnings("SpellCheckingInspection")
 	static final String DEPENDENCIES
 		= "required-after:gregtech;"
 		+ "required-after:miscutils;" // gt++
