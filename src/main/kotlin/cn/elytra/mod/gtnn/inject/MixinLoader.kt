@@ -1,9 +1,6 @@
 package cn.elytra.mod.gtnn.inject
 
-import cn.elytra.mod.gtnn.inject.module.ModAddCatalyst
-import cn.elytra.mod.gtnn.inject.module.ModDisassemblerReversedRecipes
-import cn.elytra.mod.gtnn.inject.module.ModLargeEssentiaGeneratorAllowLaser
-import cn.elytra.mod.gtnn.inject.module.ModUnbreakableLightningRod
+import cn.elytra.mod.gtnn.inject.module.*
 import com.falsepattern.gasstation.MinecraftURLClassPath
 import net.minecraft.launchwrapper.Launch
 import net.minecraftforge.common.config.Configuration
@@ -21,6 +18,7 @@ object MixinLoader {
 		ModDisassemblerReversedRecipes,
 		ModLargeEssentiaGeneratorAllowLaser,
 		ModAddCatalyst,
+		ModInfinityMEBus,
 	)
 
 	private val _loadedMixinModules = mutableListOf<IMixinModule>()
