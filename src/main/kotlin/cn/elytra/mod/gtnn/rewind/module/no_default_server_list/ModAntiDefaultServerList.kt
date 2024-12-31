@@ -28,6 +28,7 @@ object ModAntiDefaultServerList : IModule {
 			val dslServersField = dslConfigClass.getDeclaredField("SERVERS")
 
 			// it should be accessible, because it is public
+			@Suppress("DEPRECATION") // only deprecated in J9+
 			if(!dslServersField.isAccessible) dslServersField.isAccessible = true
 
 			LOG.info("Replacing the server list, hush!")

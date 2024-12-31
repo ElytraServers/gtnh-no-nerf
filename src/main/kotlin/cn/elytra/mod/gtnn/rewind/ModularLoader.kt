@@ -2,6 +2,7 @@ package cn.elytra.mod.gtnn.rewind
 
 import cn.elytra.mod.gtnn.rewind.module.disassembler.ModDisassembler
 import cn.elytra.mod.gtnn.rewind.module.indium_comb_proc.ModIndiumCombProc
+import cn.elytra.mod.gtnn.rewind.module.large_essentia_generator.ModLargeEssentiaGenerator
 import cn.elytra.mod.gtnn.rewind.module.large_processing_factory.ModLargeProcessingFactory
 import cn.elytra.mod.gtnn.rewind.module.no_default_server_list.ModAntiDefaultServerList
 import cn.elytra.mod.gtnn.rewind.module.processing_array.ModProcessingArray
@@ -27,6 +28,7 @@ object ModularLoader {
 		Modules += ModWaterlineSkip
 		Modules += ModIndiumCombProc
 		Modules += ModProcessingArray
+		Modules += ModLargeEssentiaGenerator
 
 		Modules += ModAntiDefaultServerList
 	}
