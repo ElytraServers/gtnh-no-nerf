@@ -1,5 +1,9 @@
 package cn.elytra.mod.gtnn.rewind
 
+import cpw.mods.fml.common.event.FMLInitializationEvent
+import cpw.mods.fml.common.event.FMLLoadCompleteEvent
+import cpw.mods.fml.common.event.FMLPostInitializationEvent
+import cpw.mods.fml.common.event.FMLPreInitializationEvent
 import gregtech.api.util.GTModHandler
 import net.minecraftforge.common.config.Configuration
 
@@ -18,6 +22,11 @@ interface IModule {
 	 * This will always be invoked no matter if [enabled].
 	 */
 	fun readConfig(configuration: Configuration)
+
+	fun fmlPreInit(e: FMLPreInitializationEvent) {}
+	fun fmlInit(e: FMLInitializationEvent) {}
+	fun fmlPostInit(e: FMLPostInitializationEvent) {}
+	fun fmlComplete(e: FMLLoadCompleteEvent) {}
 
 	/**
 	 * Register gregtech items.

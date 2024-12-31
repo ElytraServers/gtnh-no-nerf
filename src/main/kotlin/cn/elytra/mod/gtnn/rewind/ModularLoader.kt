@@ -3,6 +3,7 @@ package cn.elytra.mod.gtnn.rewind
 import cn.elytra.mod.gtnn.rewind.module.disassembler.ModDisassembler
 import cn.elytra.mod.gtnn.rewind.module.indium_comb_proc.ModIndiumCombProc
 import cn.elytra.mod.gtnn.rewind.module.large_processing_factory.ModLargeProcessingFactory
+import cn.elytra.mod.gtnn.rewind.module.no_default_server_list.ModAntiDefaultServerList
 import cn.elytra.mod.gtnn.rewind.module.processing_array.ModProcessingArray
 import cn.elytra.mod.gtnn.rewind.module.waterline_skip.ModWaterlineSkip
 import cpw.mods.fml.common.event.FMLInitializationEvent
@@ -26,6 +27,8 @@ object ModularLoader {
 		Modules += ModWaterlineSkip
 		Modules += ModIndiumCombProc
 		Modules += ModProcessingArray
+
+		Modules += ModAntiDefaultServerList
 	}
 
 	fun fmlPreInit(e: FMLPreInitializationEvent) {
@@ -35,13 +38,22 @@ object ModularLoader {
 			it.readConfig(config)
 		}
 		config.save()
+		EnabledModules.forEach {
+			it.fmlPreInit(e)
+		}
 		LOG.info("Enabled modules (${EnabledModules.size}): [${EnabledModules.joinToString(", ")}]")
 	}
 
 	fun fmlInit(e: FMLInitializationEvent) {
+		EnabledModules.forEach {
+			it.fmlInit(e)
+		}
 	}
 
 	fun fmlPostInit(e: FMLPostInitializationEvent) {
+		EnabledModules.forEach {
+			it.fmlPostInit(e)
+		}
 		EnabledModules.forEach {
 			it.registerGregTechItems()
 		}
@@ -51,6 +63,9 @@ object ModularLoader {
 	}
 
 	fun fmlComplete(e: FMLLoadCompleteEvent) {
+		EnabledModules.forEach {
+			it.fmlComplete(e)
+		}
 		EnabledModules.forEach {
 			it.loadRecipesOnComplete()
 		}
