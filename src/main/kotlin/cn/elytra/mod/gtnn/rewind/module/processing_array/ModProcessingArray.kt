@@ -12,79 +12,43 @@ import net.minecraftforge.common.config.Configuration
 // see https://github.com/GTNewHorizons/GT5-Unofficial/pull/2273
 object ModProcessingArray : IModule {
 
-	override var enabled: Boolean = true
-
-	private var useGtnnVersion: Boolean = false
+	override var enabled: Boolean = false
 	private var processingArrayId: Int = 6600
-	private var useDeprecatedRecipe: Boolean = true
 
 	lateinit var ProcessingArray: ItemStack
 
 	override fun readConfig(configuration: Configuration) {
-		enabled = configuration.getBoolean(
-			"enabled",
-			"processing-array",
-			enabled,
-			"enable gtnn processing array module",
-		)
-		useGtnnVersion = configuration.getBoolean(
-			"use-gtnn-version",
-			"processing-array",
-			useGtnnVersion,
-			"enable gtnn version of Processing Array"
-		)
+		enabled = configuration.getBoolean("enabled", "processing-array", enabled, "enable gtnn processing array")
 		processingArrayId = configuration.getInt(
 			"id",
 			"processing-array",
 			processingArrayId,
 			0,
 			32767,
-			"the mte id of gtnn processing array",
-		)
-		useDeprecatedRecipe = configuration.getBoolean(
-			"use-deprecated-recipe",
-			"processing-array",
-			useDeprecatedRecipe,
-			"add the recipe for the deprecated one before its removal"
+			"the mte id of gtnn processing array"
 		)
 	}
 
 	override fun registerGregTechItems() {
-		if(useGtnnVersion) {
-			ProcessingArray = MTEProcessingArray(processingArrayId, "multimachine.processingarray", "Processing Array")
-				.getStackForm(1)
-		}
+		ProcessingArray = MTEProcessingArray(processingArrayId, "multimachine.processingarray", "Processing Array")
+			.getStackForm(1)
 	}
 
 	override fun registerRecipes() {
-		if(useGtnnVersion) { // add my custom machine only if it is used
-			GTModHandler.addShapelessCraftingRecipe(
-				ProcessingArray.copyOf(),
-				IModule.DefaultMachineRecipeMask,
-				arrayOf(ItemList.Processing_Array.get(1)),
-			)
-		}
+		GTModHandler.addShapelessCraftingRecipe(
+			ProcessingArray.copyOf(),
+			IModule.DefaultMachineRecipeMask,
+			arrayOf(ItemList.Processing_Array.get(1)),
+		)
 
-		if(useDeprecatedRecipe) {
-			GTModHandler.addCraftingRecipe(
-				ItemList.Processing_Array.get(1L), // TODO: replace this with my PA
-				IModule.DefaultMachineRecipeMask,
-				arrayOf(
-					"CTC",
-					"FMF",
-					"CBC",
-					'M',
-					ItemList.Hull_EV,
-					'B',
-					OrePrefixes.pipeLarge.get(Materials.StainlessSteel),
-					'C',
-					OrePrefixes.circuit.get(Materials.IV),
-					'F',
-					ItemList.Robot_Arm_EV,
-					'T',
-					ItemList.Energy_LapotronicOrb
-				)
+		GTModHandler.addCraftingRecipe(
+			ItemList.Processing_Array.get(1L), // TODO: replace this with my PA
+			IModule.DefaultMachineRecipeMask,
+			arrayOf(
+				"CTC", "FMF", "CBC", 'M', ItemList.Hull_EV, 'B',
+				OrePrefixes.pipeLarge.get(Materials.StainlessSteel), 'C', OrePrefixes.circuit.get(Materials.IV), 'F',
+				ItemList.Robot_Arm_EV, 'T', ItemList.Energy_LapotronicOrb
 			)
-		}
+		)
 	}
 }
