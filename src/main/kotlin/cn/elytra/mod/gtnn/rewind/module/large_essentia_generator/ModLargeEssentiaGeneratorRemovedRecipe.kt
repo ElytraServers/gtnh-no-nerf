@@ -14,12 +14,12 @@ import net.minecraft.item.ItemStack
 import net.minecraftforge.common.config.Configuration
 import thaumcraft.common.config.ConfigBlocks
 
-object ModLargeEssentiaGenerator : IModule {
+object ModLargeEssentiaGeneratorRemovedRecipe : IModule {
 
 	override var enabled: Boolean = true
 
 	override fun readConfig(configuration: Configuration) {
-		enabled = configuration.getBoolean("enabled", "large-essentia-generator", enabled, "add LEG recipe back")
+		enabled = configuration.getBoolean("add-removed-recipe", "large-essentia-generator", enabled, "add LEG recipe back")
 	}
 
 	override fun fmlPostInit(e: FMLPostInitializationEvent) {

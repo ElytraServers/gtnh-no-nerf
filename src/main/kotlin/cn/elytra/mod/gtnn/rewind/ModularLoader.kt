@@ -2,10 +2,12 @@ package cn.elytra.mod.gtnn.rewind
 
 import cn.elytra.mod.gtnn.rewind.module.disassembler.ModDisassembler
 import cn.elytra.mod.gtnn.rewind.module.indium_comb_proc.ModIndiumCombProc
-import cn.elytra.mod.gtnn.rewind.module.large_essentia_generator.ModLargeEssentiaGenerator
+import cn.elytra.mod.gtnn.rewind.module.large_essentia_generator.ModLargeEssentiaGeneratorRemovedRecipe
 import cn.elytra.mod.gtnn.rewind.module.large_processing_factory.ModLargeProcessingFactory
+import cn.elytra.mod.gtnn.rewind.module.large_processing_factory.ModLargeProcessingFactoryRemovedRecipe
 import cn.elytra.mod.gtnn.rewind.module.no_default_server_list.ModAntiDefaultServerList
 import cn.elytra.mod.gtnn.rewind.module.processing_array.ModProcessingArray
+import cn.elytra.mod.gtnn.rewind.module.processing_array.ModProcessingArrayRemovedRecipe
 import cn.elytra.mod.gtnn.rewind.module.waterline_skip.ModWaterlineSkip
 import cpw.mods.fml.common.event.FMLInitializationEvent
 import cpw.mods.fml.common.event.FMLLoadCompleteEvent
@@ -23,13 +25,27 @@ object ModularLoader {
 	private val EnabledModules get() = Modules.filter { it.enabled }
 
 	init {
+		// [re-added machines]
+		// machines that have been totally removed from GTNH, and we copy its code and make it work again
 		Modules += ModDisassembler
 		Modules += ModLargeProcessingFactory
+		Modules += ModProcessingArray
+
+		// [removed recipes for machines]
+		// machines that have been tagged as deprecated while their recipes are removed,
+		// and we copy its recipe code and make it craftable again
+		// once these machines are fully removed, they will be added back
+		Modules += ModLargeProcessingFactoryRemovedRecipe
+		Modules += ModProcessingArrayRemovedRecipe
+		Modules += ModLargeEssentiaGeneratorRemovedRecipe
+
+		// [removed recipe lines]
+		// recipes of certain lines that have been removed from GTNH,
+		// and we copy its recipe code and make it craftable again
 		Modules += ModWaterlineSkip
 		Modules += ModIndiumCombProc
-		Modules += ModProcessingArray
-		Modules += ModLargeEssentiaGenerator
 
+		// misc.
 		Modules += ModAntiDefaultServerList
 	}
 
