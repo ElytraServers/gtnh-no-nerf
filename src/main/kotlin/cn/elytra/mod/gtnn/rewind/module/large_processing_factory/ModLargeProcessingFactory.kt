@@ -11,6 +11,7 @@ import gtPlusPlus.xmod.gregtech.api.enums.GregtechItemList
 import net.minecraft.item.ItemStack
 import net.minecraftforge.common.config.Configuration
 
+// see https://github.com/GTNewHorizons/GT5-Unofficial/pull/3086
 object ModLargeProcessingFactory : IModule {
 
 	override var enabled = false
