@@ -14,9 +14,11 @@ import net.minecraftforge.common.config.Configuration
 // see https://github.com/GTNewHorizons/GT5-Unofficial/pull/3086
 object ModLargeProcessingFactory : IModule {
 
-	override var enabled = false
+	override var enabled = true
 
+	private var useGtnnVersion: Boolean = false
 	private var largeProcessingFactoryId = 680
+	private var useDeprecatedRecipe: Boolean = true
 
 	lateinit var LargeProcessingFactory: ItemStack
 
@@ -25,7 +27,13 @@ object ModLargeProcessingFactory : IModule {
 			"enabled",
 			"large_processing_factory",
 			enabled,
-			"enable gtnn large processing factory"
+			"enable gtnn large processing factory module"
+		)
+		useGtnnVersion = configuration.getBoolean(
+			"use-gtnn-version",
+			"large_processing_factory",
+			useGtnnVersion,
+			"enable gtnn version of Large Processing Factory"
 		)
 		largeProcessingFactoryId = configuration.getInt(
 			"id",
@@ -35,36 +43,48 @@ object ModLargeProcessingFactory : IModule {
 			32767,
 			"the mte id of gtnn large processing factory"
 		)
+		useDeprecatedRecipe = configuration.getBoolean(
+			"use-deprecated-recipe",
+			"large_processing_factory",
+			useDeprecatedRecipe,
+			"add the recipe for the deprecated one before its removal"
+		)
 	}
 
 	override fun registerGregTechItems() {
-		LargeProcessingFactory = MTELargeProcessingFactory(
-			10680,
-			"industrialmultimachine.controller.tier.single",
-			"Large Processing Factory",
-		).getStackForm(1)
+		if(useGtnnVersion) {
+			LargeProcessingFactory = MTELargeProcessingFactory(
+				10680,
+				"industrialmultimachine.controller.tier.single",
+				"Large Processing Factory",
+			).getStackForm(1)
+		}
 	}
 
 	override fun registerRecipes() {
-		GTModHandler.addShapelessCraftingRecipe(
-			LargeProcessingFactory.copyOf(),
-			IModule.DefaultMachineRecipeMask,
-			arrayOf(GregtechItemList.Industrial_MultiMachine.get(1))
-		)
-
-		GTModHandler.addCraftingRecipe(
-			GregtechItemList.Industrial_MultiMachine.get(1), // TODO: replace this with my LPF
-			arrayOf(
-				"abc", "ded", "fgh",
-				'a', ItemList.Machine_IV_Compressor.get(1),
-				'b', ItemList.Machine_IV_Lathe.get(1),
-				'c', ItemList.Machine_IV_Polarizer.get(1),
-				'd', MaterialsAlloy.STABALLOY.getPlate(1),
-				'e', ItemUtils.getSimpleStack(ModBlocks.blockProjectTable),
-				'f', ItemList.Machine_IV_Fermenter.get(1),
-				'g', ItemList.Machine_IV_FluidExtractor.get(1),
-				'h', ItemList.Machine_IV_Extractor.get(1),
+		if(useGtnnVersion) {
+			GTModHandler.addShapelessCraftingRecipe(
+				LargeProcessingFactory.copyOf(),
+				IModule.DefaultMachineRecipeMask,
+				arrayOf(GregtechItemList.Industrial_MultiMachine.get(1))
 			)
-		)
+		}
+
+		if(useDeprecatedRecipe) {
+			GTModHandler.addCraftingRecipe(
+				GregtechItemList.Industrial_MultiMachine.get(1), // TODO: replace this with my LPF
+				arrayOf(
+					"abc", "ded", "fgh",
+					'a', ItemList.Machine_IV_Compressor.get(1),
+					'b', ItemList.Machine_IV_Lathe.get(1),
+					'c', ItemList.Machine_IV_Polarizer.get(1),
+					'd', MaterialsAlloy.STABALLOY.getPlate(1),
+					'e', ItemUtils.getSimpleStack(ModBlocks.blockProjectTable),
+					'f', ItemList.Machine_IV_Fermenter.get(1),
+					'g', ItemList.Machine_IV_FluidExtractor.get(1),
+					'h', ItemList.Machine_IV_Extractor.get(1),
+				)
+			)
+		}
 	}
 }
