@@ -16,8 +16,10 @@ object ModAntiDefaultServerList : IModule {
 	}
 
 	private val LOG = LogManager.getLogger()
-	private val ThatList = MyAlwaysEmptyAndTellYouMamaWhenElementIsAddedList<ServerData> {
-		LOG.info("You are not my Elytra server! ${it.serverName}(${it.serverIP})")
+	private val ThatList by lazy {
+		MyAlwaysEmptyAndTellYouMamaWhenElementIsAddedList<ServerData> {
+			LOG.info("You are not my Elytra server! ${it.serverName}(${it.serverIP})")
+		}
 	}
 
 	override fun fmlPreInit(e: FMLPreInitializationEvent) {

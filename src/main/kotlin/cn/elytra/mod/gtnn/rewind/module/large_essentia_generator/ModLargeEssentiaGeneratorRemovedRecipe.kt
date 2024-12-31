@@ -1,7 +1,6 @@
 package cn.elytra.mod.gtnn.rewind.module.large_essentia_generator
 
 import cn.elytra.mod.gtnn.rewind.IModule
-import cpw.mods.fml.common.event.FMLPostInitializationEvent
 import goodgenerator.util.ItemRefer
 import gregtech.api.GregTechAPI
 import gregtech.api.enums.ItemList
@@ -22,7 +21,7 @@ object ModLargeEssentiaGeneratorRemovedRecipe : IModule {
 		enabled = configuration.getBoolean("add-removed-recipe", "large-essentia-generator", enabled, "add LEG recipe back")
 	}
 
-	override fun fmlPostInit(e: FMLPostInitializationEvent) {
+	override fun registerRecipes() {
 		GregTechAPI.sThaumcraftCompat.addInfusionRecipe(
 			"ESSENTIA_GENERATOR",
 			ItemList.Hull_HV.get(1),
@@ -45,4 +44,5 @@ object ModLargeEssentiaGeneratorRemovedRecipe : IModule {
 			)
 		)
 	}
+
 }
