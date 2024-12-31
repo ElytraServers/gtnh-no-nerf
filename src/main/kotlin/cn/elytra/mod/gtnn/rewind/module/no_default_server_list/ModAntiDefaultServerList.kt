@@ -1,14 +1,16 @@
 package cn.elytra.mod.gtnn.rewind.module.no_default_server_list
 
 import cn.elytra.mod.gtnn.rewind.IModule
+import cpw.mods.fml.common.FMLCommonHandler
 import cpw.mods.fml.common.event.FMLPreInitializationEvent
+import cpw.mods.fml.relauncher.Side
 import net.minecraft.client.multiplayer.ServerData
 import net.minecraftforge.common.config.Configuration
 import org.apache.logging.log4j.LogManager
 
 object ModAntiDefaultServerList : IModule {
 
-	override val enabled: Boolean = true
+	override val enabled: Boolean = FMLCommonHandler.instance().side == Side.CLIENT
 
 	override fun readConfig(configuration: Configuration) {
 	}
