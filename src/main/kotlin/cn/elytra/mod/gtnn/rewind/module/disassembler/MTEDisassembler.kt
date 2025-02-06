@@ -28,7 +28,7 @@ class MTEDisassembler : MTEBasicMachineWithRecipe {
 		id, name, nameRegional, tier,
 		"Disassembles items into their components",
 		RecipeMap, 1, 9, false,
-		SoundResource.NONE, SpecialEffects.NONE, "ASSEMBLER", MachineCraftRecipe,
+		SoundResource.NONE, SpecialEffects.NONE, "ASSEMBLER", MachineCraftRecipe.copyOf(),
 	)
 
 	override fun addAdditionalTooltipInformation(stack: ItemStack, tooltip: MutableList<String>) {
