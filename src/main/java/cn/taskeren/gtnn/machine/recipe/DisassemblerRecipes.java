@@ -80,6 +80,7 @@ public class DisassemblerRecipes {
 
 		if(item.getItem() instanceof MetaGeneratedTool) return false;
 		if(isCircuit(item)) return false;
+		if(isCrushedOre(item)) return false;
 		if(INPUT_BLACKLIST.stream().anyMatch(b -> GTUtility.areStacksEqual(b.toStack(), item, true))) return false;
 		if(isUnpackerRecipe(item)) return false;
 
@@ -180,6 +181,16 @@ public class DisassemblerRecipes {
 			.items(stack)
 			.find();
 		return unpackerRecipe != null;
+	}
+
+	private static boolean isCrushedOre(ItemStack stack) {
+		var data = GTOreDictUnificator.getAssociation(stack);
+		if(data != null) {
+			return data.mPrefix == OrePrefixes.crushed ||
+				data.mPrefix == OrePrefixes.crushedCentrifuged ||
+				data.mPrefix == OrePrefixes.crushedPurified;
+		}
+		return false;
 	}
 
 	/**
