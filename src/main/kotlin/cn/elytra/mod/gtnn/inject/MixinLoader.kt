@@ -19,6 +19,7 @@ object MixinLoader {
 		ModLargeEssentiaGeneratorAllowLaser,
 		ModAddCatalyst,
 		ModInfinityMEBus,
+		ModAdvancedAssemblyLineSubtick,
 	)
 
 	private val _loadedMixinModules = mutableListOf<IMixinModule>()
