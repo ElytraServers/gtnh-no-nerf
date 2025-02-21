@@ -1,6 +1,6 @@
 package cn.taskeren.gtnn.machine.recipe;
 
-import cn.taskeren.gtnn.GTNN;
+import cn.elytra.mod.gtnn.mod.GTNN;
 import cn.taskeren.gtnn.util.KtCandy;
 import cn.taskeren.gtnn.util.ProgressIterable;
 import cn.taskeren.gtnn.util.ToStringHelper;

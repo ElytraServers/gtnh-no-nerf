@@ -1,6 +1,6 @@
 package cn.taskeren.gtnn.mixin.gt5u;
 
-import cn.taskeren.gtnn.GTNN;
+import cn.elytra.mod.gtnn.mod.GTNN;
 import cn.taskeren.gtnn.util.ToStringHelper;
 import gregtech.common.tileentities.generators.MTELightningRod;
 import net.minecraft.world.World;

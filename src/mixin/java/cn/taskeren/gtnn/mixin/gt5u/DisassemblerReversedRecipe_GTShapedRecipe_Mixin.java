@@ -1,7 +1,7 @@
 package cn.taskeren.gtnn.mixin.gt5u;
 
+import cn.elytra.mod.gtnn.mod.GTNN;
 import cn.elytra.mod.gtnn.rewind.module.disassembler.ReversedRecipeRegistry;
-import cn.taskeren.gtnn.GTNN;
 import cn.taskeren.gtnn.machine.recipe.DisassemblerRecipes;
 import gregtech.api.util.GTShapedRecipe;
 import net.minecraft.enchantment.Enchantment;
