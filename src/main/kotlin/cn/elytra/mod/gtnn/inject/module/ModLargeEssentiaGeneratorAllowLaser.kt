@@ -16,6 +16,6 @@ object ModLargeEssentiaGeneratorAllowLaser : IMixinModule {
 	}
 
 	override fun isTargetModsLoaded(loadedMods: List<TargetMod>): Boolean {
-		return TargetMod.GoodGenerator in loadedMods
+		return TargetMod.GoodGenerator in loadedMods || TargetMod.GregTech in loadedMods
 	}
 }

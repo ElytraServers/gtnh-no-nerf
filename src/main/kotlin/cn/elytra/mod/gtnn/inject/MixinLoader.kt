@@ -1,7 +1,7 @@
 package cn.elytra.mod.gtnn.inject
 
 import cn.elytra.mod.gtnn.inject.module.*
-import com.falsepattern.gasstation.MinecraftURLClassPath
+import com.gtnewhorizon.gtnhmixins.MinecraftURLClassPath
 import net.minecraft.launchwrapper.Launch
 import net.minecraftforge.common.config.Configuration
 import org.apache.logging.log4j.LogManager

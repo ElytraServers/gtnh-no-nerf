@@ -33,6 +33,8 @@ import static gregtech.api.enums.Mods.IndustrialCraft2;
 
 public class DisassemblerRecipes {
 
+	public static final boolean DEBUG = Boolean.getBoolean("gtnn.debug.disassembler");
+
 	private static final List<GTItemStack> INPUT_BLACKLIST = KtCandy.buildList((list) -> {
 		list.add(new GTItemStack(ItemList.Casing_Coil_Superconductor.get(1)));
 		list.add(new GTItemStack(Materials.Graphene.getDust(1)));

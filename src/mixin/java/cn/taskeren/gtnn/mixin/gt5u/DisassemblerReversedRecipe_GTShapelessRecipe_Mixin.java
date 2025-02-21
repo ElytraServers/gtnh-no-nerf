@@ -1,6 +1,8 @@
 package cn.taskeren.gtnn.mixin.gt5u;
 
 import cn.elytra.mod.gtnn.rewind.module.disassembler.ReversedRecipeRegistry;
+import cn.taskeren.gtnn.GTNN;
+import cn.taskeren.gtnn.machine.recipe.DisassemblerRecipes;
 import gregtech.api.util.GTShapelessRecipe;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.ItemStack;
@@ -16,6 +18,8 @@ public class DisassemblerReversedRecipe_GTShapelessRecipe_Mixin {
 	private void nn$init(ItemStack aResult, boolean aDismantleAble, boolean aRemovableByGT, boolean aKeepingNBT, Enchantment[] aEnchantmentsAdded, int[] aEnchantmentLevelsAdded, Object[] aRecipe, CallbackInfo ci) {
 		if(aDismantleAble) {
 			ReversedRecipeRegistry.registerShapeless(aResult, aRecipe);
+		} else if(DisassemblerRecipes.DEBUG) {
+			GTNN.logger.info("Skipped {} because aDismantleAble = false", aResult);
 		}
 	}
 
