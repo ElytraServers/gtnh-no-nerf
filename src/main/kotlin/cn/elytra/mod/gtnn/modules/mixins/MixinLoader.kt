@@ -52,9 +52,7 @@ object MixinLoader {
 		}
 	}
 
-	private val _loadedMixinModules = mutableListOf<IMixinModule>()
-
-	val loadedMixinModules: List<String> get() = _loadedMixinModules.map { it::class.java.simpleName }
+	val loadedMixinModules = mutableListOf<IMixinModule>()
 
 	fun readConfig() {
 		val config = Configuration(File(Launch.minecraftHome, "config/gtnn-mixin.cfg"))
@@ -77,7 +75,7 @@ object MixinLoader {
 							add(mixin)
 							logger.info("- $mixin")
 						}
-						_loadedMixinModules += mixinModule
+						loadedMixinModules += mixinModule
 					} else {
 						logger.info("Skipped Mixin module $mixinModule because requirements not met")
 					}

@@ -1,7 +1,6 @@
 package cn.elytra.mod.gtnn.modules.simple.module.disassembler
 
 import cn.elytra.mod.gtnn.GTNN
-import cn.taskeren.gtnn.machine.recipe.DisassemblerRecipes
 import gregtech.api.util.GTRecipe
 import gregtech.api.util.GTUtility
 import net.minecraft.item.ItemStack
@@ -33,7 +32,7 @@ object ReversedRecipeRegistry {
 
 	@JvmStatic
 	internal fun registerAllReversedRecipes() {
-		Registry.forEach { DisassemblerRecipes.registerReversedCraftingRecipe(it) }
+		Registry.forEach { DisassemblerHelper.addCraftingTableReverseRecipe(it) }
 	}
 
 }

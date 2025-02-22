@@ -1,17 +1,25 @@
 package cn.elytra.mod.gtnn.modules.simple.module.disassembler
 
 import cn.elytra.mod.gtnn.util.GTNNText
-import cn.taskeren.gtnn.machine.recipe.DisassemblerRecipes
 import gregtech.api.enums.SoundResource
+import gregtech.api.gui.modularui.GTUITextures
 import gregtech.api.metatileentity.implementations.MTEBasicMachineWithRecipe
+import gregtech.api.recipe.BasicUIProperties.SlotOverlayGetter
 import gregtech.api.recipe.RecipeMap
 import gregtech.api.recipe.RecipeMapBackend
+import gregtech.api.recipe.RecipeMapBuilder
 import net.minecraft.item.ItemStack
 
 class MTEDisassembler : MTEBasicMachineWithRecipe {
 
 	companion object {
-		val RecipeMap: RecipeMap<RecipeMapBackend> get() = DisassemblerRecipes.DISASSEMBLER_RECIPES
+		val RecipeMap: RecipeMap<RecipeMapBackend?> = RecipeMapBuilder.of("gtnn.recipe.disassembler")
+			.maxIO(1, 9, 0, 0)
+			.minInputs(1, 0)
+			.slotOverlays(SlotOverlayGetter { index: Int, isFluid: Boolean, isOutput: Boolean, isSpecial: Boolean -> if(!isFluid && !isOutput) GTUITextures.OVERLAY_SLOT_CIRCUIT else null })
+			.progressBar(GTUITextures.PROGRESSBAR_ASSEMBLE)
+			.disableOptimize()
+			.build()
 
 		val MachineCraftRecipe = arrayOf<Any>(
 			"ACA",

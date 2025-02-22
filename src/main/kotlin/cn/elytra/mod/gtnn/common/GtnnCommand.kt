@@ -51,7 +51,8 @@ object GtnnCommand : CommandBase() {
 				}
 			}
 			"loaded-mixins" -> {
-				sender.addChatMessage(ChatComponentText("Loaded Mixin Modules: [${MixinLoader.loadedMixinModules.joinToString(", ")}]"))
+				val loadedMixinNames = MixinLoader.loadedMixinModules.joinToString(", ") { it.id }
+				sender.addChatMessage(ChatComponentText("Loaded Mixin Modules: [${loadedMixinNames}]"))
 			}
 			else -> {
 				arrayOf(

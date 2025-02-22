@@ -1,7 +1,7 @@
 {
 	"required": true,
 	"minVersion": "0.8.3-GTNH",
-	"package": "cn.taskeren.gtnn.mixin",
+	"package": "cn.elytra.mod.gtnn.mixin",
 	"refmap": "mixins.gtnn.refmap.json",
 	"target": "@env(DEFAULT)",
 	"compatibilityLevel": "JAVA_8"

@@ -1,4 +1,4 @@
-package cn.taskeren.gtnn.mixin.gtpp;
+package cn.elytra.mod.gtnn.mixin.gtpp;
 
 import cn.elytra.mod.gtnn.modules.simple.module.waterline_skip.CatalystInject;
 import gtPlusPlus.core.util.minecraft.ItemUtils;

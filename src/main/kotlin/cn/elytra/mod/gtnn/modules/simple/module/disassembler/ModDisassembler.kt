@@ -3,10 +3,8 @@ package cn.elytra.mod.gtnn.modules.simple.module.disassembler
 import cn.elytra.mod.gtnn.modules.simple.IModule
 import cn.elytra.mod.gtnn.util.VoltageIndexedMap
 import cn.elytra.mod.gtnn.util.withOffsetStartBy
-import cn.taskeren.gtnn.machine.recipe.DisassemblerRecipes
 import net.minecraft.item.ItemStack
 import net.minecraftforge.common.config.Configuration
-import kotlin.collections.iterator
 
 object ModDisassembler : IModule {
 
@@ -61,7 +59,7 @@ object ModDisassembler : IModule {
 	}
 
 	override fun loadRecipesOnComplete() {
-		DisassemblerRecipes.loadAssemblerRecipes()
+		DisassemblerHelper.loadAssemblerRecipesToDisassembler()
 		ReversedRecipeRegistry.registerAllReversedRecipes()
 	}
 }

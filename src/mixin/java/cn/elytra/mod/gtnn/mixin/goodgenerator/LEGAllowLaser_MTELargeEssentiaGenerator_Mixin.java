@@ -1,4 +1,4 @@
-package cn.taskeren.gtnn.mixin.goodgenerator;
+package cn.elytra.mod.gtnn.mixin.goodgenerator;
 
 import goodgenerator.blocks.tileEntity.MTELargeEssentiaGenerator;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,22 +1,16 @@
 package cn.elytra.mod.gtnn
 
-import cn.taskeren.gtnn.GTNNConst
 import cpw.mods.fml.common.Mod
 import cpw.mods.fml.common.Mod.EventHandler
 import cpw.mods.fml.common.SidedProxy
-import cpw.mods.fml.common.event.FMLInitializationEvent
-import cpw.mods.fml.common.event.FMLLoadCompleteEvent
-import cpw.mods.fml.common.event.FMLPostInitializationEvent
-import cpw.mods.fml.common.event.FMLPreInitializationEvent
-import cpw.mods.fml.common.event.FMLServerStartedEvent
-import cpw.mods.fml.common.event.FMLServerStartingEvent
+import cpw.mods.fml.common.event.*
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 
 @Mod(
 	modid = GTNN.MOD_ID,
 	name = GTNN.MOD_NAME,
-	version = GTNNConst.VERSION,
+	version = Tags.VERSION,
 	dependencies = GTNN.DEPS,
 	modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter"
 )
