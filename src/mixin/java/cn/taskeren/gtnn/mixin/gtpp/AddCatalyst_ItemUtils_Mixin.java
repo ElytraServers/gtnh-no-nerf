@@ -1,6 +1,6 @@
 package cn.taskeren.gtnn.mixin.gtpp;
 
-import cn.elytra.mod.gtnn.rewind.module.waterline_skip.CatalystInject;
+import cn.elytra.mod.gtnn.modules.simple.module.waterline_skip.CatalystInject;
 import gtPlusPlus.core.util.minecraft.ItemUtils;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;

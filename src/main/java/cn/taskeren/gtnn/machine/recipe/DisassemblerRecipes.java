@@ -1,6 +1,6 @@
 package cn.taskeren.gtnn.machine.recipe;
 
-import cn.elytra.mod.gtnn.mod.GTNN;
+import cn.elytra.mod.gtnn.GTNN;
 import cn.taskeren.gtnn.util.KtCandy;
 import cn.taskeren.gtnn.util.ProgressIterable;
 import cn.taskeren.gtnn.util.ToStringHelper;
@@ -32,8 +32,6 @@ import static gregtech.api.enums.Mods.AppliedEnergistics2;
 import static gregtech.api.enums.Mods.IndustrialCraft2;
 
 public class DisassemblerRecipes {
-
-	public static final boolean DEBUG = Boolean.getBoolean("gtnn.debug.disassembler");
 
 	private static final List<GTItemStack> INPUT_BLACKLIST = KtCandy.buildList((list) -> {
 		list.add(new GTItemStack(ItemList.Casing_Coil_Superconductor.get(1)));

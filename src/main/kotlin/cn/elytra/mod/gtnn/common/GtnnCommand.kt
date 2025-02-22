@@ -1,6 +1,6 @@
 package cn.elytra.mod.gtnn.common
 
-import cn.elytra.mod.gtnn.inject.MixinLoader
+import cn.elytra.mod.gtnn.modules.mixins.MixinLoader
 import net.minecraft.command.CommandBase
 import net.minecraft.command.ICommandSender
 import net.minecraft.entity.player.EntityPlayer
