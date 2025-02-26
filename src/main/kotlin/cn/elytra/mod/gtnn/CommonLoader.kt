@@ -12,7 +12,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent
 import cpw.mods.fml.relauncher.Side
 import net.minecraft.launchwrapper.Launch
 
-sealed class CommonLoader {
+open class CommonLoader {
 
 	/**
 	 * Whether the server or client environment this mod currently in.
