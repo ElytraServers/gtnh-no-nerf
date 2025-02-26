@@ -1,6 +1,6 @@
 package cn.elytra.mod.gtnn.common
 
-import cn.elytra.mod.gtnn.inject.MixinLoader
+import cn.elytra.mod.gtnn.modules.mixins.MixinLoader
 import net.minecraft.command.CommandBase
 import net.minecraft.command.ICommandSender
 import net.minecraft.entity.player.EntityPlayer
@@ -51,7 +51,8 @@ object GtnnCommand : CommandBase() {
 				}
 			}
 			"loaded-mixins" -> {
-				sender.addChatMessage(ChatComponentText("Loaded Mixin Modules: [${MixinLoader.loadedMixinModules.joinToString(", ")}]"))
+				val loadedMixinNames = MixinLoader.loadedMixinModules.joinToString(", ") { it.id }
+				sender.addChatMessage(ChatComponentText("Loaded Mixin Modules: [${loadedMixinNames}]"))
 			}
 			else -> {
 				arrayOf(
