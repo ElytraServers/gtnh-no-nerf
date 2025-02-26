@@ -239,11 +239,12 @@ object DisassemblerHelper {
 	 * @return unificated one.
 	 */
 	private fun handleUnification(stack: ItemStack?): ItemStack? {
-		for(oreId in OreDictionary.getOreIDs(stack)) {
-			for((oreDictMatcher, replaceItemStack) in oreDictReplace) {
-				if(OreDictionary.getOreName(oreId) == oreDictMatcher) {
-					// stack cannot be null here, because it getOreIDs() will return empty array if stack is null
-					return replaceItemStack.copy().also { it.stackSize = stack!!.stackSize }
+		if(stack != null) {
+			for(oreId in OreDictionary.getOreIDs(stack)) {
+				for((oreDictMatcher, replaceItemStack) in oreDictReplace) {
+					if(OreDictionary.getOreName(oreId) == oreDictMatcher) {
+						return replaceItemStack.copy().also { it.stackSize = stack.stackSize }
+					}
 				}
 			}
 		}
@@ -251,7 +252,7 @@ object DisassemblerHelper {
 	}
 
 	private fun handleWildcard(stack: ItemStack?): ItemStack? {
-		if(stack != null && stack.itemDamage == OreDictionary.WILDCARD_VALUE && stack.item.isDamageable) {
+		if(stack != null && stack.itemDamage == OreDictionary.WILDCARD_VALUE && !stack.item.isDamageable) {
 			stack.itemDamage = 0
 		}
 		return stack
