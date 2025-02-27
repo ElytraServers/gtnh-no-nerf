@@ -1,6 +1,8 @@
 package cn.elytra.mod.gtnn.common
 
+import cn.elytra.mod.gtnn.GTNN
 import cn.elytra.mod.gtnn.modules.mixins.MixinLoader
+import cn.elytra.mod.gtnn.modules.simple.module.disassembler.DisassemblerHelper
 import net.minecraft.command.CommandBase
 import net.minecraft.command.ICommandSender
 import net.minecraft.entity.player.EntityPlayer
@@ -30,7 +32,7 @@ object GtnnCommand : CommandBase() {
 	): List<String> {
 		val args = argsArray.toMutableList()
 		return when(args.removeFirstOrNull()) {
-			"" -> listOf("github", "loaded-mixins", "help")
+			"" -> listOf("github", "loaded-mixins", "help", "disassemble-debug-index")
 			else -> listOf()
 		}
 	}
@@ -50,15 +52,33 @@ object GtnnCommand : CommandBase() {
 					sender.addChatMessage(ChatComponentText("Failed to open the URL, see logs for details."))
 				}
 			}
+
 			"loaded-mixins" -> {
 				val loadedMixinNames = MixinLoader.loadedMixinModules.joinToString(", ") { it.id }
 				sender.addChatMessage(ChatComponentText("Loaded Mixin Modules: [${loadedMixinNames}]"))
 			}
+
+			"disassemble-debug-index" -> {
+				val debugIndexStr = args.removeFirstOrNull()
+					?: return sender.addChatMessage(ChatComponentText("Debug index required"))
+				val debugIndex = debugIndexStr.toIntOrNull()
+					?: return sender.addChatMessage(ChatComponentText("Debug index is an integer"))
+				val debugIndexToRecipe = DisassemblerHelper.debugIndexToRecipe
+				if(debugIndexToRecipe == null) {
+					return sender.addChatMessage(ChatComponentText("Debug mode is not enabled"))
+				}
+				val info = debugIndexToRecipe.getOrElse(debugIndex) {
+					return sender.addChatMessage(ChatComponentText("Debug index $debugIndex is not found!"))
+				}
+				info.getInfo().lineSequence().forEach { GTNN.logger.info(it) }
+			}
+
 			else -> {
 				arrayOf(
 					"/gtnn help - show this help message",
 					"/gtnn github - open the repository of gtnn",
 					"/gtnn loaded-mixins - list loaded mixin modules",
+					"/gtnn disassemble-debug-index - (with disassembler debug mode enabled) get the related recipe info with given debug index"
 				).forEach { sender.addChatMessage(ChatComponentText(it)) }
 			}
 		}

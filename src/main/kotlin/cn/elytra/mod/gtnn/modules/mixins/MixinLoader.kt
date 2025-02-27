@@ -1,5 +1,8 @@
 package cn.elytra.mod.gtnn.modules.mixins
 
+import cpw.mods.fml.common.Loader
+import cpw.mods.fml.common.ModContainer
+import cpw.mods.fml.common.versioning.ComparableVersion
 import net.minecraft.launchwrapper.Launch
 import net.minecraftforge.common.config.Configuration
 import org.apache.logging.log4j.LogManager
@@ -8,7 +11,7 @@ import java.io.File
 
 object MixinLoader {
 
-	val logger: Logger = LogManager.getLogger("GTNN-MixinModule-Loader")
+	val logger: Logger = LogManager.getLogger("GTNN-Mixin-Module-Loader")
 
 	private val MixinModules = mutableListOf<IMixinModule>()
 
@@ -21,7 +24,20 @@ object MixinLoader {
 		}
 		MixinModules += MixinModuleBuilder("disassembler-recipe-getter") {
 			addMixin("gt5u.DisassemblerReversedRecipe_GTShapedRecipe_Mixin")
-			addMixin("gt5u.DisassemblerReversedRecipe_GTShapelessRecipe_Mixin")
+			addMixinDynamic {
+				// https://github.com/GTNewHorizons/GT5-Unofficial/commit/07cc2ec931b0e479026e78298a7bd926019c9334
+				// the commit above changed the argument of GTShapelessRecipe and removed the "aDismantleable"
+				// causing the injection mistakenly treat the "aRemoveable" as "aDismantleable"
+				// we should not load any shapless recipes until we have a fix to this problem
+				val gtVersion = ComparableVersion(getModContainer("gregtech")!!.metadata.version)
+				val tagVersionChangedTheBehavior = ComparableVersion("5.09.49.93") // must be lower than this version
+				logger.info("Loaded GregTech version: $gtVersion")
+				if(gtVersion < tagVersionChangedTheBehavior) {
+					add("gt5u.DisassemblerReversedRecipe_GTShapelessRecipe_Mixin")
+				} else {
+					logger.info("Skipped gt5u.DisassemblerReversedRecipe_GTShapelessRecipe_Mixin due to version incompatibility")
+				}
+			}
 			dependsOn(TargetMod.GregTech)
 			mustBeEnabled()
 			setConfigCategoryDesc("To get all the GregTech-source recipes for the Disassembler recipe map.")
@@ -70,7 +86,7 @@ object MixinLoader {
 			MixinModules.forEach { mixinModule ->
 				if(mixinModule.isEnabled()) {
 					if(mixinModule.canApplyMixins()) {
-						logger.info("Applying Mixins from $mixinModule")
+						logger.info("Applying Mixins from ${mixinModule.id}")
 						mixinModule.mixins.forEach { mixin ->
 							add(mixin)
 							logger.info("- $mixin")
@@ -82,5 +98,9 @@ object MixinLoader {
 				}
 			}
 		}
+	}
+
+	internal fun getModContainer(modId: String): ModContainer? {
+		return Loader.instance().modList.firstOrNull { it.modId == modId }
 	}
 }

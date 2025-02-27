@@ -7,6 +7,8 @@ class MixinModuleBuilder(private val id: String) {
 	private val mixinClassesToApply: MutableSet<String> = mutableSetOf()
 	private val dependsOnTargetMods: MutableList<TargetMod> = mutableListOf()
 
+	private val dynamicMixinClassesToApply: MutableList<MutableSet<String>.() -> Unit> = mutableListOf()
+
 	private var enabledByDefault: Boolean = false
 	private var mustBeEnabled: Boolean = false
 
@@ -27,8 +29,24 @@ class MixinModuleBuilder(private val id: String) {
 	 */
 	private var extraRequirementsCheck: (() -> Boolean)? = null
 
+	/**
+	 * Given [mixinClasses] will be constantly added when gathering Mixin classes, when this module is both
+	 * [IMixinModule.isEnabled] and [IMixinModule.canApplyMixins].
+	 *
+	 * @see addMixinDynamic
+	 */
 	fun addMixin(vararg mixinClasses: String) {
 		mixinClassesToApply.addAll(mixinClasses)
+	}
+
+	/**
+	 * Given [block] will be called when gathering Mixin classes, when this module is both
+	 * [IMixinModule.isEnabled] and [IMixinModule.canApplyMixins].
+	 *
+	 * You need to add the Mixin classes to the receiver.
+	 */
+	fun addMixinDynamic(block: MutableSet<String>.() -> Unit) {
+		dynamicMixinClassesToApply.add(block)
 	}
 
 	fun dependsOn(vararg targetMods: TargetMod) {
@@ -54,7 +72,13 @@ class MixinModuleBuilder(private val id: String) {
 	fun build(): IMixinModule {
 		return object : IMixinModule {
 			override val id: String = this@MixinModuleBuilder.id
-			override val mixins: Set<String> = mixinClassesToApply
+			override val mixins: Set<String>
+				get() = buildSet {
+					addAll(mixinClassesToApply)
+					dynamicMixinClassesToApply.forEach {
+						it(this)
+					}
+				}
 
 			private var enabled: Boolean = enabledByDefault
 
@@ -88,6 +112,10 @@ class MixinModuleBuilder(private val id: String) {
 				val extraRequirementsCheck = extraRequirementsCheck
 				return dependsOnTargetMods.all { it.isLoaded }
 					&& (extraRequirementsCheck == null || extraRequirementsCheck())
+			}
+
+			override fun toString(): String {
+				return "MixinModuleBuilder\$Generated(id=$id)"
 			}
 		}
 	}

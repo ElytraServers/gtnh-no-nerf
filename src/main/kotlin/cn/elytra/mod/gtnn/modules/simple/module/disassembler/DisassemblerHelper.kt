@@ -1,7 +1,9 @@
 package cn.elytra.mod.gtnn.modules.simple.module.disassembler
 
 import cn.elytra.mod.gtnn.GTNN
+import cn.elytra.mod.gtnn.modules.simple.module.disassembler.DisassemblerHelper.debugMode
 import cn.elytra.mod.gtnn.modules.simple.module.disassembler.DisassemblerHelper.oreDictReplace
+import cn.elytra.mod.gtnn.util.anyInRecipeToString
 import com.google.common.collect.ArrayListMultimap
 import gregtech.api.enums.*
 import gregtech.api.items.MetaGeneratedTool
@@ -11,15 +13,101 @@ import gregtech.api.recipe.RecipeMaps
 import gregtech.api.util.GTModHandler
 import gregtech.api.util.GTOreDictUnificator
 import gregtech.api.util.GTRecipe
+import gregtech.api.util.GTRecipeBuilder
 import gregtech.api.util.GTUtility
 import ic2.api.item.IC2Items
 import net.minecraft.init.Blocks
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
 import net.minecraftforge.oredict.OreDictionary
+import java.util.concurrent.atomic.AtomicInteger
+import kotlin.jvm.optionals.getOrNull
 import kotlin.math.min
 
 object DisassemblerHelper {
+
+	private val debugMode = System.getenv("DEBUG_DISASSEMBLER") == "true"
+
+	sealed interface GeneratedRecipeInfo<T> {
+		val original: T
+		val debugIndex: Int
+
+		fun getInfo(): String
+	}
+
+	data class AssemblerReversed(
+		override val original: List<GTRecipe>,
+		override val debugIndex: Int,
+		val reason: String,
+	): GeneratedRecipeInfo<List<GTRecipe>> {
+		override fun getInfo(): String = buildString {
+			appendLine("[[ Generated from Assembler recipes ]]")
+			appendLine("Reason = $reason")
+			appendLine("Debug Index = $debugIndex")
+			original.forEachIndexed { index, recipe ->
+				appendLine("<< Original recipe ($index) >>")
+				append("inputs = ")
+				appendLine(recipe.mInputs.joinToString(", ", "[", "]") { anyInRecipeToString(it) })
+			}
+		}
+	}
+
+	data class CraftingTableReversed(
+		override val original: ReversedRecipeRegistry.GTCraftingRecipe,
+		override val debugIndex: Int,
+	): GeneratedRecipeInfo<ReversedRecipeRegistry.GTCraftingRecipe> {
+		override fun getInfo(): String = buildString {
+			appendLine("[[ Generated from GregTech Crafting recipes ]]")
+			appendLine("Debug Index = $debugIndex")
+			append("inputs = ")
+			appendLine(original.inputs.joinToString(", ", "[", "]") { anyInRecipeToString(it) })
+			append("stacktrace = ")
+			appendLine(original.adderStackTrace.stackTraceToString())
+		}
+	}
+
+	/**
+	 * A map records the reversed recipes and its original to find out which part is glitching.
+	 * Only be not-null when [debugMode] is true.
+	 */
+	val debugRecipeToRecipe: MutableMap<GTRecipe, MutableList<GeneratedRecipeInfo<*>>>? =
+		if(debugMode) mutableMapOf() else null
+
+	val debugIndexToRecipe: MutableMap<Int, GeneratedRecipeInfo<*>>? =
+		if(debugMode) mutableMapOf() else null
+
+	private val debugIndexBumper = AtomicInteger(0)
+
+	private fun GTRecipeBuilder.tryRecordAssemblerSourceRecipe(original: List<GTRecipe>, isHardOverride: Boolean = false) =
+		apply {
+			if(debugRecipeToRecipe != null) {
+				val generated = build().getOrNull()
+				if(generated != null) {
+					val recipeInfoList = debugRecipeToRecipe.getOrPut(generated) { mutableListOf() }
+					val debugIndex = debugIndexBumper.andIncrement
+					val recipeInfo =
+						AssemblerReversed(original, debugIndex, if(isHardOverride) "Hard-override" else "Generated")
+					recipeInfoList.add(recipeInfo)
+					setNEIDesc("Debug Index: $debugIndex")
+					debugIndexToRecipe!![debugIndex] = recipeInfo
+				}
+			}
+		}
+
+	private fun GTRecipeBuilder.tryRecordCraftingTableSourceRecipe(original: ReversedRecipeRegistry.GTCraftingRecipe) =
+		apply {
+			if(debugRecipeToRecipe != null) {
+				val generated = build().getOrNull()
+				if(generated != null) {
+					val recipeInfoList = debugRecipeToRecipe.getOrPut(generated) { mutableListOf() }
+					val debugIndex = debugIndexBumper.andIncrement
+					val recipeInfo = CraftingTableReversed(original, debugIndex)
+					recipeInfoList.add(recipeInfo)
+					setNEIDesc("Debug Index: $debugIndex")
+					debugIndexToRecipe!![debugIndex] = recipeInfo
+				}
+			}
+		}
 
 	private val alwaysReplace by lazy {
 		listOf(
@@ -64,6 +152,9 @@ object DisassemblerHelper {
 			val thisMaterial = itemDataInSlotIdx.mMaterial.mMaterial
 			if(outputsInOtherRecipes != null) {
 				for(outputsInOtherRecipe in outputsInOtherRecipes) {
+					// check array bondary
+					if(idx !in outputsInOtherRecipe.indices) continue
+
 					val dataAgainst = GTOreDictUnificator.getItemData(outputsInOtherRecipe[idx])
 					if(!(dataAgainst == null
 							|| dataAgainst.mMaterial == null
@@ -307,7 +398,7 @@ object DisassemblerHelper {
 	fun loadAssemblerRecipesToDisassembler() {
 		val assemblerRecipes = RecipeMaps.assemblerRecipes.allRecipes
 			.filter { shouldDisassemble(it.mOutputs) }
-			.groupBy { it.mOutputs[0] }
+			.groupBy { GTItemStack(it.mOutputs[0]) }
 
 		val totalCount = assemblerRecipes.size
 		GTNN.logger.info("Loading reversed assembler recipes, total: $totalCount")
@@ -329,6 +420,8 @@ object DisassemblerHelper {
 							.itemOutputs(overrideOutput)
 							.duration(overrideDuration)
 							.eut(overrideEUt)
+							.setNEIDesc("Generated from Assembler Recipe (Hard-overriden)")
+							.tryRecordAssemblerSourceRecipe(recipes, true)
 							.addTo(MTEDisassembler.RecipeMap)
 
 						continue@forRecipes
@@ -346,6 +439,8 @@ object DisassemblerHelper {
 					.itemOutputs(*outputs.toTypedArray())
 					.duration(revDuration)
 					.eut(revEUt)
+					.setNEIDesc("Generated from Assembler Recipe")
+					.tryRecordAssemblerSourceRecipe(recipes)
 					.addTo(MTEDisassembler.RecipeMap)
 			} catch(e: Exception) {
 				// @formatter:off
@@ -410,11 +505,11 @@ object DisassemblerHelper {
 	}
 
 	/**
-	 * Adds a **REVERSED** recipe to disassembler recipe map.
-	 *
-	 * The passed-in recipe should have been reversed once before, and we don't reverse it again.
+	 * Reverse a recipe and add to disassembler recipe map.
 	 */
-	fun addCraftingTableReverseRecipe(revRecipe: GTRecipe) {
+	fun handleGTCraftingRecipe(recipe: ReversedRecipeRegistry.GTCraftingRecipe) {
+		val revRecipe = recipe.toReversedSafe() ?: return
+
 		if(!shouldDisassemble(revRecipe.mInputs)) return
 
 		try {
@@ -423,6 +518,8 @@ object DisassemblerHelper {
 				.itemOutputs(*handleRecipeTransformation(revRecipe.mOutputs, null).toTypedArray())
 				.duration(300)
 				.eut(30)
+				.setNEIDesc("Generated from GT Crafting Recipe")
+				.tryRecordCraftingTableSourceRecipe(recipe)
 				.addTo(MTEDisassembler.RecipeMap)
 		} catch(e: Exception) {
 			// @formatter:off

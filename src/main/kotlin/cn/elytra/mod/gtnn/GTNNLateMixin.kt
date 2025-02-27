@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger
 class GTNNLateMixin : ILateMixinLoader {
 
 	@JvmField
-	val logger: Logger = LogManager.getLogger("GTNN-LateMixin-Loader")
+	val logger: Logger = LogManager.getLogger("GTNNLateMixin")
 
 	override fun getMixinConfig(): String {
 		return "mixins.gtnn.late.json"
