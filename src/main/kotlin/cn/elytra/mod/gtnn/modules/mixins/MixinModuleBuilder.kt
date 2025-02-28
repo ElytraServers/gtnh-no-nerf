@@ -69,6 +69,10 @@ class MixinModuleBuilder(private val id: String) {
 		configCategoryDesc = categoryDesc
 	}
 
+	fun onConfigLoad(block: (config: Configuration, categoryName: String) -> Unit) {
+		onConfigLoad = block
+	}
+
 	fun build(): IMixinModule {
 		return object : IMixinModule {
 			override val id: String = this@MixinModuleBuilder.id

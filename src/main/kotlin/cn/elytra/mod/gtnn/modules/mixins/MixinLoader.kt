@@ -23,6 +23,21 @@ object MixinLoader {
 			setConfigCategoryDesc("Disasbles the Iron Fence eating on Lightning Rod generating EU.")
 		}
 		MixinModules += MixinModuleBuilder("disassembler-recipe-getter") {
+			var forceLoadingShapeless = false
+
+			onConfigLoad { config, category ->
+				forceLoadingShapeless = config.getBoolean(
+					"force-loading-shapeless-recipes", category, forceLoadingShapeless,
+					"""
+						Set to 'true' to load shapeless recipes ignoring incompatible GregTech version.
+						This can only cause inection failed or inappropriate behaviors.
+
+						You can try to enable this with version equal to or later than '5.09.51.63', because the only
+						reported incorrectly added disassembling recipe is being removed before the commit of this tag.
+					""".trimIndent()
+				)
+			}
+
 			addMixin("gt5u.DisassemblerReversedRecipe_GTShapedRecipe_Mixin")
 			addMixinDynamic {
 				// https://github.com/GTNewHorizons/GT5-Unofficial/commit/07cc2ec931b0e479026e78298a7bd926019c9334
@@ -32,7 +47,7 @@ object MixinLoader {
 				val gtVersion = ComparableVersion(getModContainer("gregtech")!!.metadata.version)
 				val tagVersionChangedTheBehavior = ComparableVersion("5.09.49.93") // must be lower than this version
 				logger.info("Loaded GregTech version: $gtVersion")
-				if(gtVersion < tagVersionChangedTheBehavior) {
+				if(forceLoadingShapeless || gtVersion < tagVersionChangedTheBehavior) {
 					add("gt5u.DisassemblerReversedRecipe_GTShapelessRecipe_Mixin")
 				} else {
 					logger.info("Skipped gt5u.DisassemblerReversedRecipe_GTShapelessRecipe_Mixin due to version incompatibility")
