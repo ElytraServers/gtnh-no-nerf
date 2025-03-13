@@ -5,6 +5,7 @@ import cn.elytra.mod.gtnn.modules.simple.module.indium_comb_proc.ModIndiumCombPr
 import cn.elytra.mod.gtnn.modules.simple.module.large_essentia_generator.ModLargeEssentiaGeneratorRemovedRecipe
 import cn.elytra.mod.gtnn.modules.simple.module.large_processing_factory.ModLargeProcessingFactory
 import cn.elytra.mod.gtnn.modules.simple.module.large_processing_factory.ModLargeProcessingFactoryRemovedRecipe
+import cn.elytra.mod.gtnn.modules.simple.module.lower_lasers.ModLowerLaserHatches
 import cn.elytra.mod.gtnn.modules.simple.module.no_default_server_list.ModAntiDefaultServerList
 import cn.elytra.mod.gtnn.modules.simple.module.processing_array.ModProcessingArray
 import cn.elytra.mod.gtnn.modules.simple.module.processing_array.ModProcessingArrayRemovedRecipe
@@ -39,6 +40,7 @@ object ModularLoader {
 		Modules += ModLargeProcessingFactoryRemovedRecipe
 		Modules += ModProcessingArrayRemovedRecipe
 		Modules += ModLargeEssentiaGeneratorRemovedRecipe
+		Modules += ModLowerLaserHatches
 
 		// [removed recipe lines]
 		// recipes of certain lines that have been removed from GTNH,

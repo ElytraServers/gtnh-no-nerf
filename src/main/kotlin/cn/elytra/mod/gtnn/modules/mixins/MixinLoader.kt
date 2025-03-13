@@ -81,6 +81,11 @@ object MixinLoader {
 			dependsOn(TargetMod.GGFab)
 			enabledByDefault()
 		}
+		MixinModules += MixinModuleBuilder("dont-hide-tt-machine") {
+			addMixin("tectech.NoHide_MachineLoader_Mixin")
+			dependsOn(TargetMod.TecTech)
+			enabledByDefault()
+		}
 	}
 
 	val loadedMixinModules = mutableListOf<IMixinModule>()
