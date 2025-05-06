@@ -39,6 +39,9 @@ object GTNN {
 	lateinit var proxy: CommonLoader
 
 	@EventHandler
+	fun construct(e: FMLConstructionEvent) = proxy.construct(e)
+
+	@EventHandler
 	fun preInit(e: FMLPreInitializationEvent) = proxy.preInit(e)
 
 	@EventHandler
@@ -55,5 +58,11 @@ object GTNN {
 
 	@EventHandler
 	fun serverStarted(e: FMLServerStartedEvent) = proxy.serverStarted(e)
+
+	@EventHandler
+	fun serverStopping(e: FMLServerStoppingEvent) = proxy.serverStopping(e)
+
+	@EventHandler
+	fun serverStopped(e: FMLServerStoppedEvent) = proxy.serverStopped(e)
 
 }

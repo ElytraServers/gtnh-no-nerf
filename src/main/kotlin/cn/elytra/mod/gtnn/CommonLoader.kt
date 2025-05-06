@@ -1,14 +1,9 @@
 package cn.elytra.mod.gtnn
 
 import cn.elytra.mod.gtnn.common.GtnnCommand
-import cn.elytra.mod.gtnn.modules.simple.ModularLoader
+import cn.elytra.mod.gtnn.mod_v2.ModuleManager
 import cpw.mods.fml.common.FMLCommonHandler
-import cpw.mods.fml.common.event.FMLInitializationEvent
-import cpw.mods.fml.common.event.FMLLoadCompleteEvent
-import cpw.mods.fml.common.event.FMLPostInitializationEvent
-import cpw.mods.fml.common.event.FMLPreInitializationEvent
-import cpw.mods.fml.common.event.FMLServerStartedEvent
-import cpw.mods.fml.common.event.FMLServerStartingEvent
+import cpw.mods.fml.common.event.*
 import cpw.mods.fml.relauncher.Side
 import net.minecraft.launchwrapper.Launch
 
@@ -26,31 +21,43 @@ open class CommonLoader {
 	 */
 	val dev: Boolean get() = Launch.blackboard["fml.deobfuscatedEnvironment"] as Boolean
 
+	fun construct(e: FMLConstructionEvent) {
+	}
+
 	fun preInit(event: FMLPreInitializationEvent) {
 		if(dev) {
 			GTNN.logger.info("Deobfuscated environment detected!")
 		}
 
-		ModularLoader.fmlPreInit(event)
+		ModuleManager.onFMLPreInit(event)
 	}
 
 	fun init(event: FMLInitializationEvent) {
-		ModularLoader.fmlInit(event)
+		ModuleManager.onFMLInit(event)
 	}
 
 	fun postInit(event: FMLPostInitializationEvent) {
-		ModularLoader.fmlPostInit(event)
+		ModuleManager.onFMLPostInit(event)
 	}
 
 	fun complete(event: FMLLoadCompleteEvent) {
-		ModularLoader.fmlComplete(event)
+		ModuleManager.onFMLLoadComplete(event)
 	}
 
 	fun serverStarting(event: FMLServerStartingEvent) {
 		event.registerServerCommand(GtnnCommand)
+		ModuleManager.onFMLServerStarting(event)
 	}
 
 	fun serverStarted(event: FMLServerStartedEvent) {
+		ModuleManager.onFMLServerStarted(event)
+	}
 
+	fun serverStopping(event: FMLServerStoppingEvent) {
+		ModuleManager.onFMLServerStopping(event)
+	}
+
+	fun serverStopped(event: FMLServerStoppedEvent) {
+		ModuleManager.onFMLServerStopped(event)
 	}
 }

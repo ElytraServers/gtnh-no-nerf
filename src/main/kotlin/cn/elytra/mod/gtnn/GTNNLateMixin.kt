@@ -1,6 +1,6 @@
 package cn.elytra.mod.gtnn
 
-import cn.elytra.mod.gtnn.modules.mixins.MixinLoader
+import cn.elytra.mod.gtnn.mod_v2.ModuleManager
 import com.gtnewhorizon.gtnhmixins.ILateMixinLoader
 import com.gtnewhorizon.gtnhmixins.LateMixin
 import org.apache.logging.log4j.LogManager
@@ -18,9 +18,9 @@ class GTNNLateMixin : ILateMixinLoader {
 
 	override fun getMixins(loadedMods: Set<String>): List<String> {
 		logger.info("Loaded Mods: {}", loadedMods)
-		// load configuration before gathering the mixin classes
-		MixinLoader.readConfig()
 		// gather mixin classes
-		return MixinLoader.getMixins(loadedMods)
+		return buildList {
+			addAll(ModuleManager.gatherMixinsToApply(loadedMods))
+		}
 	}
 }

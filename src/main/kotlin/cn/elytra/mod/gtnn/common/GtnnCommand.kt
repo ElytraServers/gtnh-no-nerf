@@ -1,8 +1,7 @@
 package cn.elytra.mod.gtnn.common
 
 import cn.elytra.mod.gtnn.GTNN
-import cn.elytra.mod.gtnn.modules.mixins.MixinLoader
-import cn.elytra.mod.gtnn.modules.simple.module.disassembler.DisassemblerHelper
+import cn.elytra.mod.gtnn.modules.disassembler.DisassemblerHelper
 import net.minecraft.command.CommandBase
 import net.minecraft.command.ICommandSender
 import net.minecraft.entity.player.EntityPlayer
@@ -51,11 +50,6 @@ object GtnnCommand : CommandBase() {
 				}.onFailure {
 					sender.addChatMessage(ChatComponentText("Failed to open the URL, see logs for details."))
 				}
-			}
-
-			"loaded-mixins" -> {
-				val loadedMixinNames = MixinLoader.loadedMixinModules.joinToString(", ") { it.id }
-				sender.addChatMessage(ChatComponentText("Loaded Mixin Modules: [${loadedMixinNames}]"))
 			}
 
 			"disassemble-debug-index" -> {

@@ -1,6 +1,6 @@
 package cn.elytra.mod.gtnn.mixin.gt5u;
 
-import cn.elytra.mod.gtnn.modules.simple.module.disassembler.ReversedRecipeRegistry;
+import cn.elytra.mod.gtnn.modules.disassembler.ReversedRecipeRegistry;
 import gregtech.api.util.GTShapedRecipe;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.ItemStack;

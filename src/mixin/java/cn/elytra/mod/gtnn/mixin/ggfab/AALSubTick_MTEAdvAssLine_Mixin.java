@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class AALSubTick_MTEAdvAssLine_Mixin {
 
 	@Inject(method = "checkProcessing", at = @At(value = "INVOKE", target = "Lggfab/mte/MTEAdvAssLine;isBatchModeEnabled()Z", ordinal = 0))
-	private void nn$setMaxParallel(CallbackInfoReturnable<CheckRecipeResult> cir, @Local(ordinal = 2) LocalIntRef maxParallelBeforeBatchMode, @Local(ordinal = 1) LocalIntRef maxParallel, @Local(ordinal = 1) OverclockCalculator calculator) {
+	private void nn$setMaxParallel(CallbackInfoReturnable<CheckRecipeResult> cir, @Local(ordinal = 2) LocalIntRef maxParallelBeforeBatchMode, @Local(ordinal = 1) LocalIntRef maxParallel, @Local(ordinal = 0) OverclockCalculator calculator) {
 		double tickTimeAfterOC = calculator.calculateDurationUnderOneTick();
 		if(tickTimeAfterOC < 1) {
 			// get the value of updated time
