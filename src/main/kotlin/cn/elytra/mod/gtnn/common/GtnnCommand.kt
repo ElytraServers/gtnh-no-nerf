@@ -2,9 +2,12 @@ package cn.elytra.mod.gtnn.common
 
 import cn.elytra.mod.gtnn.GTNN
 import cn.elytra.mod.gtnn.modules.disassembler.DisassemblerHelper
+import gregtech.api.GregTechAPI
+import gregtech.api.util.ProcessingArrayManager
 import net.minecraft.command.CommandBase
 import net.minecraft.command.ICommandSender
 import net.minecraft.entity.player.EntityPlayer
+import net.minecraft.item.Item
 import net.minecraft.util.ChatComponentText
 import java.awt.Desktop
 import java.net.URI
@@ -67,12 +70,37 @@ object GtnnCommand : CommandBase() {
 				info.getInfo().lineSequence().forEach { GTNN.logger.info(it) }
 			}
 
+			"is-pa-compat" -> {
+				if(p == null) {
+					sender.addChatMessage(ChatComponentText("Player only!"))
+					return
+				}
+
+				val held = p.heldItem
+				if(held.item != Item.getItemFromBlock(GregTechAPI.sBlockMachines)) {
+					sender.addChatMessage(ChatComponentText("Not a valid machine block!"))
+				}
+				val machineName = ProcessingArrayManager.getMachineName(held)
+				val recipeMap = ProcessingArrayManager.giveRecipeMap(machineName)
+
+				sender.addChatMessage(ChatComponentText(buildString {
+					append("Machine is ")
+					if(recipeMap != null) {
+						append("compatible with Processing Array, where the RecipeMap is ")
+						append(recipeMap.unlocalizedName)
+					} else {
+						append("not compatible with Processing Array")
+					}
+				}))
+			}
+
 			else -> {
 				arrayOf(
 					"/gtnn help - show this help message",
 					"/gtnn github - open the repository of gtnn",
 					"/gtnn loaded-mixins - list loaded mixin modules",
-					"/gtnn disassemble-debug-index - (with disassembler debug mode enabled) get the related recipe info with given debug index"
+					"/gtnn disassemble-debug-index - (with disassembler debug mode enabled) get the related recipe info with given debug index",
+					"/gtnn is-pa-compat - check if the held machine block is compatible with Processing Array",
 				).forEach { sender.addChatMessage(ChatComponentText(it)) }
 			}
 		}
