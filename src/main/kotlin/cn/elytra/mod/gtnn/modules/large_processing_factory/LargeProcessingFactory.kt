@@ -3,13 +3,12 @@ package cn.elytra.mod.gtnn.modules.large_processing_factory
 import cn.elytra.mod.gtnn.mod_v2.ModuleDefinitionBase
 import cn.elytra.mod.gtnn.util.DefaultMachineRecipeMask
 import cpw.mods.fml.common.event.FMLPostInitializationEvent
-import gregtech.api.GregTechAPI
 import gregtech.api.enums.ItemList
 import gregtech.api.util.GTModHandler
 import gtPlusPlus.core.block.ModBlocks
 import gtPlusPlus.core.material.MaterialsAlloy
 import gtPlusPlus.core.util.minecraft.ItemUtils
-import gtPlusPlus.xmod.gregtech.api.enums.GregtechItemList
+import gtPlusPlus.xmod.gregtech.common.tileentities.machines.multi.processing.MTEIndustrialMultiMachine
 import net.minecraft.item.ItemStack
 
 object LargeProcessingFactory : ModuleDefinitionBase("processing_factory") {
@@ -18,17 +17,14 @@ object LargeProcessingFactory : ModuleDefinitionBase("processing_factory") {
 	private var NNLargeProcessingFactory: ItemStack? = null
 
 	override fun onFMLPostInit(e: FMLPostInitializationEvent) {
-		if(GregTechAPI.METATILEENTITIES[MTE_ID] == null) {
-			log.info("Processing Factory is fully removed! Registering NN-customized Processing Factory.")
-			NNLargeProcessingFactory = MTELargeProcessingFactory(
-				MTE_ID,
-				"industrialmultimachine.controller.tier.single",
-				"Large Processing Factory"
-			).getStackForm(1)
-		}
+		NNLargeProcessingFactory = MTEIndustrialMultiMachine(
+			MTE_ID,
+			"industrialmultimachine.controller.tier.single",
+			"Large Processing Factory"
+		).getStackForm(1)
 
 		GTModHandler.addCraftingRecipe(
-			NNLargeProcessingFactory ?: GregtechItemList.Industrial_MultiMachine.get(1),
+			NNLargeProcessingFactory,
 			DefaultMachineRecipeMask,
 			arrayOf(
 				"ABC", "DED", "FGH",

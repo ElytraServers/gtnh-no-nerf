@@ -1,5 +1,6 @@
 package cn.elytra.mod.gtnn
 
+import cn.elytra.mod.gtnn.client.NNTextures
 import cn.elytra.mod.gtnn.common.GtnnCommand
 import cn.elytra.mod.gtnn.mod_v2.ModuleManager
 import cpw.mods.fml.common.FMLCommonHandler
@@ -30,6 +31,10 @@ open class CommonLoader {
 		}
 
 		ModuleManager.onFMLPreInit(event)
+
+		// to make sure it is loaded, so that the icon registration callbacks are added to the GT api
+		NNTextures.GT.entries
+		NNTextures.GTPlusPlus.entries
 	}
 
 	fun init(event: FMLInitializationEvent) {
