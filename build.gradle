@@ -3,3 +3,9 @@
 plugins {
     id 'com.gtnewhorizons.gtnhconvention'
 }
+
+def gtnhVersion = "2.8.x"
+
+jar {
+	archiveVersion = project.version + "+" + gtnhVersion
+}
