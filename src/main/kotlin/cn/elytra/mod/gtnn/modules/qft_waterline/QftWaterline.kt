@@ -16,6 +16,7 @@ import gtPlusPlus.core.recipe.common.CI
 import gtPlusPlus.core.util.minecraft.ItemUtils
 import gtPlusPlus.xmod.gregtech.api.enums.GregtechItemList
 import net.minecraft.item.ItemStack
+import net.minecraftforge.oredict.OreDictionary
 
 object QftWaterline : ModuleDefinitionBase("qft_waterline") {
 
@@ -30,11 +31,11 @@ object QftWaterline : ModuleDefinitionBase("qft_waterline") {
 	override fun onFMLPostInit(e: FMLPostInitializationEvent) {
 		val chemItem = GregtechItemList.RedMetalCatalyst.item
 
-		limpidWaterCatalyst = ItemUtils.simpleMetaStack(chemItem, LIMPID_METADATA, 1)
-		flawlessWaterCatalyst = ItemUtils.simpleMetaStack(chemItem, FLAWLESS_METADATA, 1)
+		limpidWaterCatalyst = ItemStack(chemItem, LIMPID_METADATA, 1)
+		flawlessWaterCatalyst = ItemStack(chemItem, FLAWLESS_METADATA, 1)
 
-		ItemUtils.addItemToOreDictionary(limpidWaterCatalyst, "catalystLimpidWater")
-		ItemUtils.addItemToOreDictionary(flawlessWaterCatalyst, "catalystFlawlessWater")
+		OreDictionary.registerOre("catalystLimpidWater", limpidWaterCatalyst)
+		OreDictionary.registerOre("catalystFlawlessWater", flawlessWaterCatalyst)
 
 		// limpid water catalyst
 		GTValues.RA.stdBuilder()
@@ -45,7 +46,7 @@ object QftWaterline : ModuleDefinitionBase("qft_waterline") {
 				GTOreDictUnificator.get(OrePrefixes.nanite, Materials.Silver, 1, false),
 				ItemList.Circuit_Silicon_Wafer6.get(64)
 			)
-			.itemOutputs(ItemUtils.getSimpleStack(limpidWaterCatalyst, 1))
+			.itemOutputs(GTUtility.copyAmount(1, limpidWaterCatalyst))
 			.fluidInputs(MaterialsElements.STANDALONE.HYPOGEN.getFluidStack(9216))
 			.duration(60 * GTRecipeBuilder.SECONDS)
 			.eut(TierEU.RECIPE_UEV)
@@ -60,7 +61,7 @@ object QftWaterline : ModuleDefinitionBase("qft_waterline") {
 				GTOreDictUnificator.get(OrePrefixes.nanite, Materials.Silver, 64, false),
 				ItemList.Circuit_Silicon_Wafer6.get(64)
 			)
-			.itemOutputs(ItemUtils.getSimpleStack(flawlessWaterCatalyst, 1))
+			.itemOutputs(GTUtility.copyAmount(1, flawlessWaterCatalyst))
 			.fluidInputs(GGMaterial.shirabon.getMolten(92160))
 			.duration(60 * GTRecipeBuilder.SECONDS)
 			.eut(TierEU.RECIPE_UMV)
