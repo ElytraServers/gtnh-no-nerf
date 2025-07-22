@@ -1,39 +1,13 @@
-import cn.elytra.gradle.conventions.ModpackVersion
-
 //version: 1707058017
 
 plugins {
-	id 'com.github.ElytraServers.elytra-conventions' version "v1.0.1"
+	id 'com.github.ElytraServers.elytra-conventions' version 'v1.1.0'
 	id 'com.gtnewhorizons.gtnhconvention'
+	id 'org.jetbrains.kotlin.jvm'
 }
 
 def gtnhVersion = project.property("elytra.manifest.version")
 
 jar {
 	archiveVersion = project.version + "+" + gtnhVersion
-}
-
-dependencies {
-	runtimeOnly(gtnhDev("Forgelin"))
-	// already provided by Forgelin, but we need to add it here to avoid a warning
-	compileOnly("org.jetbrains.kotlin:kotlin-reflect:2.1.10")
-
-	implementation(gtnhDev("CodeChickenCore"))
-	implementation(gtnhDev("GT5-Unofficial"))
-	implementation(gtnhDev("GTNHLib"))
-	implementation(gtnhDev("NewHorizonsCoreMod"))
-	implementation(gtnhDev("ForestryMC")) { transitive = false }
-	implementation(gtnhDev("Railcraft")) { transitive = false }
-	implementation(gtnhDev("BuildCraft")) { transitive = false }
-	implementation(gtnhDev("EnderIO")) { transitive = false }
-	implementation(gtnhDev("ProjectRed")) { transitive = false }
-	implementation(gtnhDev("TinkersConstruct")) { transitive = false }
-	implementation(gtnhDev("AppleCore")) { transitive = false }
-
-	runtimeOnly("thaumcraft:Thaumcraft:1.7.10-4.2.3.5:dev") { transitive = false }
-	runtimeOnly(gtnhDev("BlockRenderer6343")) { transitive = false }
-}
-
-static def gtnhDev(String name) {
-	return ModpackVersion.gtnh(name, "dev")
 }
