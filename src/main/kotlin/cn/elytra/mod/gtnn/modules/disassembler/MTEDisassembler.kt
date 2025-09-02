@@ -38,9 +38,9 @@ class MTEDisassembler : MTEBasicMachineWithRecipe {
 		getMachineTranslationKey("Disassembler", tier),
 		getMachineEnglishNameInGTStyle("Disassembler", "Deconstructor", tier),
 		tier,
-		"Disassembles items into their components",
+		arrayOf("Disassembles items into their components"),
 		RecipeMap, 1, 9, false,
-		SoundResource.NONE, SpecialEffects.NONE, "ASSEMBLER", MachineCraftRecipe.copyOf(),
+		SoundResource.NONE, SpecialEffects.NONE, "ASSEMBLER",
 	)
 
 	override fun addAdditionalTooltipInformation(stack: ItemStack, tooltip: MutableList<String>) {

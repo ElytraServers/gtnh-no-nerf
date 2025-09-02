@@ -2,4 +2,15 @@
 
 repositories {
 
+	exclusiveContent {
+		forRepository {
+			maven {
+				url "https://maven.glease.net/repos/releases/"
+			}
+		}
+		filter {
+			includeGroup("net.glease")
+		}
+	}
+
 }
