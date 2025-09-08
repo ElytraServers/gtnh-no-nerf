@@ -43,13 +43,8 @@ dependencies {
 	implementation(gtnhDev("GT5-Unofficial"))
 	implementation(gtnhDev("GTNHLib"))
 	implementation(gtnhDev("NewHorizonsCoreMod"))
-	implementation(gtnhDev("ForestryMC")) { transitive = false }
-	implementation(gtnhDev("Railcraft")) { transitive = false }
-	implementation(gtnhDev("BuildCraft")) { transitive = false }
-	implementation(gtnhDev("EnderIO")) { transitive = false }
-	implementation(gtnhDev("ProjectRed")) { transitive = false }
-	implementation(gtnhDev("TinkersConstruct")) { transitive = false }
-	implementation(gtnhDev("AppleCore")) { transitive = false }
+
+	runtimeOnly(gtnhDev("Galacticraft"))
 
 	runtimeOnly("thaumcraft:Thaumcraft:1.7.10-4.2.3.5:dev") { transitive = false }
 	runtimeOnly(gtnhDev("BlockRenderer6343")) { transitive = false }
