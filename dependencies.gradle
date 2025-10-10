@@ -34,6 +34,15 @@
  * For more details, see https://docs.gradle.org/8.0.1/userguide/java_library_plugin.html#sec:java_library_configurations_graph
  */
 
+repositories {
+	maven {
+		url = "https://jitpack.io"
+		mavenContent {
+			includeGroupByRegex("com\\.github\\..+")
+		}
+	}
+}
+
 dependencies {
 	runtimeOnly(gtnhDev("Forgelin"))
 	// already provided by Forgelin, but we need to add it here to avoid a warning
@@ -48,6 +57,10 @@ dependencies {
 
 	runtimeOnly("thaumcraft:Thaumcraft:1.7.10-4.2.3.5:dev") { transitive = false }
 	runtimeOnly(gtnhDev("BlockRenderer6343")) { transitive = false }
+
+	shadowImplementation("com.github.ElytraServers:conditional-mixin-legacy:1.0.0") {
+		exclude group: "io.github.legacymoddingmc"
+	}
 }
 
 @SuppressWarnings('GrMethodMayBeStatic')

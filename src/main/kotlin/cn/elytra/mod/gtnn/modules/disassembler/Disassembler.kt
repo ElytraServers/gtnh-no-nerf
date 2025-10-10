@@ -2,6 +2,7 @@ package cn.elytra.mod.gtnn.modules.disassembler
 
 import cn.elytra.mod.gtnn.mod_v2.ModuleDefinitionBase
 import cn.elytra.mod.gtnn.mod_v2.util.gte
+import cn.elytra.mod.gtnn.mod_v2.util.lt
 import cn.elytra.mod.gtnn.util.VoltageIndexedMap
 import cpw.mods.fml.common.event.FMLInitializationEvent
 import cpw.mods.fml.common.event.FMLLoadCompleteEvent
@@ -50,13 +51,20 @@ object Disassembler : ModuleDefinitionBase("disassembler") {
 
 	override fun gatherMixinsToApply(): Set<String> {
 		return buildMixinClassSet {
-			// shaped
-			add("gt5u.DisassemblerReversedRecipe_GTShapedRecipe_Mixin")
-			// shapeless
-			if(isModVersionValid("gregtech") { it gte "5.09.51.155" }) {
-				add("gt5u.DisassemblerReversedRecipe_GTShapelessRecipe_Mixin")
+			if(isModVersionValid("gregtech") { it gte "5.09.51.0" && it lt "5.09.51.357" /* the fucking pr #4514 */ }) {
+				// shaped
+				add("gt5u.DisassemblerReversedRecipe_GTShapedRecipe_Mixin")
+				// shapeless
+				if(isModVersionValid("gregtech") { it gte "5.09.51.155" }) {
+					add("gt5u.DisassemblerReversedRecipe_GTShapelessRecipe_Mixin")
+				} else {
+					log.info("Ignored GregTech shapeless recipes because of GT5-Unofficial#3138 broke the mixin.")
+				}
 			} else {
-				log.info("Ignored GregTech shapeless recipes because of GT5-Unofficial#3138 broke the mixin.")
+				log.info("Using call-site injection because GT5-Unofficial#4514 broke the mixin.")
+
+				add("gt5u.gt_recipes.Disassembler_BWUtil_Mixin")
+				add("gt5u.gt_recipes.Disassembler_GTModHandler_Mixin")
 			}
 		}
 	}
